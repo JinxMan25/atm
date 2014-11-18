@@ -10,6 +10,7 @@ var users = require('./routes/users');
 
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/test');
+require('./models/Photos');
 
 var app = express();
 

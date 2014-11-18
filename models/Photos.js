@@ -8,11 +8,11 @@ var uploads = path.join(uploads_base, "u");
 
 var PhotoSchema = new mongoose.Schema({
   title: String,
-  posted: { type: Date, default: Date.now},
+  posted: { type: Date, default: Date.now },
   expire_in: { type: Date }
   img_url: String,
   upvoted: [],
-  upvotes: {type: Number, default: 1});
+  upvotes: { type: Number, default: 1 });
 
 /*PhotoSchema.plugin(thumnailPlugin, {
   name: "photo",
@@ -23,5 +23,11 @@ var PhotoSchema = new mongoose.Schema({
   upload_to: make_upload_to_model(uploads, 'photos'),
       relative_to: uploads_base
 });*/
-var PhotoModel = db.model("Photo", PhotoSchema);
+mongoose.model("Photo", PhotoSchema);
+
+PhotoSchema.methods.upvote = function(cb){
+  if (this.upvoted.indexOf(
+  this.upvotes += 1;
+  this.save(cb);
+};
 
