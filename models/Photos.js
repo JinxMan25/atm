@@ -8,9 +8,11 @@ var uploads = path.join(uploads_base, "u");
 
 var PhotoSchema = new mongoose.Schema({
   title: String,
-  posted: Date.now,
-  link: String,
-  upvotes: {type: Number, default: 0});
+  posted: { type: Date, default: Date.now},
+  expire_in: { type: Date }
+  img_url: String,
+  upvoted: [],
+  upvotes: {type: Number, default: 1});
 
 /*PhotoSchema.plugin(thumnailPlugin, {
   name: "photo",
@@ -21,5 +23,5 @@ var PhotoSchema = new mongoose.Schema({
   upload_to: make_upload_to_model(uploads, 'photos'),
       relative_to: uploads_base
 });*/
-var SampleModel = db.model("Photo", PhotoSchema);
+var PhotoModel = db.model("Photo", PhotoSchema);
 
