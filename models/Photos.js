@@ -12,7 +12,7 @@ var PhotoSchema = new mongoose.Schema({
   link: String,
   upvotes: {type: Number, default: 0});
 
-PhotoSchema.plugin(thumnailPlugin, {
+/*PhotoSchema.plugin(thumnailPlugin, {
   name: "photo",
   format: "png",
   size: "80",
@@ -20,6 +20,6 @@ PhotoSchema.plugin(thumnailPlugin, {
   save: true,
   upload_to: make_upload_to_model(uploads, 'photos'),
       relative_to: uploads_base
-});
-var SampleModel = db.model("Photo", SampleSchema);
+});*/
+var SampleModel = db.model("Photo", PhotoSchema);
 
