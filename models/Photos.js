@@ -9,7 +9,9 @@ var uploads = path.join(uploads_base, "u");
 var PhotoSchema = new mongoose.Schema({
   title: String,
   posted: { type: Date, default: Date.now },
-  expire_in: { type: Date }
+  expire_in: { type: Date },
+  longtitude: Number,
+  latitude: Number,
   img_url: String,
   upvoted: [],
   upvotes: { type: Number, default: 1 });
