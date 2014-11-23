@@ -14,7 +14,7 @@ var PhotoSchema = new mongoose.Schema({
   latitude: Number,
   img_url: String,
   upvoted: [],
-  upvotes: { type: Number, default: 1 });
+  upvotes: { type: Number, default: 0 });
 
 /*PhotoSchema.plugin(thumnailPlugin, {
   name: "photo",

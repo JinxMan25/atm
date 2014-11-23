@@ -12,4 +12,15 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.post('/create', function(req, res, next){
+  var photo = new Photo(req.body)
+
+  photo.save(function(err,post){
+    if(err){
+      return next(err);
+    }
+    res.json(photo);
+  });
+});
+
 module.exports = router;
