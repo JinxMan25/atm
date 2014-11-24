@@ -1,4 +1,5 @@
 var express = require('express');
+var crypto = require('crypto')
 var router = express.Router();
 var mongoose = require('mongoose');
 var Photo = mongoose.model('Photo');

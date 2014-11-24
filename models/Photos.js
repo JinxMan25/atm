@@ -10,12 +10,12 @@ var PhotoSchema = new mongoose.Schema({
   title: String,
   posted: { type: Date, default: Date.now },
   expire_in: { type: Date },
-  uniq_token: String,
+  uniq_token: { type: String, unique: true, required: true, dropDups: true},
   address: String,
   longtitude: Number,
   latitude: Number,
   img_url: String,
-  upvoted: [],
+  upvoted: [{type: String}],
   upvotes: { type: Number, default: 0 });
 
   PhotoSchema.static('findByDegrees', function(longitude,latitude,callback){
@@ -34,7 +34,7 @@ var PhotoSchema = new mongoose.Schema({
 mongoose.model("Photo", PhotoSchema);
 
 PhotoSchema.methods.upvote = function(cb){
-  if (this.upvoted.indexOf(
+  if (this.upvoted.indexOf)
   this.upvotes += 1;
   this.save(cb);
 };
