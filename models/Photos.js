@@ -10,13 +10,15 @@ var PhotoSchema = new mongoose.Schema({
   title: String,
   posted: { type: Date, default: Date.now },
   expire_in: { type: Date },
+  uniq_token: String,
+  address: String,
   longtitude: Number,
   latitude: Number,
   img_url: String,
   upvoted: [],
   upvotes: { type: Number, default: 0 });
 
-  PhotoSchema.static('findByCoordinates', function(longitude,latitude,callback){
+  PhotoSchema.static('findByDegrees', function(longitude,latitude,callback){
     return this.find({ longitude: { $gte: longitude-0.05, $lte: longitude+0.05 }, latitude: { $gte: latitude-3, $lte: latitude+3 } }, callback);
   });
 
