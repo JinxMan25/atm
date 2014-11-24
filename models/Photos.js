@@ -16,6 +16,10 @@ var PhotoSchema = new mongoose.Schema({
   upvoted: [],
   upvotes: { type: Number, default: 0 });
 
+  PhotoSchema.static('findByCoordinates', function(longitude,latitude,callback){
+    return this.find({ longitude: { $gte: longitude-3, $lte: longitude+3 }, latitude: { $gte: latitude-3, $lte: latitude+3 } }, callback);
+  });
+
 /*PhotoSchema.plugin(thumnailPlugin, {
   name: "photo",
   format: "png",
