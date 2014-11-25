@@ -15,9 +15,21 @@ router.get('/', function(req, res, next) {
 
 router.param('uniq_token', function(req, res, next, uniq_token){
   var query = Photo.findByToken(uniq_token);
+
+  query.exec(function(err, photo){
+    if (err) { return next(err); }
+    if (!photo) {
+      return next(new Error ("cant find photo"));
+    }
+    req.photo = photo;
+    return next();
+    }
+  });
 });
 
-//router.get('/get/:uniq_token/'
+router.get('/get/:uniq_token/', function(req,res){
+  res.json(req.photo);
+});
 
 router.post('/create', function(req, res, next){
   var data = req.body
