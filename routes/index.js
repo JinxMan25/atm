@@ -13,6 +13,12 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.param('uniq_token', function(req, res, next, uniq_token){
+  var query = Photo.findByToken(uniq_token);
+});
+
+//router.get('/get/:uniq_token/'
+
 router.post('/create', function(req, res, next){
   var photo = new Photo(req.body)
   var token = randomValueBase64(5);

@@ -1,11 +1,11 @@
 var mongoose = require('mongoose')
-var thumbnailPluginLib = require('mongoose-thumnail')
+/*var thumbnailPluginLib = require('mongoose-thumbnail')
 var thumbnailPlugin = thumbnailPluginLib.thumnailPlugin;
 var make_upload_to_model = thumbnailPluginLib.make_upload_to_model;
 
 var uploads_base = path.join(__dirname, "uploads");
 var uploads = path.join(uploads_base, "u");
-
+*/
 var PhotoSchema = new mongoose.Schema({
   title: String,
   posted: { type: Date, default: Date.now },
@@ -16,10 +16,14 @@ var PhotoSchema = new mongoose.Schema({
   latitude: Number,
   img_url: String,
   upvoted: [{type: String}],
-  upvotes: { type: Number, default: 0 });
+  upvotes: { type: Number, default: 0 }});
 
   PhotoSchema.static('findByDegrees', function(longitude,latitude,callback){
     return this.find({ longitude: { $gte: longitude-0.05, $lte: longitude+0.05 }, latitude: { $gte: latitude-3, $lte: latitude+3 } }, callback);
+  });
+
+  PhotoSchema.static('findByToken', function(token, callback){
+    return this.find({ uniq_token: token }, callback);
   });
 
 /*PhotoSchema.plugin(thumnailPlugin, {
