@@ -23,8 +23,7 @@ router.param('uniq_token', function(req, res, next, uniq_token){
     }
     req.photo = photo;
     return next();
-    }
-  });
+    });
 });
 
 router.get('/get/:uniq_token/', function(req,res){
