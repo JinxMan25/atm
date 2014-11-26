@@ -7,16 +7,13 @@ var Photo = mongoose.model('Photo');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if (req.query.latitude && req.query.longtitude){
-    console.log('found');
-    var query = Photo.find({'latitude':req.query.latitude,'longtitude':req.query.longtitude});
+    var query = Photo.find({'latitude':{ $gte: req.query.latitude-3, $lte: req.query.latitude+3}, 'longtitude': { $gte: req.query.longtitude-3, $lte: req.query.longtitude+3 }});
     query.exec(function(err,photo){
       if (err) { return next(err); }
       if (!photo){ return next(new Error ("Can't find photo")); }
-      console.log(photo);
       res.json(photo);
     });
   } else {
-    console.log('not found');
     Photo.find(function(err, photos){
       if (err) { return next(err); }
       res.json(photos);
