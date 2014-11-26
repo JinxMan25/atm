@@ -6,11 +6,22 @@ var Photo = mongoose.model('Photo');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Photo.find(function(err, photos){
-    if (err) { return next(err); }
-
-    res.json(photos);
-  });
+  if (req.query.latitude && req.query.longtitude){
+    console.log('found');
+    var query = Photo.find({'latitude':req.query.latitude,'longtitude':req.query.longtitude});
+    query.exec(function(err,photo){
+      if (err) { return next(err); }
+      if (!photo){ return next(new Error ("Can't find photo")); }
+      console.log(photo);
+      res.json(photo);
+    });
+  } else {
+    console.log('not found');
+    Photo.find(function(err, photos){
+      if (err) { return next(err); }
+      res.json(photos);
+    });
+  }
 });
 
 router.param('uniq_token', function(req, res, next, uniq_token){
@@ -31,6 +42,7 @@ router.get('/get/:uniq_token/', function(req,res){
 });
 
 router.put('/get/:uniq_token/upvote', function(req,res, next){
+  //grab first from array, otherwise method won't work
   req.photo[0].upvote(function(err, photo){
     if (err) { return next(err); }
 
