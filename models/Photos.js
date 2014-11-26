@@ -26,6 +26,10 @@ var PhotoSchema = new mongoose.Schema({
     return this.find({ uniq_token: token }, callback);
   });
 
+  PhotoSchema.methods.upvote = function upvote(cb){
+    this.upvotes += 1;
+    this.save(cb);
+  };
 /*PhotoSchema.plugin(thumnailPlugin, {
   name: "photo",
   format: "png",
@@ -37,9 +41,4 @@ var PhotoSchema = new mongoose.Schema({
 });*/
 mongoose.model("Photo", PhotoSchema);
 
-PhotoSchema.methods.upvote = function(cb){
-  if (this.upvoted.indexOf)
-  this.upvotes += 1;
-  this.save(cb);
-};
 

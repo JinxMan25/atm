@@ -30,6 +30,14 @@ router.get('/get/:uniq_token/', function(req,res){
   res.json(req.photo);
 });
 
+router.put('/get/:uniq_token/upvote', function(req,res, next){
+  req.photo[0].upvote(function(err, photo){
+    if (err) { return next(err); }
+
+    res.json(photo);
+  });
+});
+
 router.post('/create', function(req, res, next){
   var data = req.body
   var token = randomValueBase64(5);
