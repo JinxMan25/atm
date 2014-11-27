@@ -48,9 +48,29 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 });
 
 router.post('/create', function(req, res, next){
+  var serverPath = '/static/images/' + req.files.photoname;
+
   var data = req.body
+
   var token = randomValueBase64(5);
+
   data['uniq_token'] = token;
+
+  require('fs').rename(
+    req.files.photo.path,
+    __dirname + serverPath,
+    function(err){
+      if (err) {
+        res.send({
+          error: "Something bad happened"
+        });
+        return;
+      }
+
+      res.send({path: serverPath});
+    }
+    );
+  data['img_url'] = req.files.photo.path;
   console.log(data);
 
   var photo = new Photo(data)
