@@ -11,7 +11,7 @@ var PhotoSchema = new mongoose.Schema({
   posted: { type: Date, default: Date.now },
   expire_in: { type: Date },
   uniq_token: { type: String, unique: true, required: true, dropDups: true},
-  address: String,
+  address: { street: String, City: String, State: String, Country: String }, 
   longtitude: Number,
   latitude: Number,
   img_url: String,
