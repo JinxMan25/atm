@@ -6,7 +6,10 @@
     <script src="javascripts/angularApp.js"></script>
     <script src="javascripts/geolocation.js"></script>
   </head>
-  <body>
+  <body ng-app="atthismoment" ng-controller="mainController">
+    <div ng-repeat="photo in photos">
+      {{ photo }}
+    </div>
 
   </body>
 </html>
