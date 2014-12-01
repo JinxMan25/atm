@@ -7,8 +7,8 @@
     <script src="javascripts/geolocation.js"></script>
   </head>
   <body ng-app="atthismoment" ng-controller="mainController">
-    <div ng-repeat="photo in photos">
-      {{ photo }}
+    <div ng-repeat="photo in photos | orderBy: '-upvotes'">
+      {{ photo.title }} - upvotes: {{ photo.upvotes }}
     </div>
 
   </body>
