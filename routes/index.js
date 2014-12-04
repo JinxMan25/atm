@@ -21,6 +21,10 @@ router.get('/', function(req, res, next) {
   }
 });
 
+router.get('/angulartest', function(req,res,next){
+  res.render('index');
+});
+
 router.param('uniq_token', function(req, res, next, uniq_token){
   var query = Photo.findByToken(uniq_token);
 

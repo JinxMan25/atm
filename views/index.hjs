@@ -4,7 +4,6 @@
     <title>{{ title }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script src="javascripts/angularApp.js"></script>
-    <script src="javascripts/geolocation.js"></script>
   </head>
   <body ng-app="atthismoment" ng-controller="mainController">
     <div ng-repeat="photo in photos | orderBy: '-upvotes'">
