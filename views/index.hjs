@@ -5,8 +5,12 @@
     <script src="javascripts/angularApp.js"></script>
   </head>
   <body ng-app="atm" ng-controller="ctrl">
-    <div>
-      {{test}}
+    <div ng-repeat="photo in photos | orderBy: '-upvotes'">
+      {{ photo.title  }} - {{ photo.upvotes }}
     </div>
+    <form ng-submit="addPhoto()">
+      <input type="text" ng-model="title"></input>
+      <button type="submit">Post</button>
+    </form>
   </body>
 </html>
