@@ -1,14 +1,12 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title>{{ title }}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <title>My Angular App!</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
     <script src="javascripts/angularApp.js"></script>
   </head>
-  <body ng-app="atthismoment" ng-controller="mainController">
-    <div ng-repeat="photo in photos | orderBy: '-upvotes'">
-      {{ photo.title }} - upvotes: {{ photo.upvotes }}
+  <body ng-app="atm" ng-controller="ctrl">
+    <div>
+      {{test}}
     </div>
-
   </body>
 </html>
