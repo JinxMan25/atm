@@ -32,8 +32,8 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <h2>Find exciting snapshots around you!</h2>
+        <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
         <div class="row">
           <div class="col-sm-offset-5 col-sm-2 text-center">
               <div class="btn-group" data-toggle="buttons">
