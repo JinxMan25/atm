@@ -3,20 +3,32 @@
     <title>My Angular App!</title>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
     <script src="javascripts/angularApp.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
   </head>
   <body ng-app="atm" ng-controller="ctrl">
     <div ng-repeat="photo in photos | orderBy: '-upvotes'">
       {{ photo.title  }} - {{ photo.upvotes }}
     </div>
-    <form name="uploadPhoto" ng-submit="addPhoto()">
-      <input type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" name="photoTitle" ng-model="title" placeholder="Title"></input>
-      <textarea rows="4"></textarea>
-      <button class="btn" type="submit">Post</button>
-      <div ng-messages="uploadPhoto.photoTitle.$error" style="color:maroon">
-        <div ng-message="minlength">You need atleast two characters!</div>
-        <div ng-message="maxlength">Maximum length is 25 characters!</div>
-      <div>
-    </form>
+      <div class="style2">
+        <form class="form-inline" name="uploadPhoto" ng-submit="addPhoto()">
+          <div class="row">
+            <div class="form-group col-lg-1">
+            <input class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" name="photoTitle" ng-model="title" placeholder="Title"></input>
+            </div>
+          </div>
+          <div class="row">
+            </br>
+            <div class="form-group col-lg-1">
+            <textarea class="form-control" rows="4"></textarea></br>
+            <button class="btn" type="submit">Post</button>
+            </div>
+          </div>
+          <div ng-messages="uploadPhoto.photoTitle.$error" style="color:maroon">
+            <div ng-message="minlength">You need atleast two characters!</div>
+            <div ng-message="maxlength">Maximum length is 25 characters!</div>
+          <div>
+        </form>
+      </div>
   </body>
 </html>
