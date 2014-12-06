@@ -3,6 +3,7 @@
     <title>My Angular App!</title>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
     <script src="javascripts/angularApp.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="javascripts/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
@@ -33,7 +34,14 @@
       <div class="container">
         <h1>Hello, world!</h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+        <div class="row">
+          <div class="col-sm-offset-5 col-sm-2 text-center">
+              <div class="btn-group" data-toggle="buttons">
+                  <p><a class="btn btn-success btn-lg" href="#" role="button">Discover nearby!</a></p>
+                  <p><a class="btn btn-primary btn-lg" href="#" role="button">Upload photo »</a></p>
+              </div>
+          </div>
+        </div>
       </div>
     </div>
 
