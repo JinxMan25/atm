@@ -1,11 +1,11 @@
 .style2 {
   position:absolute;
   display:block;
-  width: 200px;
+  width: 250px;
   height: 200px;
   margin: 0px auto;
   left: 50%;
   top: 50%;
-  margin-left: -100px;
+  margin-left: -125px;
   margin-top: -100px;
 }

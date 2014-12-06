@@ -7,20 +7,20 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
   </head>
   <body ng-app="atm" ng-controller="ctrl">
-    <div ng-repeat="photo in photos | orderBy: '-upvotes'">
-      {{ photo.title  }} - {{ photo.upvotes }}
-    </div>
+    <!div ng-repeat="photo in photos | orderBy: '-upvotes'">
+    <!{{ photo.title  }} - {{ photo.upvotes }}!>
+    <!/div>
       <div class="style2">
         <form class="form-inline" name="uploadPhoto" ng-submit="addPhoto()">
           <div class="row">
             <div class="form-group col-lg-1">
-            <input class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" name="photoTitle" ng-model="title" placeholder="Title"></input>
+            <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" name="photoTitle" ng-model="title" placeholder="Title"></input>
             </div>
           </div>
           <div class="row">
             </br>
             <div class="form-group col-lg-1">
-            <textarea class="form-control" rows="4" placeholder="Description"></textarea></br>
+            <textarea class="form-control" rows="4" style="width:250px;" placeholder="Description"></textarea></br>
             </br>
             <button class="btn" style="position:relative;width:100px;margin:0px auto;left:50%;margin-left:-50px" type="submit">Post</button>
             </div>
