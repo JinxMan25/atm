@@ -20,8 +20,9 @@
           <div class="row">
             </br>
             <div class="form-group col-lg-1">
-            <textarea class="form-control" rows="4"></textarea></br>
-            <button class="btn" type="submit">Post</button>
+            <textarea class="form-control" rows="4" placeholder="Description"></textarea></br>
+            </br>
+            <button class="btn" style="position:relative;width:100px;margin:0px auto;left:50%;margin-left:-50px" type="submit">Post</button>
             </div>
           </div>
           <div ng-messages="uploadPhoto.photoTitle.$error" style="color:maroon">
