@@ -32,8 +32,12 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h2>Find exciting snapshots around you!</h2>
-        <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
+        <div class="container" style="width:90%;">
+          <h2>Find exciting snapshots around you!</h2>
+          <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
+        </div>
+        <div class="span5 offset1">
+        </div>
         <div class="row">
           <div class="col-sm-offset-5 col-sm-2 text-center">
               <div class="btn-group" data-toggle="buttons">
