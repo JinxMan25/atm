@@ -12,5 +12,6 @@ function($scope){
 
   $scope.addPhoto = function(){
     $scope.photos.push({title: $scope.title, upvotes: 0});
+    $scope.title = '';
   };
 }]);
