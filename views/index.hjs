@@ -3,14 +3,16 @@
     <title>My Angular App!</title>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
     <script src="javascripts/angularApp.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   </head>
   <body ng-app="atm" ng-controller="ctrl">
     <div ng-repeat="photo in photos | orderBy: '-upvotes'">
       {{ photo.title  }} - {{ photo.upvotes }}
     </div>
     <form name="uploadPhoto" ng-submit="addPhoto()">
-      <input type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" name="photoTitle" ng-model="title"></input>
-      <button type="submit">Post</button>
+      <input type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" name="photoTitle" ng-model="title" placeholder="Title"></input>
+      <textarea rows="4"></textarea>
+      <button class="btn" type="submit">Post</button>
       <div ng-messages="uploadPhoto.photoTitle.$error" style="color:maroon">
         <div ng-message="minlength">You need atleast two characters!</div>
         <div ng-message="maxlength">Maximum length is 25 characters!</div>
