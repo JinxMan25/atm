@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
   </head>
   <body ng-app="atm" ng-controller="ctrl">
-    <!div ng-repeat="photo in photos | orderBy: '-upvotes'">
-    <!{{ photo.title  }} - {{ photo.upvotes }}!>
-    <!/div>
+    <div ng-repeat="photo in photos | orderBy: '-upvotes'">
+    {{ photo.title  }} - {{ photo.upvotes }}
+    </div>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
