@@ -110,5 +110,8 @@
       </div>
         </div>
       </script>
+      <script type="text/ng-template" id="/photos.html">
+        {{photo.title}} - {{photo.upvotes}}
+      </script>
   </body>
 </html>

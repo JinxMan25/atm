@@ -43,6 +43,10 @@ atm.state('photos', {
   controller: 'PhotosController'
 });
 
+atm.controller('PhotosController', ['$scope', '$stateParams','photos', function($scope,$stateParams,photos){
+  $scope.photo = photos.photos[$stateParams.id];
+}]);
+
 atm.directive('slider', function ($timeout) {
   return {
     restrict: 'AE',
