@@ -12,8 +12,8 @@ function($scope, photos){
     $scope.title = '';
   };
 
-  $scope.incrementUpvotes = function(post){
-    post.upvotes += 1;
+  $scope.incrementUpvotes = function(photo){
+    photo.upvotes += 1;
   }
 }]);
 
@@ -36,6 +36,12 @@ atm.config([
         });
   $urlRouterProvider.otherwise('home');
 }]);
+
+atm.state('photos', {
+  url: '/photos/{id}',
+  templateUrl: '/photos.html',
+  controller: 'PhotosController'
+});
 
 atm.directive('slider', function ($timeout) {
   return {

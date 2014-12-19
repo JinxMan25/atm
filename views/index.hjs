@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
   </head>
-  <body ng-app="atm" ng-controller="ctrl">
+  <body ng-app="atm">
     <!div ng-repeat="photo in photos | orderBy: '-upvotes'">
     <!span ng-click="incrementUpvotes(photo)">^<!/span>
     <!{{ photo.title  }} - {{ photo.upvotes }}
@@ -38,29 +38,7 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
-        <div class="container" style="width:90%;">
-          <h2>Find exciting snapshots around you!</h2>
-          <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
-        </div>
-        <div class="span5 offset1">
-        </div>
-        <div class="row">
-          <div class="container">
-            <div style="" ng-controller="SliderController">
-              <slider images="images"/>
-            </div>
-          </div>
-          <div class="test">
-          </div>
-          <div class="col-xs-12">
-            <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
-              <p><a style="width:200px;display:block;"class="btn btn-success btn-lg" href="#" role="button">Discover nearby!</a></p>
-              <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#" role="button">Upload photo »</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
+        <ui-view></ui-view>
     </div>
     <div class="container" style="text-align:center">
       <div class="row">
@@ -105,5 +83,32 @@
         </form>
       </div>
       -->
+      <script type="text/ng-template" id="/home.html">
+        <div class="container">
+      <div class="container">
+        <div class="container" style="width:90%;">
+          <h2>Find exciting snapshots around you!</h2>
+          <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
+        </div>
+        <div class="span5 offset1">
+        </div>
+        <div class="row">
+          <div class="container">
+            <div style="" ng-controller="SliderController">
+              <slider images="images"/>
+            </div>
+          </div>
+          <div class="test">
+          </div>
+          <div class="col-xs-12">
+            <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
+              <p><a style="width:200px;display:block;"class="btn btn-success btn-lg" href="#" role="button">Discover nearby!</a></p>
+              <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#" role="button">Upload photo »</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </script>
   </body>
 </html>
