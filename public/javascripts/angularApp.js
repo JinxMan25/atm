@@ -1,6 +1,6 @@
 var atm = angular.module('atm', ['ngAnimate']);
 
-atm.controller('ctrl', [
+atm.controller('ctrl',[
 '$scope',
 'photos',
 function($scope, photos){
@@ -17,12 +17,12 @@ function($scope, photos){
   }
 }]);
 
-atm.factory('photos', [function(){
+atm.factory('photos', function(){
   var o = {
-    posts: []
+    photos: []
   };
   return o;
-]);
+});
 
 atm.directive('slider', function ($timeout) {
   return {
