@@ -17,12 +17,18 @@ function($scope, photos){
   }
 }]);
 
-atm.factory('photos', function(){
+atm.factory('photos',['$http', function($http){
   var o = {
     photos: []
   };
+
+  o.getAll = function(){
+    return $http.get('/').success(function(data){
+      angular.copy(data,o.photos);
+    });
+  };
   return o;
-});
+}]);
 
 atm.config([
     '$stateProvider',
