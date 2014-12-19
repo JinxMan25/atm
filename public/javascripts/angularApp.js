@@ -1,4 +1,4 @@
-var atm = angular.module('atm', ['ngAnimate']);
+var atm = angular.module('atm', ['ngAnimate', 'ui.router']);
 
 atm.controller('ctrl',[
 '$scope',
@@ -23,6 +23,19 @@ atm.factory('photos', function(){
   };
   return o;
 });
+
+atm.config([
+    '$stateProvider',
+    '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider){
+      $stateProvider
+        .state('home',{
+          url: '/home',
+          templateUrl: '/home.html',
+          controller: 'ctrl'
+        });
+  $urlRouterProvider.otherwise('home');
+}]);
 
 atm.directive('slider', function ($timeout) {
   return {

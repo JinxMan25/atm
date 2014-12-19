@@ -6,6 +6,7 @@
     <script src="http://code.angularjs.org/1.2.9/angular-animate.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="javascripts/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
