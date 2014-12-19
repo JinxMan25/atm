@@ -40,14 +40,21 @@ atm.config([
           templateUrl: '/home.html',
           controller: 'ctrl'
         });
+      $stateProvider
+        .state('photos', {
+          url: '/photos/{id}',
+          templateUrl: '/photos.html',
+          controller: 'PhotosController'
+        });
+      $stateProvider
+        .state('upload', {
+          url: '/upload',
+          templateUrl: '/upload.html',
+          controller: 'ctrl'
+        });
   $urlRouterProvider.otherwise('home');
 }]);
 
-atm.state('photos', {
-  url: '/photos/{id}',
-  templateUrl: '/photos.html',
-  controller: 'PhotosController'
-});
 
 atm.controller('PhotosController', ['$scope', '$stateParams','photos', function($scope,$stateParams,photos){
   $scope.photo = photos.photos[$stateParams.id];
