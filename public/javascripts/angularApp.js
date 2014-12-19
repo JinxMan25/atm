@@ -15,6 +15,10 @@ function($scope){
     $scope.photos.push({title: $scope.title, upvotes: 0});
     $scope.title = '';
   };
+
+  $scope.incrementUpvotes = function(post){
+    post.upvotes += 1;
+  }
 }]);
 
 atm.directive('slider', function ($timeout) {

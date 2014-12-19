@@ -12,6 +12,7 @@
   </head>
   <body ng-app="atm" ng-controller="ctrl">
     <!div ng-repeat="photo in photos | orderBy: '-upvotes'">
+    <!span ng-click="incrementUpvotes(photo)">^<!/span>
     <!{{ photo.title  }} - {{ photo.upvotes }}
     <!/div>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
