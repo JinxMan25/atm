@@ -2,14 +2,10 @@ var atm = angular.module('atm', ['ngAnimate']);
 
 atm.controller('ctrl', [
 '$scope',
-function($scope){
-  $scope.photos = [
-{ title: "hi", upvotes: 12 },
-{ title: "sami", upvotes: 1 },
-{ title: "hiss", upvotes: 2 },
-{ title: "hi", upvotes: 3 },
-{ title: "hi", upvotes: 4 },
-];
+'photos',
+function($scope, photos){
+
+  $scope.photos = photos.photos;
 
   $scope.addPhoto = function(){
     $scope.photos.push({title: $scope.title, upvotes: 0});
@@ -20,6 +16,13 @@ function($scope){
     post.upvotes += 1;
   }
 }]);
+
+atm.factory('photos', [function(){
+  var o = {
+    posts: []
+  };
+  return o;
+]);
 
 atm.directive('slider', function ($timeout) {
   return {
