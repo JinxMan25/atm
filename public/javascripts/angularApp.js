@@ -8,6 +8,10 @@ function($scope, photos){
   $scope.photos = photos.photos;
 
   $scope.addPhoto = function(){
+    photos.create({
+      title: $scope.title,
+      description: $scope.description
+    });
     $scope.photos.push({title: $scope.title, upvotes: 0});
     $scope.title = '';
   };
@@ -27,6 +31,17 @@ atm.factory('photos',['$http', function($http){
       angular.copy(data,o.photos);
     });
   };
+
+  o.create = function(photo){
+    return $http.post('/create', photo).success(function(data){
+      o.photos.push(data);
+    });
+  }
+  o.get = function(uniq){
+    return $http.get('/get/' + uniq).then(function(res){
+      return res.data;
+    });
+  }
 
   return o;
 }]);
