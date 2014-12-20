@@ -12,8 +12,9 @@ function($scope, photos){
       title: $scope.title,
       description: $scope.description
     });
-    $scope.photos.push({title: $scope.title, upvotes: 0});
+    $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
     $scope.title = '';
+    $scope.description = '';
   };
 
   $scope.incrementUpvotes = function(photo){

@@ -13,6 +13,7 @@ var PhotoSchema = new mongoose.Schema({
   uniq_token: { type: String, unique: true, required: true, dropDups: true},
   address: { street: String, City: String, State: String, Country: String }, 
   longtitude: Number,
+  description: String,
   latitude: Number,
   img_url: String,
   upvoted: [{type: String}],
