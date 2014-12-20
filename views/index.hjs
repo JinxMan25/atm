@@ -60,7 +60,7 @@
       </div>
     </div>
 
-      <script type="text/ng-template" id="/home.html">
+      <script type="text/ng-template" id="/TODO.html">
         <div class="container">
       <div class="container">
         <div class="container" style="width:90%;">
@@ -112,6 +112,9 @@
           <div>
         </form>
       </div>
+      </script>
+      <script type="text/ng-template" id="/photo.html">
+        Hi
       </script>
   </body>
 </html>

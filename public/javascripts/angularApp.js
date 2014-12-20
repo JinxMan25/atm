@@ -1,4 +1,4 @@
-var atm = angular.module('atm', ['ngAnimate', 'ui.router']);
+var atm = angular.module('atm', ['ngAnimate', 'ui.router']).value('$anchorScroll', angular.noop);
 
 atm.controller('ctrl',[
 '$scope',
@@ -27,6 +27,7 @@ atm.factory('photos',['$http', function($http){
       angular.copy(data,o.photos);
     });
   };
+
   return o;
 }]);
 
@@ -38,15 +39,23 @@ atm.config([
         .state('home',{
           url: '/home',
           templateUrl: '/home.html',
-          controller: 'ctrl'
-        });
-      $stateProvider
-        .state('photos', {
+          controller: 'ctrl',
+          resolve: {
+            photoPromise: ['photos',function(photos){
+              return photos.getAll();
+            }]
+          }
+        })
+        .state('photo', {
           url: '/photos/{id}',
-          templateUrl: '/photos.html',
+          templateUrl: '/photo.html',
           controller: 'PhotosController'
-        });
-      $stateProvider
+        })
+        .state('photos', {
+          url: '/all', 
+          templateUrl: '/photo.html',
+          controller: 'PhotosController',
+        })
         .state('upload', {
           url: '/upload',
           templateUrl: '/upload.html',
