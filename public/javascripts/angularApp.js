@@ -17,7 +17,7 @@ function($scope, photos){
   };
 
   $scope.incrementUpvotes = function(photo){
-    photo.upvotes += 1;
+    photos.upvote(post);
   }
 }]);
 
@@ -41,6 +41,12 @@ atm.factory('photos',['$http', function($http){
     return $http.get('/get/' + uniq).then(function(res){
       return res.data;
     });
+  }
+  o.upvote = function(photo){
+    return $http.get('/get/' + photo.uniq_token + '/upvote')
+      .success(function(data){
+        photo.upvotes += 1;
+      });
   }
 
   return o;
@@ -80,7 +86,7 @@ atm.config([
 }]);
 
 
-atm.controller('PhotosController', ['$scope', '$stateParams','photos', function($scope,$stateParams,photos){
+atm.controller('PhotosController', ['$scope', '$stateParams','photos','photo', function($scope,$stateParams,photos, photo){
   $scope.photo = photos.photos[$stateParams.id];
 }]);
 
