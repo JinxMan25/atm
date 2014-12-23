@@ -19,6 +19,8 @@ var PhotoSchema = new mongoose.Schema({
   upvoted: [{type: String}],
   upvotes: { type: Number, default: 0 }});
 
+  PhotoSchema.add({description: String});
+
   PhotoSchema.static('findByDegrees', function(longitude,latitude,callback){
     return this.find({ longitude: { $gte: longitude-0.05, $lte: longitude }, latitude: { $gte: latitude-0.05, $lte: latitude } }, callback);
   });

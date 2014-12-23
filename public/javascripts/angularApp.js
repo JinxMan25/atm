@@ -69,14 +69,19 @@ atm.config([
           }
         })
         .state('photo', {
-          url: '/photos/{id}',
+          url: '/get/{id}',
           templateUrl: '/photo.html',
           controller: 'PhotosController'
         })
         .state('photos', {
           url: '/all', 
           templateUrl: '/photo.html',
-          controller: 'PhotosController',
+          controller: 'ctrl',
+          resolve: { 
+            getPromise: ['photos', function(photos){
+              return photos.getAll();
+            }]
+          }
         })
         .state('upload', {
           url: '/upload',

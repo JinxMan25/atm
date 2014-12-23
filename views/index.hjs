@@ -11,11 +11,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
   </head>
-  <body ng-app="atm">
-    <!div ng-repeat="photo in photos | orderBy: '-upvotes'">
-    <!span ng-click="incrementUpvotes(photo)">^<!/span>
-    <!{{ photo.title  }} - {{ photo.upvotes }}
-    <!/div>
+  <body ng-app="atm" ng-controller="ctrl">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -79,7 +75,7 @@
           </div>
           <div class="col-xs-12">
             <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
-              <p><a style="width:200px;display:block;"class="btn btn-success btn-lg" href="#" role="button">Discover nearby!</a></p>
+              <p><a style="width:200px;display:block;"class="btn btn-success btn-lg" href="#all" role="button">Discover nearby!</a></p>
               <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload photo »</a></p>
             </div>
           </div>
@@ -114,7 +110,12 @@
       </div>
       </script>
       <script type="text/ng-template" id="/photo.html">
-        Hi
+        <div class="container" ng-controller="ctrl">
+          <div ng-repeat="photo in photos | orderBy: '-upvotes'">
+            <a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a> - {{ photo.upvotes }}
+            <span ng-click="incrementUpvotes(photo)">^</span>
+          </div>
+        </div>
       </script>
   </body>
 </html>
