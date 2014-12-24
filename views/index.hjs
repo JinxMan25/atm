@@ -8,8 +8,8 @@
     <script src="javascripts/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
   </head>
   <body ng-app="atm" ng-controller="ctrl">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
