@@ -60,7 +60,10 @@ atm.config([
       $stateProvider
         .state('home',{
           url: '/home',
-          templateUrl: '/home.html',
+          views: {
+            "jumbotron": { templateUrl: '/home.html' },
+            "info": { templateUrl: '/info.html' }
+          },
           controller: 'ctrl',
           resolve: {
             photoPromise: ['photos',function(photos){
@@ -69,13 +72,13 @@ atm.config([
           }
         })
         .state('photo', {
-          url: '/get/{id}',
+          url: '/get/{uniq_token}',
           templateUrl: '/photo.html',
           controller: 'PhotosController'
         })
         .state('photos', {
           url: '/all', 
-          templateUrl: '/photo.html',
+          templateUrl: '/photos.html',
           controller: 'ctrl',
           resolve: { 
             getPromise: ['photos', function(photos){
@@ -92,8 +95,8 @@ atm.config([
 }]);
 
 
-atm.controller('PhotosController', ['$scope', '$stateParams','photos','photo', function($scope,$stateParams,photos, photo){
-  $scope.photo = photos.photos[$stateParams.id];
+atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos', function($scope,$filter,$stateParams,photos){
+  $scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];
 }]);
 
 atm.directive('slider', function ($timeout) {

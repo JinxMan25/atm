@@ -34,57 +34,68 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-        <ui-view></ui-view>
+        <div ui-view="jumbotron"></div>
+        <div ui-view></div>
     </div>
     <div class="container" style="text-align:center">
-      <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-          <h3>Your privacy</h3>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" src="images/maps.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-          <h3>Location based services</h3>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" src="images/anonymous.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-          <h3>Anonymity</h3>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </div><!-- /.col-lg-4 -->
+      <div ui-view="info">
       </div>
     </div>
 
+      <script type="text/ng-template" id="/info.html">
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="img-circle" src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+            <h3>Your privacy</h3>
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+          </div>
+          <div class="col-lg-4">
+            <img class="img-circle" src="images/maps.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+            <h3>Location based services</h3>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+          </div>
+          <div class="col-lg-4">
+            <img class="img-circle" src="images/anonymous.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+            <h3>Anonymity</h3>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          </div>
+        </div>
+      </script>
+      <script type="text/ng-template" id="/photo.html">
+        <div ng-controller="PhotosController">
+          {{ photo.title }} - {{ photo.upvotes }}
+        </div>
+      </script>
+
       <script type="text/ng-template" id="/home.html">
         <div class="container">
-      <div class="container">
-        <div class="container" style="width:90%;">
-          <h2>Find exciting snapshots around you!</h2>
-          <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
-        </div>
-        <div class="span5 offset1">
-        </div>
+          <div class="container">
+            <div class="container" style="width:90%;">
+              <h2>Find exciting snapshots around you!</h2>
+              <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
+            </div>
+            <div class="span5 offset1">
+          </div>
         <div class="row">
           <div class="container">
             <div style="" ng-controller="SliderController">
               <slider images="images"/>
             </div>
           </div>
-          <div class="test">
-          </div>
-          <div class="col-xs-12">
-            <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
-              <p><a style="width:200px;display:block;"class="btn btn-success btn-lg" href="#all" role="button">Discover nearby!</a></p>
-              <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload photo »</a></p>
-            </div>
+        <div class="test">
+        </div>
+        <div class="col-xs-12">
+          <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
+            <p><a style="width:200px;display:block;"class="btn btn-success btn-lg" href="#all" role="button">Discover nearby!</a></p>
+            <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload photo »</a></p>
           </div>
         </div>
-      </div>
+        </div>
+        </div>
         </div>
       </script>
-      <script type="text/ng-template" id="/photos.html">
-      <a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
+      <script type="text/ng-template" id="/asdf.html">
+      <a href="#/get/{{photo.niq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
       </script>
       <script type="text/ng-template" id="/upload.html">
       <div class="style2">
@@ -109,7 +120,7 @@
         </form>
       </div>
       </script>
-      <script type="text/ng-template" id="/photo.html">
+      <script type="text/ng-template" id="/photos.html">
         <div class="container" ng-controller="ctrl">
           <div ng-repeat="photo in photos | orderBy: '-upvotes'">
             <a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a> - {{ photo.upvotes }}
