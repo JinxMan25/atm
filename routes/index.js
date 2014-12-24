@@ -38,6 +38,8 @@ router.param('uniq_token', function(req, res, next, uniq_token){
     });
 });
 
+router.put('/get/:uniq_token/', function(req,res){
+});
 
 router.get('/get/:uniq_token/', function(req,res){
   res.json(req.photo);

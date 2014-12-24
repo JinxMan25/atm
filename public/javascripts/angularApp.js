@@ -22,7 +22,7 @@ function($scope, photos){
   }
 }]);
 
-atm.factory('photos',['$http', function($http){
+atm.factory('photos',['$http','$location', function($http,$location){
   var o = {
     photos: []
   };
@@ -36,6 +36,7 @@ atm.factory('photos',['$http', function($http){
   o.create = function(photo){
     return $http.post('/create', photo).success(function(data){
       o.photos.push(data);
+      $location.url('/get/' + data.uniq_token);
     });
   }
   o.get = function(uniq){
