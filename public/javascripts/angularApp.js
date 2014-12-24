@@ -96,7 +96,9 @@ atm.config([
 
 
 atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos', function($scope,$filter,$stateParams,photos){
+
   $scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];
+
 }]);
 
 atm.directive('slider', function ($timeout) {

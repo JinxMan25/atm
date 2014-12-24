@@ -38,7 +38,7 @@
         <div ui-view></div>
     </div>
     <div class="container" style="text-align:center">
-      <div ui-view="info">
+      <div class="info" ui-view="info">
       </div>
     </div>
 
