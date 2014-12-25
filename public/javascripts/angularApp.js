@@ -6,11 +6,12 @@ atm.controller('ctrl',[
 function($scope, photos){
 
   $scope.photos = photos.photos;
+  debugger;
 
   $scope.addPhoto = function(){
     photos.create({
       title: $scope.title,
-      description: $scope.description
+      description: $scope.description,
     });
     $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
     $scope.title = '';
@@ -18,7 +19,7 @@ function($scope, photos){
   };
 
   $scope.incrementUpvotes = function(photo){
-    photos.upvote(post);
+    photos.upvote(photo);
   }
 }]);
 

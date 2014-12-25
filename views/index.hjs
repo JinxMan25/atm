@@ -95,7 +95,7 @@
         </div>
       </script>
       <script type="text/ng-template" id="/asdf.html">
-      <a href="#/get/{{photo.niq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
+      <a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
       </script>
       <script type="text/ng-template" id="/upload.html">
       <div class="style2">
@@ -130,6 +130,8 @@
         <div class="container" ng-controller="ctrl">
           <div ng-repeat="photo in photos | orderBy: '-upvotes'">
             <a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a> - {{ photo.description}}
+            <img src="{{ photo.img_url }}" style="height:150px;width:150px;">
+            {{ photo.img_url }}
             <span ng-click="incrementUpvotes(photo)">^</span>
           </div>
         </div>
