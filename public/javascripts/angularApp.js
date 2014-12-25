@@ -8,10 +8,9 @@ function($scope, photos){
   $scope.photos = photos.photos;
 
   $scope.addPhoto = function(){
-    debugger;
     photos.create({
       title: $scope.title,
-      description: $scope.description,
+      description: $scope.description
     });
     $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
     $scope.title = '';

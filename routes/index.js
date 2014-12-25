@@ -63,11 +63,18 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 
 router.post('/create', function(req, res, next){
   var fstream;
-  var data = req.body
+  var data = req.busboy;
   var token = randomValueBase64(5);
 
   req.pipe(req.busboy);
   req.busboy.on('file', function(fieldname, file, filename){
+    req.busboy.on('field', function(fieldname, val) {
+         // console.log(fieldname, val);
+         req.body[fieldname] = val;
+         console.log(req.body.title);
+         data['title'] = req.body.title;
+         data['description'] = req.body.description;
+       });
     console.log('Uploading ' + filename);
 
     fstream = fs.createWriteStream(__dirname + '/../static/images/' + filename);
@@ -87,7 +94,6 @@ router.post('/create', function(req, res, next){
         }
         res.json(photo);
       });
-      console.log(data);
     });
   });
 

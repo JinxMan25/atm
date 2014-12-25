@@ -102,7 +102,7 @@
         <form class="form-inline" ng-submit="addPhoto()">
           <div class="row">
             <div class="form-group col-lg-1">
-            <input ng-model="file" name="file1" type="file"/>
+            <input ng-model="file"rname="file1" type="file"/>
             </div>
           </div>
           <div class="row">
