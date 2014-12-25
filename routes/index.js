@@ -43,7 +43,9 @@ router.param('uniq_token', function(req, res, next, uniq_token){
     });
 });
 
-router.put('/get/:uniq_token/', function(req,res){
+router.delete('/get/:uniq_token/delete', function(req,res){
+  Photo.find({uniq_token:req.params.uniq_token}).remove().exec();
+  res.json("removed");
 });
 
 router.get('/get/:uniq_token/', function(req,res){
