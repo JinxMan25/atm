@@ -61,6 +61,13 @@ font-family: 'Open Sans', sans-serif;
     transition:all 0.25s ease-in-out;
 }
 
+.jumbotron {
+  -webkit-transition:height 0.5s ease-in-out;
+    -moz-transition:height 0.5s ease-in-out;
+    -o-transition:height 0.5s ease-in-out;
+    transition:height 0.5s ease-in-out;
+}
+
 [ui-view].ng-enter {
   opacity: 0;
 }

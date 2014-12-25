@@ -102,6 +102,12 @@
         <form class="form-inline" ng-submit="addPhoto()">
           <div class="row">
             <div class="form-group col-lg-1">
+            <input ng-model="file" name="file1" type="file"/>
+            </div>
+          </div>
+          <div class="row">
+            </br>
+            <div class="form-group col-lg-1">
             <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" ng-model="title" placeholder="Title"></input>
             </div>
           </div>
@@ -123,7 +129,7 @@
       <script type="text/ng-template" id="/photos.html">
         <div class="container" ng-controller="ctrl">
           <div ng-repeat="photo in photos | orderBy: '-upvotes'">
-            <a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a> - {{ photo.upvotes }}
+            <a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a> - {{ photo.description}}
             <span ng-click="incrementUpvotes(photo)">^</span>
           </div>
         </div>

@@ -3,6 +3,7 @@ var crypto = require('crypto')
 var router = express.Router();
 var mongoose = require('mongoose');
 var Photo = mongoose.model('Photo');
+var fs = require('fs-extra');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,6 +24,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/angulartest', function(req,res,next){
   res.render('index');
+});
+
+router.get('/test', function(req,res,next){
+  res.render('test');
 });
 
 router.param('uniq_token', function(req, res, next, uniq_token){
@@ -55,38 +60,35 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 });
 
 router.post('/create', function(req, res, next){
-  //var serverPath = '/static/images/' + req.files.photoname;
-
+  var fstream;
   var data = req.body
-
   var token = randomValueBase64(5);
 
-  data['uniq_token'] = token;
+  req.pipe(req.busboy);
+  req.busboy.on('file', function(fieldname, file, filename){
+    console.log('Uploading ' + filename);
 
-  /*require('fs').rename(
-    req.files.photo.path,
-    __dirname + serverPath,
-    function(err){
-      if (err) {
-        res.send({
-          error: "Something bad happened"
-        });
-        return;
-      }
+    fstream = fs.createWriteStream(__dirname + '/../static/images/' + filename);
+    file.pipe(fstream);
+    fstream.on('close',function(){
+      console.log('Upload finished of ' + filename);
+      var serverPath = '/static/images/' + filename;
+      JSON.stringify(serverPath);
 
-      res.send({path: serverPath});
-    }
-    );
-  data['img_url'] = req.files.photo.path;
-  console.log(data);*/
+      data['img_url'] = serverPath;
+      data['uniq_token'] = token;
 
-  var photo = new Photo(data)
-  photo.save(function(err,post){
-    if(err){
-      return next(err);
-    }
-    res.json(photo);
+      var photo = new Photo(data)
+      photo.save(function(err,post){
+        if(err){
+          return next(err);
+        }
+        res.json(photo);
+      });
+      console.log(data);
+    });
   });
+
 });
 
 function randomValueBase64 (len) {

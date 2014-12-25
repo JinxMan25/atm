@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <form class="form-inline" action="/create" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="form-group col-lg-1">
+        <input name="file" type="file"/>
+        </div>
+      </div>
+      <div class="row">
+        </br>
+        <div class="form-group col-lg-1">
+        <input style="width:250px;height:35px;" class="form-control" type="text" name="title" ></input>
+        </div>
+      </div>
+      <div class="row">
+        </br>
+        <div class="form-group col-lg-1">
+        <textarea class="form-control" rows="4" style="width:250px;" name="description" placeholder="Description"></textarea></br>
+        </br>
+        <button class="btn" style="width:100px;" type="submit">Post</button>
+        </div>
+      </div>
+      <div ng-messages="uploadPhoto.photoTitle.$error" style="color:maroon">
+        <div ng-message="minlength">You need atleast two characters!</div>
+        <div ng-message="maxlength">Maximum length is 25 characters!</div>
+      <div>
+  </body>
+</html>
