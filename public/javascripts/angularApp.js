@@ -3,20 +3,25 @@ var atm = angular.module('atm', ['ngAnimate', 'ui.router']).value('$anchorScroll
 atm.controller('ctrl',[
 '$scope',
 'photos',
-function($scope, photos){
+'fileUpload',
+function($scope, photos, fileUpload){
 
   $scope.photos = photos.photos;
-  debugger;
+  var file = $scope.file;
 
-  $scope.addPhoto = function(){
-    photos.create({
-      title: $scope.title,
-      description: $scope.description,
-    });
-    $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
-    $scope.title = '';
-    $scope.description = '';
-  };
+  if ($scope.file && $scope.title && $scope.description) {
+    $scope.addPhoto = function(){
+      photos.create({
+        title: $scope.title,
+        description: $scope.description,
+        
+      });
+    fileUpload.uploadFileToServer(file);
+      $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
+      $scope.title = '';
+      $scope.description = '';
+    };
+  }
 
   $scope.incrementUpvotes = function(photo){
     photos.upvote(photo);
@@ -152,6 +157,37 @@ atm.directive('slider', function ($timeout) {
   templateUrl:'templateUrl.html'
   }
 });
+
+app.service('fileUpload', ['$http', function($http){
+  this.uploadFileToServer = function(file){
+    var fd = new FormData();
+    fd.append('file', file);
+    $http.post('/create', fd, {
+      transformRequest: angular.identity,
+      headers: {'Content-Type': undefined }
+    }).success{
+
+    }).error{
+
+    });
+  }
+}]);
+
+app.directive('fileModel', ['$parse', function($parse){
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      var model = $parse(attrs.fileModel);
+      var modelSetter = model.assign;
+
+      element.bind('change', function(){
+        scope.$apply(function(){
+          modelSetter(scope,element[0].files[0]);
+        });
+      });
+    }
+  }
+}]);
 
 atm.controller('SliderController', function($scope){
   $scope.images = [
