@@ -4,6 +4,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Photo = mongoose.model('Photo');
 var fs = require('fs-extra');
+var multer = require('multer');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -73,11 +74,8 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 router.post('/create', function(req, res, next){
   var token = randomValueBase64(5);
   var data = req.body;
-  var filePath = req.files.file.path;
 
-  console.log(req.files);
-  console.log(req.files.file.mimetype);
-  console.log(filePath);
+  var filePath = req.files.file.path;
 
   data['uniq_token'] = token;
   data['img_url'] = '/' + filePath;

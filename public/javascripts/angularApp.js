@@ -7,16 +7,19 @@ function($scope, photos){
 
   $scope.$watch('file',function(){
     if ($scope.file.type != "image/png"){
+      $scope.isNotImage = true;
+      $("#submit").prop("disabled", true);
+    } else {
+      $scope.isNotImage = false;
+      $("#submit").prop("disabled", false);
     }
   });
 
   $scope.updateValidate = function(val){
-    if (!val.match(/\d+/g)){
-      $("#titleInput").addClass('has-error');
-      $scope.hasError = true;
-    } else if (val.match(/\d+/g) || (val === '')) {
-      $("#titleInput").removeClass('has-error');
-      $scope.hasError = false;
+    if ($scope.file.type != 'image/png'){
+      $scope.isImage= true;
+    } else {
+      $scope.isImage= false;
     }
   };
 
@@ -71,7 +74,7 @@ atm.factory('photos',['$http','$location','formDataObject', function($http, $loc
       o.photos.push(data);
       $location.url('/get/' + data.uniq_token);
     }).error(function(data){
-      console.log(data);
+      alert("Cannot upload non-images to this server!");
     });
   }
   o.get = function(uniq){

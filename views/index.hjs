@@ -105,13 +105,13 @@
         <form name="form" class="form-inline" ng-submit="addPhoto()">
           <div class="row">
             <div id="fileInput" class="form-group col-lg-1">
-            <input file-model="file" type="file"/>
+            <input file-model="file" ng-change="updateValidate(file)" type="file"/>
             </div>
           </div>
           <div class="row">
             </br>
             <div id="titleInput" class="form-group col-lg-1">
-            <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" ng-model="title" placeholder="Title" ng-change="updateValidate(title)"></input>
+            <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" ng-model="title" placeholder="Title"></input>
             </div>
           </div>
           <div class="row">
@@ -119,12 +119,12 @@
             <div class="form-group col-lg-1">
             <textarea class="form-control" rows="4" style="width:250px;" ng-model="description" placeholder="Description"></textarea></br>
             </br>
-            <button class="btn" style="width:100px;" type="submit">Post</button>
+            <button class="btn" id="submit" style="width:100px;" type="submit">Post</button>
             </div>
           </div>
           <div class="validation" style="color:maroon">
           </br>
-            <div ng-show="hasError" id="number">Should contain atleast 1 number</div>
+            <div ng-show="isNotImage" id="number">The file you chose is not an image. Please an image to upload.</div>
           <div>
         </form>
       </div>
