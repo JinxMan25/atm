@@ -72,42 +72,25 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 
 router.post('/create', function(req, res, next){
   var token = randomValueBase64(5);
-  console.log(req.body);
+  var data = req.body;
+  var filePath = req.files.file.path;
+
   console.log(req.files);
-  console.log(req.files.file);
   console.log(req.files.file.mimetype);
-  data['img_url'] = req.files.file.path;
+  console.log(filePath);
+
   data['uniq_token'] = token;
-  /*req.pipe(req.busboy);
-  req.busboy.on('file', function(fieldname, file, filename){
-    req.busboy.on('field', function(fieldname, val) {
-         // console.log(fieldname, val);
-         req.body[fieldname] = val;
-         console.log(req.body.title);
-         data['title'] = req.body.title;
-         data['description'] = req.body.description;
-       });
-    console.log('Uploading ' + filename);
+  data['img_url'] = '/' + filePath;
 
-    fstream = fs.createWriteStream(__dirname + '/../static/images/' + filename);
-    file.pipe(fstream);
-    fstream.on('close',function(){
-      console.log('Upload finished of ' + filename);
-      var serverPath = '/static/images/' + filename;
-      JSON.stringify(serverPath);
+  console.log(data['img_url']);
 
-      data['img_url'] = serverPath;
-      data['uniq_token'] = token;
-
-      var photo = new Photo(data)
-      photo.save(function(err,post){
-        if(err){
-          return next(err);
-        }
-        res.json(photo);
-      });
-    });
-  });*/
+  var photo = new Photo(data)
+  photo.save(function(err,post){
+    if(err){
+      return next(err);
+    }
+    res.json(photo);
+  });
 
 });
 
