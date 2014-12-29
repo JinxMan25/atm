@@ -64,7 +64,9 @@
       </script>
       <script type="text/ng-template" id="/photo.html">
         <div ng-controller="PhotosController">
-          {{ photo.title }} - {{ photo.upvotes }}
+            <a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a> - {{ photo.description}}
+            <img src="{{ photo.img_url }}" style="height:150px;width:150px;">
+            {{ photo.img_url }}
         </div>
       </script>
 
