@@ -7,7 +7,6 @@ function($scope, photos){
 
   $scope.photos = photos.photos;
   $scope.addPhoto = function(){
-    debugger;
     photos.create({
       title: $scope.title,
       description: $scope.description,
@@ -47,15 +46,15 @@ atm.factory('photos',['$http','$location','formDataObject', function($http, $loc
   o.create = function(photo){
     var fd = new FormData();
     angular.forEach(photo, function(key, value){
-      fd.append(key, value);
+      debugger;
+      fd.append(value,key);
     });
-    debugger;
-    return $http.post('/create',photo, {
-      headers:{'Content-Type': undefined }
-
+    return $http.post('/create',fd, {
+      transformRequest: angular.identity,
+      headers: { 'Content-Type': undefined }
     }).success(function(data){
-      o.photos.push(data);
-      $location.url('/get/' + data.uniq_token);
+      //o.photos.push(data);
+      //$location.url('/get/' + data.uniq_token);
       console.log(data);
     }).error(function(data){
       console.log(data);
@@ -189,17 +188,20 @@ atm.service('fileUpload', ['$http', function($http){
   }
 }]);
 
-atm.directive('fileInput', ['$parse', function($parse){
-  return {
-    restrict: 'A',
-    link: function(scope, element, attrs){
-      element.bind('change', function(){
-        $parse(attrs.fileInput)
-          .assign(scope, element[0].files);
-        scope.$apply();
-      });
-    }
-  }
+atm.directive('fileModel', ['$parse', function($parse){
+return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
 }]);
 
 atm.controller('SliderController', function($scope){

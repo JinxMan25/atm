@@ -11,7 +11,7 @@
     <form class="form-inline" action="/create" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="form-group col-lg-1">
-        <input name="file" type="file"/>
+        <input name="file" type="file" accept="image/*"/>
         </div>
       </div>
       <div class="row">

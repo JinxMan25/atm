@@ -72,7 +72,9 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 
 router.post('/create', function(req, res, next){
   var token = randomValueBase64(5);
-  
+  console.log(req.body);
+  console.log(req.files);
+  res.json("What's up");
   /*req.pipe(req.busboy);
   req.busboy.on('file', function(fieldname, file, filename){
     req.busboy.on('field', function(fieldname, val) {
