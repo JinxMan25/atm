@@ -74,13 +74,18 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 router.post('/create', function(req, res, next){
   var token = randomValueBase64(5);
   var data = req.body;
+  console.log(req.body.title.length);
+  if (req.body.title.length >= 5) {
+    return next(new Error ("Keep below 30 characters for the title!"));
+  } else if (req.body.description.length > 160) {
+    return next(new Error ("Keep below 160 characters for the description!"));
+  }
 
   var filePath = req.files.file.path;
 
   data['uniq_token'] = token;
   data['img_url'] = '/' + filePath;
 
-  console.log(data['img_url']);
 
   var photo = new Photo(data)
   photo.save(function(err,post){

@@ -64,7 +64,6 @@ atm.factory('photos',['$http','$location','formDataObject', function($http, $loc
   o.create = function(photo){
     var fd = new FormData();
     angular.forEach(photo, function(key, value){
-      debugger;
       fd.append(value,key);
     });
     return $http.post('/create',fd, {
@@ -74,7 +73,7 @@ atm.factory('photos',['$http','$location','formDataObject', function($http, $loc
       o.photos.push(data);
       $location.url('/get/' + data.uniq_token);
     }).error(function(data){
-      alert("Cannot upload non-images to this server!");
+        alert(data.message);
     });
   }
   o.get = function(uniq){

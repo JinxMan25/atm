@@ -103,6 +103,7 @@
       <script type="text/ng-template" id="/upload.html">
       <div class="style2">
         <form name="form" class="form-inline" ng-submit="addPhoto()">
+          <img ng-src="{{file.buffer}}"/>
           <div class="row">
             <div id="fileInput" class="form-group col-lg-1">
             <input file-model="file" ng-change="updateValidate(file)" type="file"/>
