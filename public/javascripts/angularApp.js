@@ -9,11 +9,17 @@ function($scope, photos){
     if ($scope.file.type != "image/png"){
     }
   });
-  $scope.$watch('title',function(){
-    if (!$scope.title.match(/\d+/g)){
-      alert('no numbers found');
+
+  $scope.updateValidate = function(val){
+    if (!val.match(/\d+/g)){
+      $("#titleInput").addClass('has-error');
+      $scope.hasError = true;
+    } else if (val.match(/\d+/g) || (val === '')) {
+      $("#titleInput").removeClass('has-error');
+      $scope.hasError = false;
     }
-  });
+  };
+
   $scope.photos = photos.photos;
   $scope.addPhoto = function(){
     photos.create({

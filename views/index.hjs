@@ -102,16 +102,16 @@
       </script>
       <script type="text/ng-template" id="/upload.html">
       <div class="style2">
-        <form class="form-inline" ng-submit="addPhoto()">
+        <form name="form" class="form-inline" ng-submit="addPhoto()">
           <div class="row">
-            <div class="form-group col-lg-1">
-            <input id="test123" file-model="file" type="file"/>
+            <div id="fileInput" class="form-group col-lg-1">
+            <input file-model="file" type="file"/>
             </div>
           </div>
           <div class="row">
             </br>
-            <div class="form-group col-lg-1">
-            <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" ng-model="title" placeholder="Title"></input>
+            <div id="titleInput" class="form-group col-lg-1">
+            <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" ng-model="title" placeholder="Title" ng-change="updateValidate(title)"></input>
             </div>
           </div>
           <div class="row">
@@ -122,10 +122,9 @@
             <button class="btn" style="width:100px;" type="submit">Post</button>
             </div>
           </div>
-          <div style="color:maroon">
+          <div class="validation" style="color:maroon">
           </br>
-            <div>You need atleast two characters!</div>
-            <div>Maximum length is 25 characters!</div>
+            <div ng-show="hasError" id="number">Should contain atleast 1 number</div>
           <div>
         </form>
       </div>
