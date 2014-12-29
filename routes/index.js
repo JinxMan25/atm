@@ -74,7 +74,10 @@ router.post('/create', function(req, res, next){
   var token = randomValueBase64(5);
   console.log(req.body);
   console.log(req.files);
-  res.json("What's up");
+  console.log(req.files.file);
+  console.log(req.files.file.mimetype);
+  data['img_url'] = req.files.file.path;
+  data['uniq_token'] = token;
   /*req.pipe(req.busboy);
   req.busboy.on('file', function(fieldname, file, filename){
     req.busboy.on('field', function(fieldname, val) {

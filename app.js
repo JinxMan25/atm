@@ -26,7 +26,16 @@ app.set('view engine', 'hjs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(multer({dest:'./static/images/'}));
+app.use(multer({dest:'./static/images/',rename: 
+  function(fieldname,filename){
+    return filename.replace(/\W+/g,'-').toLowerCase()
+  },
+  onFileUploadStart: function(file){
+    if (file.mimetype != 'image/png') {
+      return false;
+    }
+  }
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
