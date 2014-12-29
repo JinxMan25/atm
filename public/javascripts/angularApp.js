@@ -62,9 +62,8 @@ atm.factory('photos',['$http','$location','formDataObject', function($http, $loc
       transformRequest: angular.identity,
       headers: { 'Content-Type': undefined }
     }).success(function(data){
-      //o.photos.push(data);
-      //$location.url('/get/' + data.uniq_token);
-      console.log(data);
+      o.photos.push(data);
+      $location.url('/get/' + data.uniq_token);
     }).error(function(data){
       console.log(data);
     });
