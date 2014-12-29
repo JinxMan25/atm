@@ -5,6 +5,15 @@ atm.controller('ctrl',[
 'photos',
 function($scope, photos){
 
+  $scope.$watch('file',function(){
+    if ($scope.file.type != "image/png"){
+    }
+  });
+  $scope.$watch('title',function(){
+    if (!$scope.title.match(/\d+/g)){
+      alert('no numbers found');
+    }
+  });
   $scope.photos = photos.photos;
   $scope.addPhoto = function(){
     photos.create({
