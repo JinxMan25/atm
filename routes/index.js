@@ -4,6 +4,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Photo = mongoose.model('Photo');
 var fs = require('fs-extra');
+var busboy = require('busboy');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -74,7 +75,7 @@ router.post('/create', function(req, res, next){
   var fstream;
   var data = req.busboy;
   var token = randomValueBase64(5);
-
+  console.log("before upload");
   req.pipe(req.busboy);
   req.busboy.on('file', function(fieldname, file, filename){
     req.busboy.on('field', function(fieldname, val) {

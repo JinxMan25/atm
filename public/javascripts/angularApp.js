@@ -3,32 +3,37 @@ var atm = angular.module('atm', ['ngAnimate', 'ui.router']).value('$anchorScroll
 atm.controller('ctrl',[
 '$scope',
 'photos',
-'fileUpload',
-function($scope, photos, fileUpload){
+function($scope, photos){
 
   $scope.photos = photos.photos;
-  var file = $scope.file;
-
-  if ($scope.file && $scope.title && $scope.description) {
-    $scope.addPhoto = function(){
-      photos.create({
-        title: $scope.title,
-        description: $scope.description,
-        
-      });
-    fileUpload.uploadFileToServer(file);
-      $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
-      $scope.title = '';
-      $scope.description = '';
-    };
-  }
+  $scope.addPhoto = function(){
+    debugger;
+    photos.create({
+      title: $scope.title,
+      description: $scope.description,
+      file: $scope.file
+    });
+    $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
+    $scope.title = '';
+    $scope.description = '';
+  };
 
   $scope.incrementUpvotes = function(photo){
     photos.upvote(photo);
   }
 }]);
 
-atm.factory('photos',['$http','$location', function($http,$location){
+atm.factory('formDataObject', function(){
+  return function(data){
+    var fd = new FormData();
+    angular.forEach(data, function(key,value){
+      fd.append(key,value);
+    });
+    return fd;
+  };
+});
+
+atm.factory('photos',['$http','$location','formDataObject', function($http, $location, formDataObject){
   var o = {
     photos: []
   };
@@ -40,9 +45,20 @@ atm.factory('photos',['$http','$location', function($http,$location){
   };
 
   o.create = function(photo){
-    return $http.post('/create', photo).success(function(data){
+    var fd = new FormData();
+    angular.forEach(photo, function(key, value){
+      fd.append(key, value);
+    });
+    debugger;
+    return $http.post('/create',photo, {
+      headers:{'Content-Type': undefined }
+
+    }).success(function(data){
       o.photos.push(data);
       $location.url('/get/' + data.uniq_token);
+      console.log(data);
+    }).error(function(data){
+      console.log(data);
     });
   }
   o.get = function(uniq){
@@ -158,32 +174,29 @@ atm.directive('slider', function ($timeout) {
   }
 });
 
-app.service('fileUpload', ['$http', function($http){
+atm.service('fileUpload', ['$http', function($http){
   this.uploadFileToServer = function(file){
     var fd = new FormData();
     fd.append('file', file);
     $http.post('/create', fd, {
       transformRequest: angular.identity,
-      headers: {'Content-Type': undefined }
-    }).success{
+      headers: {'Content-Type': 'multipart/form-data'}
+    }).success(function(){
 
-    }).error{
+    }).error(function(){
 
     });
   }
 }]);
 
-app.directive('fileModel', ['$parse', function($parse){
+atm.directive('fileInput', ['$parse', function($parse){
   return {
     restrict: 'A',
     link: function(scope, element, attrs){
-      var model = $parse(attrs.fileModel);
-      var modelSetter = model.assign;
-
       element.bind('change', function(){
-        scope.$apply(function(){
-          modelSetter(scope,element[0].files[0]);
-        });
+        $parse(attrs.fileInput)
+          .assign(scope, element[0].files);
+        scope.$apply();
       });
     }
   }

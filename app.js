@@ -3,7 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var fs = require('fs-extra');
 var logger = require('morgan');
-var busboy = require('connect-busboy');
+var busboy = require('busboy');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -25,7 +25,7 @@ app.locals.delimiters = '<% %>';
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(busboy());
+app.use(busboy({immediate: true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
