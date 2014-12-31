@@ -4,7 +4,6 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Photo = mongoose.model('Photo');
 var fs = require('fs-extra');
-var multer = require('multer');
 var formidable = require('formidable');
 
 /* GET home page. */
@@ -76,11 +75,6 @@ router.post('/create', function(req, res, next){
   var data = {};
   var token = randomValueBase64(5);
   var form = new formidable.IncomingForm();
-  form.on('fileBegin', function(name, file){
-    if (file.type != 'image/png'){
-      return next( new Error ("Has to be an image"));
-    }
-  });
 
   form.parse(req, function(err,fields, files){
     if (err){
@@ -94,6 +88,12 @@ router.post('/create', function(req, res, next){
   });
 
   form.on('end', function(fields, files){
+    if (this.openedFiles.length === 0){
+      return next( new Error ("You forgot the image!"));
+    } 
+    if (this.openedFiles[0].type != 'image/png'){
+      return next (new Error ("You have to choose an image"));
+    }
     var tmp_loc = this.openedFiles[0].path;
     var file_name = this.openedFiles[0].name;
     var new_loc = './static/images/';
