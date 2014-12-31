@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var Photo = mongoose.model('Photo');
 var fs = require('fs-extra');
 var multer = require('multer');
+var formidable = require('formidable');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -72,32 +73,52 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 });
 
 router.post('/create', function(req, res, next){
-  if (!req.body.files.file.path){
-    return next(new Error ("The file you chose is not of an image property"));
-  }
+  var data = {};
   var token = randomValueBase64(5);
-  var data = req.body;
-  console.log(req.body.title.length);
-  if (req.body.title.length >= 5) {
-    return next(new Error ("Keep below 30 characters for the title!"));
-  } else if (req.body.description.length > 160) {
-    return next(new Error ("Keep below 160 characters for the description!"));
-  }
-
-  var filePath = req.files.file.path;
-
-  data['uniq_token'] = token;
-  data['img_url'] = '/' + filePath;
-
-
-  var photo = new Photo(data)
-  photo.save(function(err,post){
-    if(err){
-      return next(err);
+  var form = new formidable.IncomingForm();
+  form.on('fileBegin', function(name, file){
+    if (file.type != 'image/png'){
+      return next( new Error ("Has to be an image"));
     }
-    res.json(photo);
   });
 
+  form.parse(req, function(err,fields, files){
+    if (err){
+      return next(err);
+    } else {
+      data = fields;
+    }
+  });
+
+  form.on("progress", function(bytesRecieved, bytesExpected){
+  });
+
+  form.on('end', function(fields, files){
+    var tmp_loc = this.openedFiles[0].path;
+    var file_name = this.openedFiles[0].name;
+    var new_loc = './static/images/';
+    data['img_url'] = 'static/images/' + file_name;
+    data['uniq_token'] = token;
+
+    fs.copy(tmp_loc, new_loc + file_name, function(err){
+      if (err){
+        console.log(err);
+      } else {
+        console.log(file_name + ' uploaded to ' + new_loc);
+      }
+      console.log(data);
+    });
+
+
+    var photo = new Photo(data)
+    photo.save(function(err,post){
+      if(err){
+        console.log("in the error");
+        return next(err);
+      }
+      res.json(photo);
+    });
+  });
 });
 
 function randomValueBase64 (len) {

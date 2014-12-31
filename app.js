@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var formidable = require('formidable');
 
 
 var users = require('./routes/users');
@@ -26,7 +27,7 @@ app.locals.delimiters = '<% %>';
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(multer({dest:'./static/images/',rename: 
+/*app.use(multer({dest:'./static/images/',rename: 
   function(fieldname,filename){
     return filename.replace(/\W+/g,'-').toLowerCase()
   },
@@ -35,7 +36,7 @@ app.use(multer({dest:'./static/images/',rename:
       return false;
     }
   }
-}));
+}));*/
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
