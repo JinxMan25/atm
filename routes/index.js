@@ -72,6 +72,9 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
 });
 
 router.post('/create', function(req, res, next){
+  if (!req.body.files.file.path){
+    return next(new Error ("The file you chose is not of an image property"));
+  }
   var token = randomValueBase64(5);
   var data = req.body;
   console.log(req.body.title.length);
