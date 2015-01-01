@@ -6,7 +6,7 @@ atm.controller('ctrl',[
 function($scope, photos){
 
   $scope.$watch('file',function(){
-    if ($scope.file.type != "image/png"){
+    if ((!$scope.file.type.match(/png/)) || (!$scope.file.path.match(/jpeg/))){
       $scope.isNotImage = true;
       $("#submit").prop("disabled", true);
     } else {
@@ -15,13 +15,6 @@ function($scope, photos){
     }
   });
 
-  $scope.updateValidate = function(val){
-    if ($scope.file.type != 'image/png'){
-      $scope.isImage= true;
-    } else {
-      $scope.isImage= false;
-    }
-  };
 
   $scope.photos = photos.photos;
   $scope.addPhoto = function(){

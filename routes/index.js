@@ -91,7 +91,8 @@ router.post('/create', function(req, res, next){
     if (this.openedFiles.length === 0){
       return next( new Error ("You forgot the image!"));
     } 
-    if (this.openedFiles[0].type != 'image/png'){
+    console.log(this.openedFiles[0].type);
+    if (this.openedFiles[0].type != ('image/png' || 'image/jpeg')){
       return next (new Error ("You have to choose an image"));
     }
     var tmp_loc = this.openedFiles[0].path;
@@ -106,7 +107,6 @@ router.post('/create', function(req, res, next){
       } else {
         console.log(file_name + ' uploaded to ' + new_loc);
       }
-      console.log(data);
     });
 
 
@@ -120,6 +120,7 @@ router.post('/create', function(req, res, next){
     });
   });
 });
+
 
 function randomValueBase64 (len) {
     return crypto.randomBytes(Math.ceil(len * 3 / 4))
