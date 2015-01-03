@@ -6,7 +6,7 @@ atm.controller('ctrl',[
 function($scope, photos){
 
   $scope.$watch('file',function(){
-    if ((!$scope.file.type.match(/png/)) || (!$scope.file.path.match(/jpeg/))){
+    if (!$scope.file.type.match(/png/)){
       $scope.isNotImage = true;
       $("#submit").prop("disabled", true);
     } else {
@@ -75,7 +75,7 @@ atm.factory('photos',['$http','$location','formDataObject', function($http, $loc
     });
   }
   o.upvote = function(photo){
-    return $http.get('/get/' + photo.uniq_token + '/upvote')
+    return $http.put('/get/' + photo.uniq_token + '/upvote')
       .success(function(data){
         photo.upvotes += 1;
       });

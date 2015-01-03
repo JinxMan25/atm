@@ -35,6 +35,12 @@ app.use('/static/images',express.static(path.join(__dirname, 'static/images')));
 app.use('/', routes);
 app.use('/users', users);
 
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+server.listen(app.get('port'));
+//require('.sockets').(io);
+//
+
 
 
 // catch 404 and forward to error handler
@@ -74,6 +80,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
 
 
 module.exports = app;

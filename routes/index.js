@@ -86,6 +86,9 @@ router.post('/create', function(req, res, next){
   });
 
   form.on("progress", function(bytesRecieved, bytesExpected){
+    /*io.sockets.on('connection', function(socket){
+      socket.emit('uploadProgress', ((bytesRecieved*100)/ bytesExpected));
+    });*/
   });
 
   form.on('end', function(fields, files){
