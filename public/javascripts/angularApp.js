@@ -14,14 +14,24 @@ function($scope, photos){
       $("#submit").prop("disabled", false);
     }
   });
-
+  
 
   $scope.photos = photos.photos;
   $scope.addPhoto = function(){
+    photos.getLocation().then(function(result){
+      $scope.longitude = result.longitude;
+      $scope.latitude = result.latitude;
+      console.log(result);
+    }, 
+    function(result){
+      alert(result);
+    });
     photos.create({
       title: $scope.title,
       description: $scope.description,
-      file: $scope.file
+      file: $scope.file,
+      longitude: $scope.longitude,
+      latitude: $scope.latitude
     });
     $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
     $scope.title = '';
@@ -47,6 +57,17 @@ atm.factory('photos',['$http','$location','formDataObject', function($http, $loc
   var o = {
     photos: []
   };
+
+  o.getLocation = function(){
+    navigator.geolocation.getCurrentPosition(function(position){
+      var coordinates = new Object;
+      coordinates['latitude'] = position.coords.latitude;
+      coordinates['longitude'] = position.coords.longitude;
+      console.log(coordinates);
+      console.log('in the location func');
+      return coordinates;
+    });
+  }
 
   o.getAll = function(){
     return $http.get('/').success(function(data){
