@@ -21,10 +21,8 @@ function($scope, photos){
     photos.getLocation().then(function(result){
       $scope.longitude = result.longitude;
       $scope.latitude = result.latitude;
+      debugger;
       console.log(result);
-    }, 
-    function(result){
-      alert(result);
     });
     photos.create({
       title: $scope.title,
@@ -59,14 +57,14 @@ atm.factory('photos',['$http','$location','formDataObject', function($http, $loc
   };
 
   o.getLocation = function(){
+    var coordinates = new Object;
     navigator.geolocation.getCurrentPosition(function(position){
-      var coordinates = new Object;
       coordinates['latitude'] = position.coords.latitude;
       coordinates['longitude'] = position.coords.longitude;
       console.log(coordinates);
-      console.log('in the location func');
-      return coordinates;
     });
+    console.log(coordinates);
+    return coordinates
   }
 
   o.getAll = function(){
