@@ -16,21 +16,27 @@ function($scope, photos, $timeout, $q){
       $("#submit").prop("disabled", false);
     }
   });
+
+  if (navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position){
+      $scope.$apply(function(){
+        $scope.position = position;
+      });
+    });
+  }
   
 
   $scope.photos = photos.photos;
   $scope.addPhoto = function(){
-    var geoPromise = photos.getLocation();
     
-    geoPromise.then(function(result){
-      photos.create({
-        title: $scope.title,
-        description: $scope.description,
-        file: $scope.file,
-        longitude: result.longitude,
-        latitude: result.latitude
-      });
+    photos.create({
+      title: $scope.title,
+      description: $scope.description,
+      file: $scope.file,
+      longitude: $scope.position.longitude,
+      latitude: $scope.position.latitude
     });
+
     $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
     $scope.title = '';
     $scope.description = '';
