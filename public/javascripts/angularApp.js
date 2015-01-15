@@ -20,23 +20,16 @@ function($scope, photos, $timeout, $q){
 
   $scope.photos = photos.photos;
   $scope.addPhoto = function(){
-    photos.getLocation().then(
-      function(result){
-        $scope.longitude = result.longitude;
-        $scope.latitude = result.latitude;
-        debugger;
-        console.log(result);
-      }, 
-      function(status){
-        console.log(status);
+    var geoPromise = photos.getLocation();
+    
+    geoPromise.then(function(result){
+      photos.create({
+        title: $scope.title,
+        description: $scope.description,
+        file: $scope.file,
+        longitude: result.longitude,
+        latitude: result.latitude
       });
-
-    photos.create({
-      title: $scope.title,
-      description: $scope.description,
-      file: $scope.file,
-      longitude: $scope.longitude,
-      latitude: $scope.latitude
     });
     $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
     $scope.title = '';
