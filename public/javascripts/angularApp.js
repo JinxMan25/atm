@@ -3,7 +3,9 @@ var atm = angular.module('atm', ['ngAnimate', 'ui.router']).value('$anchorScroll
 atm.controller('ctrl',[
 '$scope',
 'photos',
-function($scope, photos){
+'$timeout',
+'$q',
+function($scope, photos, $timeout, $q){
 
   $scope.$watch('file',function(){
     if (!$scope.file.type.match(/png/)){
@@ -18,12 +20,17 @@ function($scope, photos){
 
   $scope.photos = photos.photos;
   $scope.addPhoto = function(){
-    photos.getLocation().then(function(result){
-      $scope.longitude = result.longitude;
-      $scope.latitude = result.latitude;
-      debugger;
-      console.log(result);
-    });
+    photos.getLocation().then(
+      function(result){
+        $scope.longitude = result.longitude;
+        $scope.latitude = result.latitude;
+        debugger;
+        console.log(result);
+      }, 
+      function(status){
+        console.log(status);
+      });
+
     photos.create({
       title: $scope.title,
       description: $scope.description,
@@ -51,7 +58,7 @@ atm.factory('formDataObject', function(){
   };
 });
 
-atm.factory('photos',['$http','$location','formDataObject', function($http, $location, formDataObject){
+atm.factory('photos',['$http','$timeout', '$q','$location','formDataObject', function($http, $timeout, $q, $location, formDataObject){
   var o = {
     photos: []
   };
