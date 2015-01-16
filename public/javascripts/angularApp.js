@@ -27,7 +27,11 @@ function($scope, photos, $timeout, $q){
   
 
   $scope.photos = photos.photos;
+
   $scope.addPhoto = function(){
+  if (!$scope.position){
+    alert('Your position could not be calculated. If you can please fill out extra details about your location');
+  }
     
     photos.create({
       title: $scope.title,
