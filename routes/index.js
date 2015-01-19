@@ -111,21 +111,6 @@ router.post('/create', function(req, res, next){
       } else {
         console.log(file_name + ' uploaded to ' + new_loc);
       }
-
-    var options = {
-      width: 500,
-      height: 500,
-      srcPath: './static/images/' + file_name,
-      dstPath: './static/images/' + 'resized-' + file_name
-    };
-
-    im.resize(options, function(err){
-      if (err){
-        throw err;
-      }
-      console.log("resize complete");
-    });
-
     });
 
 
