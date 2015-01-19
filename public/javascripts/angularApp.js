@@ -5,7 +5,8 @@ atm.controller('ctrl',[
 'photos',
 '$timeout',
 '$q',
-function($scope, photos, $timeout, $q){
+'$rootScope',
+function($scope, photos, $timeout, $q, $rootScope){
 
   $scope.$watch('file',function(){
     if (!$scope.file.type.match(/jpeg/)){
@@ -21,6 +22,8 @@ function($scope, photos, $timeout, $q){
     navigator.geolocation.getCurrentPosition(function(position){
       $scope.$apply(function(){
         $scope.position = position.coords;
+        $rootScope.position = position.coords;
+        console.log($scope.position);
       });
     });
   }
@@ -37,7 +40,7 @@ function($scope, photos, $timeout, $q){
       title: $scope.title,
       description: $scope.description,
       file: $scope.file,
-      longitude: $scope.position.longitude,
+      longtitude: $scope.position.longitude,
       latitude: $scope.position.latitude
     });
 
@@ -61,7 +64,7 @@ atm.factory('formDataObject', function(){
   };
 });
 
-atm.factory('photos',['$http','$timeout', '$q','$location','formDataObject', function($http, $timeout, $q, $location, formDataObject){
+atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDataObject', function($rootScope,$http, $timeout, $q, $location, formDataObject){
   var o = {
     photos: []
   };
@@ -78,7 +81,7 @@ atm.factory('photos',['$http','$timeout', '$q','$location','formDataObject', fun
   }
 
   o.getAll = function(){
-    return $http.get('/').success(function(data){
+    return $http.get('/?latitude=40.258147699999995&longitude=-75.28357079999999').success(function(data){
       angular.copy(data,o.photos);
     });
   };
