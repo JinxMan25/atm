@@ -20,7 +20,7 @@ function($scope, photos, $timeout, $q){
   if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(position){
       $scope.$apply(function(){
-        $scope.position = position;
+        $scope.position = position.coords;
       });
     });
   }
