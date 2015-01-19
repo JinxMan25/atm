@@ -125,11 +125,6 @@ atm.config([
             "info": { templateUrl: '/info.html' }
           },
           controller: 'ctrl',
-          resolve: {
-            photoPromise: ['photos',function(photos){
-              return photos.getAll();
-            }]
-          }
         })
         .state('photo', {
           url: '/get/{uniq_token}',

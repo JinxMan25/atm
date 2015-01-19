@@ -28,7 +28,6 @@ router.get('/deleteall', function(req,res,next){
   Photo.find(function(err, photos){
     photos.forEach(function(photo){
       photo.remove();
-      console.log(photo);
       fs.unlink('./' + photo.img_url, function(err){
         if (err){
           return next(err);
@@ -56,7 +55,6 @@ router.param('uniq_token', function(req, res, next, uniq_token){
     if (!photo) {
       return next(new Error ("cant find photo"));
     }
-    console.log(photo[0].img_url);
     req.photo = photo;
     return next();
     });
