@@ -68,6 +68,7 @@
         <div class="centerbox" ng-controller="PhotosController">
           <div class="row">
             <div class="col-md-5 centerbox">
+              </br>
               <div class="thumbnail">
                 <img src="{{ photo.img_url }}" style="">
                 <div class="caption">
@@ -144,7 +145,7 @@
       <script type="text/ng-template" id="/photos.html">
       <div class="row">
         <div class="" ng-controller="ctrl">
-          <div class="col-md-5 col-xs-8 centerbox">
+          <div class="col-md-5 col-xs-12 centerbox">
             <div class="thumbnail" ng-repeat="photo in photos | orderBy: '-upvotes'">
               <img src="{{ photo.img_url }}">
               <div class="caption">

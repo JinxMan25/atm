@@ -8,7 +8,7 @@ atm.controller('ctrl',[
 function($scope, photos, $timeout, $q){
 
   $scope.$watch('file',function(){
-    if (!$scope.file.type.match(/png/)){
+    if (!$scope.file.type.match(/jpeg/)){
       $scope.isNotImage = true;
       $("#submit").prop("disabled", true);
     } else {

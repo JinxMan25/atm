@@ -28,6 +28,13 @@ router.get('/deleteall', function(req,res,next){
   Photo.find(function(err, photos){
     photos.forEach(function(photo){
       photo.remove();
+      console.log(photo);
+      fs.unlink('./' + photo.img_url, function(err){
+        if (err){
+          return next(err);
+        }
+        console.log("successfully deleted");
+      });
     });
     res.json("removed all");
   });
@@ -49,6 +56,7 @@ router.param('uniq_token', function(req, res, next, uniq_token){
     if (!photo) {
       return next(new Error ("cant find photo"));
     }
+    console.log(photo[0].img_url);
     req.photo = photo;
     return next();
     });
@@ -96,7 +104,7 @@ router.post('/create', function(req, res, next){
       return next( new Error ("You forgot the image!"));
     } 
     console.log(this.openedFiles[0].type);
-    if (this.openedFiles[0].type != ('image/png' || 'image/jpeg')){
+    if (this.openedFiles[0].type != ('image/jpeg' || 'image/jpeg')){
       return next (new Error ("You have to choose an image"));
     }
     var tmp_loc = this.openedFiles[0].path;
