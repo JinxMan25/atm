@@ -67,7 +67,7 @@
       <script type="text/ng-template" id="/photo.html">
         <div class="centerbox" ng-controller="PhotosController">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5 centerbox">
               <div class="thumbnail">
                 <img src="{{ photo.img_url }}" style="">
                 <div class="caption">
