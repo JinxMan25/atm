@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
   if (req.query.latitude){
     console.log(req.query.latitude);
     console.log(req.query.longitude);
-    var query = Photo.find({'latitude':{ $gte: req.query.latitude-3, $lte: req.query.latitude+3}, 'longtitude': { $gte: req.query.longitude-3, $lte: req.query.longitude+3 }});
+    var query = Photo.find({'latitude':{ $gt: req.query.latitude-3, $lt: req.query.latitude+4}, 'longtitude': { $gt: req.query.longitude-3, $lt: req.query.longitude+3 }});
     query.exec(function(err,photo){
       if (err) { 
         console.log("err");
