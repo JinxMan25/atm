@@ -6,6 +6,7 @@
   transition: display 0.5s ease-in-out;
 }
 
+
 .style1 {
   position:absolute;
   display:block;
@@ -14,6 +15,10 @@
   height:300px;
   left:50%;
   margin-left: -300px;
+}
+
+.nopadding{
+  padding:0 !important;
 }
 
 .ls{

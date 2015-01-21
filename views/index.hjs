@@ -83,12 +83,10 @@
       </script>
 
       <script type="text/ng-template" id="/home.html">
-        <div class="container">
-          <div class="container">
-            <div class="container" style="width:90%;">
+        <div class="container nopadding">
+            <div class="container nopadding" style="width:100%;">
               <h2>Find exciting snapshots around you!</h2>
               <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
-            </div>
             <div class="span5 offset1">
           </div>
         <div class="row">
@@ -145,6 +143,7 @@
       <script type="text/ng-template" id="/photos.html">
       <div class="row">
         <div class="" ng-controller="ctrl">
+          </br>
           <div class="col-md-5 col-xs-12 centerbox">
             <div class="thumbnail" ng-repeat="photo in photos | orderBy: '-upvotes'">
               <img src="{{ photo.img_url }}">
