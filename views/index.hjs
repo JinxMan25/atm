@@ -65,9 +65,9 @@
         </div>
       </script>
       <script type="text/ng-template" id="/photo.html">
-        <div class="centerbox" ng-controller="PhotosController">
+        <div class="" ng-controller="PhotosController">
           <div class="row">
-            <div class="col-md-5 centerbox">
+            <div class="col-md-4 col-xs-12 col-lg-4 centerbox nopadding">
               </br>
               <div class="thumbnail">
                 <img src="{{ photo.img_url }}" style="">
@@ -141,11 +141,10 @@
       </div>
       </script>
       <script type="text/ng-template" id="/photos.html">
-      <div class="row">
-        <div class="" ng-controller="ctrl">
+      <div class="row" ng-controller="ctrl">
           </br>
-          <div class="col-md-5 col-xs-12 centerbox">
-            <div class="thumbnail" ng-repeat="photo in photos | orderBy: '-upvotes'">
+          <div class="col-md-4 col-xs-12 col-lg-4 centerbox nopadding">
+            <div class="thumbnail nopadding" ng-repeat="photo in photos | orderBy: '-upvotes'">
               <img src="{{ photo.img_url }}">
               <div class="caption">
                 <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
@@ -157,7 +156,6 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
       </script>
   </body>

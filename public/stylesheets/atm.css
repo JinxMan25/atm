@@ -19,6 +19,7 @@
 
 .nopadding{
   padding:0 !important;
+  box-shadow: 0 2 2 0px;
 }
 
 .ls{
