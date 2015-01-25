@@ -13,5 +13,5 @@ This app lets you find photos taken by others based on your location.
   <li>jQuery</li>
 </ul>
 
-![alt tag](https://raw.github.com/username/projectname/branch/path/to/img.png)
+![alt tag](https://raw.githubusercontent.com/clanofnoobs/atm/master/public/images/screen.png)
 
