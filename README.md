@@ -16,7 +16,7 @@ This app lets you find photos taken by others based on your location.
   <li>jQuery</li>
 </ul>
 
-## API
+## API usage
 ### Get all photos
 `
 GET /
