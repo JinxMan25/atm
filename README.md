@@ -40,7 +40,7 @@ GET /get/:uniq_token/
 
 
 `
-GET /get/:uniq_token/upvote
+PUT /get/:uniq_token/upvote
 `
 
 
