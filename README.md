@@ -19,7 +19,7 @@ This app lets you find photos taken by others based on your location.
 ## API
 ### Get all photos
 `
-__GET__ /
+####GET /
 `
 
 
