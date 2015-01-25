@@ -143,7 +143,7 @@
       <script type="text/ng-template" id="/photos.html">
       <div class="row" ng-controller="ctrl">
           </br>
-          <div class="col-md-4 col-xs-12 col-lg-4 centerbox nopadding">
+          <div class="col-md-4 col-xs-12 col-lg-3 centerbox nopadding">
             <div class="thumbnail nopadding" ng-repeat="photo in photos | orderBy: '-upvotes'">
               <img src="{{ photo.img_url }}">
               <div class="caption">
