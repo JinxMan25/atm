@@ -21,13 +21,21 @@ This app lets you find photos taken by others based on your location.
 `
 GET /
 `
+
+
 `
 GET /?latitude=<lat>&longitude=<long>
 `
+
+
 `
 GET /get/:uniq_token/
 `
+
+
 `
 GET /get/:uniq_token/upvote
 `
+
+
 
