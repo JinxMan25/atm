@@ -6,7 +6,7 @@ This app lets you find photos taken by others based on your location.
 ## Built with
 
 ![alt tag](https://raw.githubusercontent.com/clanofnoobs/atm/master/public/images/screen.png)
-![alt tag]()
+![alt tag](https://raw.githubusercontent.com/clanofnoobs/atm/master/public/images/screen2.png)
 
 <ul>
   <li>MongoDB</li>
