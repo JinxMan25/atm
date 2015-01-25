@@ -22,10 +22,14 @@ This app lets you find photos taken by others based on your location.
 GET /
 `
 
+### Get all photos based on coordinates
+
 
 `
 GET /?latitude=<lat>&longitude=<long>
 `
+
+### Get/Update photo by unique token
 
 
 `
