@@ -86,7 +86,7 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
   });
 });
 
-router.post('/create', function(req, res, next){
+router.post('/what', function(req, res, next){
   var data = {};
   var token = randomValueBase64(5);
   var form = new formidable.IncomingForm();
