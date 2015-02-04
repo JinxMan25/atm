@@ -158,5 +158,12 @@
           </div>
       </div>
       </script>
+      <script src="/socket.op/socket.io.js"></script>
+      <script>
+          var socket = io();
+          io.sockets.on("uploadProgress", function(data){
+              alert(data);
+          });
+      </script>
   </body>
 </html>

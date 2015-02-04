@@ -21,6 +21,7 @@ var routes = require('./routes/index');
 
 var app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
@@ -38,11 +39,18 @@ app.use('/static/images',express.static(path.join(__dirname, 'static/images')));
 app.use('/', routes);
 app.use('/users', users);
 
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
-server.listen(app.get('port'));
-//require('.sockets').(io);
-//
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+  console.log("lkajsdf");
+});
+
+http.listen(3000,function(socket){
+  console.log("connected");
+});
+
+
 function randomValueBase64 (len) {
     return crypto.randomBytes(Math.ceil(len * 3 / 4))
         .toString('base64')   // convert to base64 format
@@ -66,10 +74,9 @@ app.post('/create', function(req,res){
     }
   });
 
-  form.on("progress", function(bytesRecieved, bytesExpected){
-    /*io.sockets.on('connection', function(socket){
-      socket.emit('uploadProgress', ((bytesRecieved*100)/ bytesExpected));
-    });*/
+  form.on('progress', function(bytesRecieved, bytesExpected){
+      io.sockets.emit("uploadProgress", ((bytesRecieved*100)/ bytesExpected));
+      console.log(bytesRecieved);
   });
 
   form.on('end', function(fields, files){
@@ -145,7 +152,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 
 module.exports = app;
