@@ -5,7 +5,6 @@
     <script src="javascripts/angularApp.js"></script>
     <script src="javascripts/angular-animate.js"></script>
     <script src="javascripts/jquery-min.js"></script>
-    <script src="javascripts/socket.io.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="javascripts/bootstrap.min.js"></script>
     <script src="javascripts/angular-ui-router.js"></script>
@@ -158,11 +157,13 @@
           </div>
       </div>
       </script>
-      <script src="/socket.op/socket.io.js"></script>
+      <script src="javascripts/socket.io.js"></script>
       <script>
           var socket = io();
-          io.sockets.on("uploadProgress", function(data){
-              alert(data);
+          socket.on("connected", function(){
+              alert("YOu are connected");
+            });
+          socket.on("uploadProgress", function(data){
           });
       </script>
   </body>

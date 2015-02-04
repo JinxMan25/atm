@@ -43,6 +43,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 io.on('connection', function(socket){
+  socket.emit("connected", "You are connected");
+  socket.on("hello", function(){
+    console.log("emit from client side recieved");
+  });
   console.log("lkajsdf");
 });
 
@@ -76,7 +80,7 @@ app.post('/create', function(req,res){
 
   form.on('progress', function(bytesRecieved, bytesExpected){
       io.sockets.emit("uploadProgress", ((bytesRecieved*100)/ bytesExpected));
-      console.log(bytesRecieved);
+      console.log((bytesRecieved*100/bytesExpected));
   });
 
   form.on('end', function(fields, files){
