@@ -109,13 +109,31 @@
       <script type="text/ng-template" id="/asdf.html">
       <a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
       </script>
+            <script type="text/javascript">
+              function PreviewImage(){
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("imagePreview").src = oFREvent.target.result;
+        };
+              };
+
+              </script>
       <script type="text/ng-template" id="/upload.html">
       <div class="style2">
         <form name="form" class="form-inline" ng-submit="addPhoto()">
           <div class="row">
           <h1 id="percent"> </h1>
             <div id="fileInput" class="form-group col-lg-1">
-            <input file-model="file" ng-change="updateValidate(file)" type="file"/>
+            <input id="uploadImage" file-model="file" onchange="PreviewImage()" type="file"/>
+
+            <div class="col-md-4 col-xs-3 col-lg-1 centerbox nopadding">
+              <div class="thumbnail nopadding">
+                <img id="imagePreview" style="height:30%"/>
+              </div>
+            </div>
+
             </div>
           </div>
           <div class="row">
@@ -160,9 +178,6 @@
       <script src="javascripts/socket.io.js"></script>
       <script>
           var socket = io();
-          socket.on("connected", function(){
-              alert("YOu are connected");
-            });
           socket.on("uploadProgress", function(data){
           });
       </script>

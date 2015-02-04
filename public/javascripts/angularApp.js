@@ -18,6 +18,15 @@ function($scope, photos, $timeout, $q, $rootScope){
     }
   });
 
+  $scope.preview = function(){
+    var oFReader = new FileReader();
+    oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+    oFReader.onload = function(oFREvent){
+      document.getElementById("imagePreview").src = oFREvent.target.result;
+    };
+  };
+
   if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(position){
       $scope.$apply(function(){
