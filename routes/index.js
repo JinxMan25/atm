@@ -100,9 +100,9 @@ router.post('/what', function(req, res, next){
   });
 
   form.on("progress", function(bytesRecieved, bytesExpected){
-    /*io.sockets.on('connection', function(socket){
+    io.sockets.on('connection', function(socket){
       socket.emit('uploadProgress', ((bytesRecieved*100)/ bytesExpected));
-    });*/
+    });
   });
 
   form.on('end', function(fields, files){
@@ -117,7 +117,7 @@ router.post('/what', function(req, res, next){
     var tmp_loc = this.openedFiles[0].path;
     var file_name = this.openedFiles[0].name;
     var new_loc = './static/images/';
-    data['img_url'] = 'static/images/' + file_name + '-' + date;
+    data['img_url'] = 'static/images/' + date + '-' + file_name;
     data['uniq_token'] = token;
 
     fs.copy(tmp_loc, new_loc + file_name + '-' + date, function(err){

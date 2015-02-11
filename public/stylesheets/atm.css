@@ -1,4 +1,5 @@
 .style2 {
+  text-align: center;
   display:block;
   width: 250px;
   margin: 0px auto;
@@ -31,6 +32,10 @@
 }
 .photoForm {
 
+}
+
+.nodisplay{
+  display: none;
 }
 
 .centerbox{
@@ -96,6 +101,13 @@ font-family: 'Open Sans', sans-serif;
   opacity: 0;
 }
 
+#titleInput{
+  margin-bottom:10px;
+}
+
+.row button {
+  margin-top: 10px;
+}
  
 .slide.ng-hide-add, .slide.ng-hide-remove {
   -webkit-transition:all linear 0.5s;
