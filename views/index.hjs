@@ -5,6 +5,7 @@
     <script src="javascripts/angularApp.js"></script>
     <script src="javascripts/angular-animate.js"></script>
     <script src="javascripts/jquery-min.js"></script>
+    <script src="javascripts/socket.io.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="javascripts/bootstrap.min.js"></script>
     <script src="javascripts/angular-ui-router.js"></script>
@@ -70,7 +71,6 @@
               </br>
               <div class="thumbnail">
                 <img src="{{ photo.img_url }}" style="">
-                {{debugger}}
                 <div class="caption">
                   <h3><a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a></h3>
                   <p>{{photo.description}}</p>
@@ -107,9 +107,6 @@
         </div>
         </div>
       </script>
-      <script type="text/ng-template" id="/asdf.html">
-      <a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
-      </script>
             <script type="text/javascript">
               function PreviewImage(){
         var oFReader = new FileReader();
@@ -118,7 +115,7 @@
         oFReader.onload = function (oFREvent) {
             document.getElementById("imagePreview").src = oFREvent.target.result;
         };
-              };
+              }
 
               </script>
       <script type="text/ng-template" id="/upload.html">
@@ -136,6 +133,7 @@
               <img src="images/placeholder_large.jpg" class="thumbnail" id="imagePreview" style="width:250px;margin:0 auto;margin-bottom:20px;"/>
             </div>
           </div>
+          <h1 class="perfect">0%</h1>
           <div class="progress nodisplay">
             <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
               60%
@@ -177,14 +175,15 @@
           </div>
       </div>
       </script>
-      <script src="javascripts/socket.io.js"></script>
-      <script>
-          var socket = io();
+      <script src="/socket.io/socket.io.js">
+      </script>
+      <script type="text/javascript">
+          var socket = io.connect("http://localhost:3000");
+          socket.emit("hello, "what");
           socket.on("uploadProgress", function(data){
-            debugger;
             $(".progress").removeClass("nodisplay");
             $(".progress-bar").attr("style", "width:"+data"%;");
-            $(".progress-bar").text(data);
+            $(".perfect").text(data);
           });
       </script>
   </body>

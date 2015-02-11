@@ -1,0 +1,308 @@
+diff --git a/.app.js.swk b/.app.js.swk
+deleted file mode 100644
+index 5f3d6e3..0000000
+Binary files a/.app.js.swk and /dev/null differ
+diff --git a/.app.js.swl b/.app.js.swl
+deleted file mode 100644
+index d768a7e..0000000
+Binary files a/.app.js.swl and /dev/null differ
+diff --git a/.app.js.swm b/.app.js.swm
+deleted file mode 100644
+index 6a375db..0000000
+Binary files a/.app.js.swm and /dev/null differ
+diff --git a/.app.js.swn b/.app.js.swn
+deleted file mode 100644
+index 0903aa7..0000000
+Binary files a/.app.js.swn and /dev/null differ
+diff --git a/app.js b/app.js
+index 51c48d7..7ecf5f7 100644
+--- a/app.js
++++ b/app.js
+@@ -43,6 +43,10 @@ var http = require('http').Server(app);
+ var io = require('socket.io')(http);
+ 
+ io.on('connection', function(socket){
++  socket.emit("connected", "You are connected");
++  socket.on("hello", function(){
++    console.log("emit from client side recieved");
++  });
+   console.log("lkajsdf");
+ });
+ 
+@@ -76,7 +80,7 @@ app.post('/create', function(req,res){
+ 
+   form.on('progress', function(bytesRecieved, bytesExpected){
+       io.sockets.emit("uploadProgress", ((bytesRecieved*100)/ bytesExpected));
+-      console.log(bytesRecieved);
++      console.log((bytesRecieved*100/bytesExpected));
+   });
+ 
+   form.on('end', function(fields, files){
+diff --git a/models/.Photos.js.swk b/models/.Photos.js.swk
+new file mode 100644
+index 0000000..b7ad0de
+Binary files /dev/null and b/models/.Photos.js.swk differ
+diff --git a/models/.Photos.js.swl b/models/.Photos.js.swl
+index 78a6129..730e9b2 100644
+Binary files a/models/.Photos.js.swl and b/models/.Photos.js.swl differ
+diff --git a/public/images/placeholder_large.jpg b/public/images/placeholder_large.jpg
+new file mode 100644
+index 0000000..fd113ba
+Binary files /dev/null and b/public/images/placeholder_large.jpg differ
+diff --git a/public/javascripts/.angularApp.js.swk b/public/javascripts/.angularApp.js.swk
+new file mode 100644
+index 0000000..98db47a
+Binary files /dev/null and b/public/javascripts/.angularApp.js.swk differ
+diff --git a/public/javascripts/.angularApp.js.swl b/public/javascripts/.angularApp.js.swl
+index ada39de..6dc743a 100644
+Binary files a/public/javascripts/.angularApp.js.swl and b/public/javascripts/.angularApp.js.swl differ
+diff --git a/public/javascripts/angularApp.js b/public/javascripts/angularApp.js
+index 2286f28..28c23b0 100644
+--- a/public/javascripts/angularApp.js
++++ b/public/javascripts/angularApp.js
+@@ -18,6 +18,7 @@ function($scope, photos, $timeout, $q, $rootScope){
+     }
+   });
+ 
++
+   if (navigator.geolocation){
+     navigator.geolocation.getCurrentPosition(function(position){
+       $scope.$apply(function(){
+@@ -66,7 +67,8 @@ atm.factory('formDataObject', function(){
+ 
+ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDataObject', function($rootScope,$http, $timeout, $q, $location, formDataObject){
+   var o = {
+-    photos: []
++    photos: [],
++    photo: []
+   };
+ 
+   o.getLocation = function(){
+@@ -103,7 +105,7 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
+   }
+   o.get = function(uniq){
+     return $http.get('/get/' + uniq).then(function(res){
+-      return res.data;
++      angular.copy(res.data,o.photo);
+     });
+   }
+   o.upvote = function(photo){
+@@ -132,7 +134,13 @@ atm.config([
+         .state('photo', {
+           url: '/get/{uniq_token}',
+           templateUrl: '/photo.html',
+-          controller: 'PhotosController'
++          controller: 'PhotosController',
++          resolve: {
++            getPromise: ['$stateParams', 'photos', function($stateParams, photos){
++              console.log($stateParams);
++              return photos.get($stateParams.uniq_token);
++            }]
++          }
+         })
+         .state('photos', {
+           url: '/all', 
+@@ -155,7 +163,10 @@ atm.config([
+ 
+ atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos', function($scope,$filter,$stateParams,photos){
+ 
+-  $scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];
++  $scope.photo = photos.photo[0];
++  console.log($scope.photo);
++  debugger;
++  //$scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];
+ 
+ }]);
+ 
+diff --git a/public/slider/templates/templateurl.html b/public/slider/templates/templateurl.html
+index 03b002b..026df61 100644
+--- a/public/slider/templates/templateurl.html
++++ b/public/slider/templates/templateurl.html
+@@ -5,4 +5,4 @@
+ 	<div class="arrows">
+ 		<a href="#" ng-click="prev()"><img src="img/left-arrow.png"/></a> <a href="#" ng-click="next()"><img src="img/right-arrow.png"/></a>
+ 	</div>
+-</div>
+\ No newline at end of file
++</div>
+diff --git a/public/stylesheets/.atm.css.swn b/public/stylesheets/.atm.css.swn
+new file mode 100644
+index 0000000..c6c7fa7
+Binary files /dev/null and b/public/stylesheets/.atm.css.swn differ
+diff --git a/public/stylesheets/atm.css b/public/stylesheets/atm.css
+index 7892c25..684e2e1 100644
+--- a/public/stylesheets/atm.css
++++ b/public/stylesheets/atm.css
+@@ -1,4 +1,5 @@
+ .style2 {
++  text-align: center;
+   display:block;
+   width: 250px;
+   margin: 0px auto;
+@@ -29,8 +30,13 @@
+   text-align:center;
+   margin:0px auto;
+ }
+-.photoForm {
+ 
++.photoForm{
++
++}
++
++.nodisplay{
++  display: none;
+ }
+ 
+ .centerbox{
+@@ -96,6 +102,13 @@ font-family: 'Open Sans', sans-serif;
+   opacity: 0;
+ }
+ 
++#titleInput{
++  margin-bottom:10px;
++}
++
++.row button {
++  margin-top: 10px;
++}
+  
+ .slide.ng-hide-add, .slide.ng-hide-remove {
+   -webkit-transition:all linear 0.5s;
+diff --git a/routes/.index.js.swl b/routes/.index.js.swl
+deleted file mode 100644
+index 3c5273c..0000000
+Binary files a/routes/.index.js.swl and /dev/null differ
+diff --git a/routes/.index.js.swm b/routes/.index.js.swm
+deleted file mode 100644
+index ca1cc79..0000000
+Binary files a/routes/.index.js.swm and /dev/null differ
+diff --git a/routes/.index.js.swn b/routes/.index.js.swn
+deleted file mode 100644
+index 93ef893..0000000
+Binary files a/routes/.index.js.swn and /dev/null differ
+diff --git a/routes/index.js b/routes/index.js
+index 7be9c0c..5d1dd4d 100644
+--- a/routes/index.js
++++ b/routes/index.js
+@@ -100,9 +100,9 @@ router.post('/what', function(req, res, next){
+   });
+ 
+   form.on("progress", function(bytesRecieved, bytesExpected){
+-    /*io.sockets.on('connection', function(socket){
++    io.sockets.on('connection', function(socket){
+       socket.emit('uploadProgress', ((bytesRecieved*100)/ bytesExpected));
+-    });*/
++    });
+   });
+ 
+   form.on('end', function(fields, files){
+@@ -117,7 +117,7 @@ router.post('/what', function(req, res, next){
+     var tmp_loc = this.openedFiles[0].path;
+     var file_name = this.openedFiles[0].name;
+     var new_loc = './static/images/';
+-    data['img_url'] = 'static/images/' + file_name + '-' + date;
++    data['img_url'] = 'static/images/' + date + '-' + file_name;
+     data['uniq_token'] = token;
+ 
+     fs.copy(tmp_loc, new_loc + file_name + '-' + date, function(err){
+diff --git a/views/.index.hjs.swl b/views/.index.hjs.swl
+deleted file mode 100644
+index 86ffd59..0000000
+Binary files a/views/.index.hjs.swl and /dev/null differ
+diff --git a/views/.index.hjs.swm b/views/.index.hjs.swm
+deleted file mode 100644
+index d9f538a..0000000
+Binary files a/views/.index.hjs.swm and /dev/null differ
+diff --git a/views/.index.hjs.swn b/views/.index.hjs.swn
+deleted file mode 100644
+index e2d48b2..0000000
+Binary files a/views/.index.hjs.swn and /dev/null differ
+diff --git a/views/index.hjs b/views/index.hjs
+index b9acea5..fe6f0bd 100644
+--- a/views/index.hjs
++++ b/views/index.hjs
+@@ -5,7 +5,6 @@
+     <script src="javascripts/angularApp.js"></script>
+     <script src="javascripts/angular-animate.js"></script>
+     <script src="javascripts/jquery-min.js"></script>
+-    <script src="javascripts/socket.io.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+     <script src="javascripts/bootstrap.min.js"></script>
+     <script src="javascripts/angular-ui-router.js"></script>
+@@ -71,6 +70,7 @@
+               </br>
+               <div class="thumbnail">
+                 <img src="{{ photo.img_url }}" style="">
++                {{debugger}}
+                 <div class="caption">
+                   <h3><a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a></h3>
+                   <p>{{photo.description}}</p>
+@@ -110,26 +110,45 @@
+       <script type="text/ng-template" id="/asdf.html">
+       <a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
+       </script>
++            <script type="text/javascript">
++              function PreviewImage(){
++        var oFReader = new FileReader();
++        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
++
++        oFReader.onload = function (oFREvent) {
++            document.getElementById("imagePreview").src = oFREvent.target.result;
++        };
++              };
++
++              </script>
+       <script type="text/ng-template" id="/upload.html">
+       <div class="style2">
+         <form name="form" class="form-inline" ng-submit="addPhoto()">
+           <div class="row">
+-          <h1 id="percent"> </h1>
++            <h1 id="percent"> </h1>
+             <div id="fileInput" class="form-group col-lg-1">
+-            <input file-model="file" ng-change="updateValidate(file)" type="file"/>
++            <input id="uploadImage" file-model="file" onchange="PreviewImage()" type="file"/>
++            </div>
++            </br>
++          </div>
++          <div class="row">
++            <div class="">
++              <img src="images/placeholder_large.jpg" class="thumbnail" id="imagePreview" style="width:250px;margin:0 auto;margin-bottom:20px;"/>
++            </div>
++          </div>
++          <div class="progress nodisplay">
++            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
++              60%
+             </div>
+           </div>
+           <div class="row">
+-            </br>
+             <div id="titleInput" class="form-group col-lg-1">
+             <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" ng-model="title" placeholder="Title"></input>
+             </div>
+           </div>
+           <div class="row">
+-            </br>
+             <div class="form-group col-lg-1">
+             <textarea class="form-control" rows="4" style="width:250px;" ng-model="description" placeholder="Description"></textarea></br>
+-            </br>
+             <button class="btn" id="submit" style="width:100px;" type="submit">Post</button>
+             </div>
+           </div>
+@@ -158,11 +177,14 @@
+           </div>
+       </div>
+       </script>
+-      <script src="/socket.op/socket.io.js"></script>
++      <script src="javascripts/socket.io.js"></script>
+       <script>
+           var socket = io();
+-          io.sockets.on("uploadProgress", function(data){
+-              alert(data);
++          socket.on("uploadProgress", function(data){
++            debugger;
++            $(".progress").removeClass("nodisplay");
++            $(".progress-bar").attr("style", "width:"+data"%;");
++            $(".progress-bar").text(data);
+           });
+       </script>
+   </body>

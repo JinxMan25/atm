@@ -165,7 +165,6 @@ atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos',
 
   $scope.photo = photos.photo[0];
   console.log($scope.photo);
-  debugger;
   //$scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];
 
 }]);
