@@ -67,7 +67,8 @@ atm.factory('formDataObject', function(){
 
 atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDataObject', function($rootScope,$http, $timeout, $q, $location, formDataObject){
   var o = {
-    photos: []
+    photos: [],
+    photo: []
   };
 
   o.getLocation = function(){
@@ -104,7 +105,7 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
   }
   o.get = function(uniq){
     return $http.get('/get/' + uniq).then(function(res){
-      return res.data;
+      angular.copy(res.data,o.photo);
     });
   }
   o.upvote = function(photo){
@@ -135,7 +136,8 @@ atm.config([
           templateUrl: '/photo.html',
           controller: 'PhotosController',
           resolve: {
-            photo: ['$stateParams', 'photos', function($stateParams, photos){
+            getPromise: ['$stateParams', 'photos', function($stateParams, photos){
+              console.log($stateParams);
               return photos.get($stateParams.uniq_token);
             }]
           }
@@ -159,9 +161,9 @@ atm.config([
 }]);
 
 
-atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos','photo', function($scope,$filter,$stateParams,photos, photo){
+atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos', function($scope,$filter,$stateParams,photos){
 
-  $scope.photo = photo[0];
+  $scope.photo = photos.photo[0];
   console.log($scope.photo);
   debugger;
   //$scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];

@@ -70,6 +70,7 @@
               </br>
               <div class="thumbnail">
                 <img src="{{ photo.img_url }}" style="">
+                {{debugger}}
                 <div class="caption">
                   <h3><a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a></h3>
                   <p>{{photo.description}}</p>
