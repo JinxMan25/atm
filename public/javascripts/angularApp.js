@@ -133,7 +133,12 @@ atm.config([
         .state('photo', {
           url: '/get/{uniq_token}',
           templateUrl: '/photo.html',
-          controller: 'PhotosController'
+          controller: 'PhotosController',
+          resolve: {
+            photo: ['$stateParams', 'photos', function($stateParams, photos){
+              return photos.get($stateParams.uniq_token);
+            }]
+          }
         })
         .state('photos', {
           url: '/all', 
@@ -154,9 +159,12 @@ atm.config([
 }]);
 
 
-atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos', function($scope,$filter,$stateParams,photos){
+atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos','photo', function($scope,$filter,$stateParams,photos, photo){
 
-  $scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];
+  $scope.photo = photo[0];
+  console.log($scope.photo);
+  debugger;
+  //$scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];
 
 }]);
 
