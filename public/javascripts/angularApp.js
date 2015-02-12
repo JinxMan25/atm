@@ -162,7 +162,11 @@ atm.config([
 
 atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos', function($scope,$filter,$stateParams,photos){
 
-  $scope.photo = photos.photo[0];
+  if (photos.photos.length > 0){
+    $scope.photo = $filter('filter')(photos.photos, function(d) { return d.uniq_token === $stateParams.uniq_token })[0];
+  } else {
+    $scope.photo = photos.photo[0];
+  }
 
 }]);
 
