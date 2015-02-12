@@ -37,6 +37,7 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
+      <img class="indicator" ng-show="loading" src="images/loader.gif"/>
         <div ui-view="jumbotron"></div>
         <div ui-view></div>
     </div>
