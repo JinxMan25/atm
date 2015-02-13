@@ -37,7 +37,7 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <img class="indicator" ng-show="loading" src="images/loader.gif"/>
+      <img class="indicator ng-hide" ng-show="loading" src="images/loader.gif"/>
         <div ui-view="jumbotron"></div>
         <div ui-view></div>
     </div>
@@ -162,6 +162,15 @@
       <script type="text/ng-template" id="/photos.html">
       <div class="row" ng-controller="ctrl">
           </br>
+      <div class="container" style="width:530px;text-align:center;">
+        <div class="alert alert-info" ng-hide="empty" role="alert">
+          <strong>No photos found near you!</strong>
+          Start by capturing!
+        </div>
+        <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
+          <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload photo »</a></p>
+        </div>
+      </div>
           <div class="col-md-4 col-xs-12 col-lg-3 centerbox nopadding">
             <div class="thumbnail nopadding" ng-repeat="photo in photos | orderBy: '-upvotes'">
               <img src="{{ photo.img_url }}">

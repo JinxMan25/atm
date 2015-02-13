@@ -18,6 +18,14 @@ function($scope, photos, $timeout, $q, $rootScope){
     }
   });
 
+  $scope.$watch('photos', function(){
+    if (!($scope.photos.length > 0)){
+      $scope.empty = false;
+    } else {
+      $scope.empty = true;
+    }
+  })
+
 
   if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(position){
