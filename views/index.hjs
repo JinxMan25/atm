@@ -185,10 +185,14 @@
               <div class="caption">
                 <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
                 <p style="font-size:16px;"> {{ photo.description }} </p>
-                <p>
-                <h4>{{photo.upvotes}}</h4>
-                <a href="#" ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-up"></span></a>
-                </p>
+                <div style="display:inline-block;margin-right:10px;">
+                  <h4 style="color:green">{{photo.upvotes}}</h4>
+                  <a href="#" ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-up"></span></a>
+                </div>
+                <div style="display:inline-block;">
+                  <h4 style="color:red">{{photo.upvotes}}</h4>
+                  <a href="#" ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-down"></span></a>
+                </div>
               </div>
             </div>
           </div>
