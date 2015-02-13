@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
     <script src="javascripts/bootstrap-min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Euphoria+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Seaweed+Script' rel='stylesheet' type='text/css'>
     <link href="stylesheets/bootstrap-min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
   </head>
@@ -24,12 +26,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">at-this-moment</a>
+          <a class="navbar-brand deftone" href="#">At This Moment</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-            <button type="submit" class="btn btn-default">Submit</button>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
