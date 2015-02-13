@@ -172,7 +172,7 @@
           <strong>No photos found near you!</strong>
           Start by capturing!
         </div>
-        <span class="glyphicon glyphicon-chevron-down"></span>
+        <span class="glyphicon glyphicon-chevron-down tick"></span>
         </br>
         </br>
         <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">

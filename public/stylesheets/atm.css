@@ -1,3 +1,18 @@
+@-webkit-keyframes bump{
+  0%, 100% {
+    top:0px;
+  }
+  50%{
+    top:8px;
+  }
+}
+
+.tick {
+  font-size:18px;
+  -webkit-animation: bump 2s infinite;
+}
+
+
 .style2 {
   text-align: center;
   display:block;
