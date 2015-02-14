@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
 
 
   if (req.query.latitude){
+    console.log("here");
     var coords = [];
     coords[0] = req.query.longitude;
     coords[1] = req.query.latitude;

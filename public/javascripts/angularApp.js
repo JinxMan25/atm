@@ -80,7 +80,7 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
 
   o.getAll = function(){
     $rootScope.loading = true;
-    return $http.get('/').success(function(data){
+    return $http.get('/?longitude='+$scope.position.longitude+'&latitude='+$scope.position.latitude).success(function(data){
       angular.copy(data,o.photos);
       $rootScope.loading = false;
     });
