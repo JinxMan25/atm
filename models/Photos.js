@@ -12,16 +12,14 @@ var PhotoSchema = new mongoose.Schema({
   expire_in: { type: Date },
   uniq_token: { type: String, unique: true, required: true, dropDups: true},
   address: { street: String, City: String, State: String, Country: String }, 
-  longtitude: Number,
+  coordinates: { type: [Number], index: '2d' },
   description: String,
-  latitude: Number,
   img_url: String,
   upvoted: [{type: String}],
-  upvotes: { type: Number, default: 0 }});
-
-  PhotoSchema.add({description: String});
-  PhotoSchema.add({downvotes: { type: Number, default: 0 }});
-  PhotoSchema.add({ tags: String });
+  upvotes: { type: Number, default: 0 },
+  downvotes: { type: Number, default: 0 },
+  description: String,
+  tags: [String]});
 
   PhotoSchema.static('findByDegrees', function(longitude,latitude,callback){
     return this.find({ longitude: { $gte: longitude-0.05, $lte: longitude }, latitude: { $gte: latitude-0.05, $lte: latitude } }, callback);

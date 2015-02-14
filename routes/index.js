@@ -6,13 +6,29 @@ var mongoose = require('mongoose');
 var Photo = mongoose.model('Photo');
 var fs = require('fs-extra');
 var formidable = require('formidable');
+var levenshtein = require('levenshtein');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
+  var limit = req.query.limit || 10;
+  var maxDistance = req.query.distance || 8;
+
+  maxDistance /= 6371;
+
+
   if (req.query.latitude){
-    console.log(req.query.latitude);
-    console.log(req.query.longitude);
-    var query = Photo.find({'latitude':{ $gte: req.query.latitude-3, $lte: req.query.latitude+4}, 'longtitude': { $gte: req.query.longitude-3, $lte: req.query.longitude+3 }});
+    var coords = [];
+    coords[0] = req.query.longitude;
+    coords[1] = req.query.latitude;
+
+    var query = Photo.find({
+      'coordinates': { 
+        $near: coords,
+        $maxDistance: maxDistance
+      }
+    }).limit(limit);
+
     query.exec(function(err,photo){
       if (err) { 
         console.log("err");
@@ -31,6 +47,19 @@ router.get('/', function(req, res, next) {
     });
   }
 });
+
+/*router.get('/search', function(req,res,next){
+  Photo.find(function(err, photos){
+    if (err){ 
+      return next(err);
+    }
+    photos.forEach(function(photo){
+      var l = new Levenshtein(req.query.title, photo.title);
+    });
+
+  });
+  res.json(
+});*/
 
 router.get('/deleteall', function(req,res,next){
   Photo.find(function(err, photos){
@@ -133,6 +162,7 @@ router.post('/what', function(req, res, next){
     photo.save(function(err,post){
       if(err){
         console.log("in the error");
+        console.log(err);
         return next(err);
       }
       res.json(photo);

@@ -12,7 +12,7 @@ var crypto = require('crypto')
 var users = require('./routes/users');
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/atm');
 require('./models/Photos');
 
 var Photo = mongoose.model('Photo');
@@ -75,6 +75,7 @@ app.post('/create', function(req,res){
       return next(err);
     } else {
       data = fields;
+      console.log(data);
     }
   });
 
