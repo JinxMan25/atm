@@ -163,7 +163,6 @@ router.post('/what', function(req, res, next){
       if(err){
         console.log("in the error");
         console.log(err);
-        return next(err);
       }
       res.json(photo);
     });

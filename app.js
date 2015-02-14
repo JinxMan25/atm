@@ -12,7 +12,7 @@ var crypto = require('crypto')
 var users = require('./routes/users');
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/atm');
+mongoose.connect('mongodb://localhost/test');
 require('./models/Photos');
 
 var Photo = mongoose.model('Photo');
@@ -75,6 +75,12 @@ app.post('/create', function(req,res){
       return next(err);
     } else {
       data = fields;
+      var coords = [];
+      coords[0] = Number(fields.latitude);
+      coords[1] = Number(fields.longitude);
+      data['coordinates'] = coords;
+      delete data['longitude'];
+      delete data['latitude'];
       console.log(data);
     }
   });
@@ -107,11 +113,13 @@ app.post('/create', function(req,res){
       }
     });
 
+    var self = this;
     var photo = new Photo(data)
     photo.save(function(err,post){
       if(err){
         console.log("in the error");
-        return next(err);
+        console.log(err);
+        res.send(500);
       }
       res.json(photo);
     });

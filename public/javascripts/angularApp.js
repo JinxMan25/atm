@@ -31,8 +31,6 @@ function($scope, photos, $timeout, $q, $rootScope){
     navigator.geolocation.getCurrentPosition(function(position){
       $scope.$apply(function(){
         $scope.position = position.coords;
-        $rootScope.position = position.coords;
-        console.log($scope.position);
       });
     });
   }
@@ -45,15 +43,13 @@ function($scope, photos, $timeout, $q, $rootScope){
     alert('Your position could not be calculated. If you can please fill out extra details about your location');
   }
     var loc = [];
-    loc.push($scope.position.longitude);
-    loc.push($scope.position.latitude);
-    console.log(loc);
 
     photos.create({
       title: $scope.title,
       description: $scope.description,
       file: $scope.file,
-      coordinates: loc
+      longitude: $scope.position.longitude,
+      latitude: $scope.position.latitude
     });
 
     $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});

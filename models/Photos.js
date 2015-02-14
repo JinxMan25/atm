@@ -12,7 +12,7 @@ var PhotoSchema = new mongoose.Schema({
   expire_in: { type: Date },
   uniq_token: { type: String, unique: true, required: true, dropDups: true},
   address: { street: String, City: String, State: String, Country: String }, 
-  coordinates: { type: [Number], index: '2d' },
+  coordinates: {type:[Number], index: '2d'},
   description: String,
   img_url: String,
   upvoted: [{type: String}],
