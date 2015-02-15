@@ -76,7 +76,8 @@ atm.factory('formDataObject', function(){
 atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDataObject', function($rootScope,$http, $timeout, $q, $location, formDataObject){
   var o = {
     photos: [],
-    photo: []
+    photo: [],
+    coordinates: {}
   };
 
   o.getAll = function(){
@@ -113,6 +114,17 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
       .success(function(data){
         photo.upvotes += 1;
       });
+  }
+
+  o.getCoords = function(){
+    if (navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(function(position){
+        $scope.$apply(function(){
+          $scope.position = position.coords;
+          $rootScope.position = $scope.position;
+        });
+      });
+    }
   }
 
   return o;
