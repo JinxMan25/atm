@@ -19,7 +19,7 @@ function($scope, photos, $timeout, $q, $rootScope){
   });
 
   $scope.$watch('photos', function(){
-    if (!($scope.photos.length > 0)){
+    if (!($scope.photos.length > 0) && (!$rootScope.loading)){
       $scope.empty = false;
     } else {
       $scope.empty = true;
@@ -82,11 +82,19 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
   };
 
   o.getAll = function(){
-    $rootScope.loading = true;
+    if (!(o.photos.length > 0)){
+      $rootScope.loading = true;
+    } 
     console.log($rootScope.position);
     return $http.get('/?longitude='+$rootScope.position.longitude+'&latitude='+$rootScope.position.latitude).success(function(data){
-      angular.copy(data,o.photos);
-      $rootScope.loading = false;
+      $timeout(function(){
+      if (o.photos.length > 0){
+
+      } else {
+        angular.copy(data,o.photos);
+        $rootScope.loading = false;
+      }
+      },2000);
     });
   };
 
