@@ -31,6 +31,7 @@ function($scope, photos, $timeout, $q, $rootScope){
     navigator.geolocation.getCurrentPosition(function(position){
       $scope.$apply(function(){
         $scope.position = position.coords;
+        $rootScope.position = $scope.position;
       });
     });
   }
@@ -80,7 +81,8 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
 
   o.getAll = function(){
     $rootScope.loading = true;
-    return $http.get('/?longitude='+$scope.position.longitude+'&latitude='+$scope.position.latitude).success(function(data){
+    console.log($rootScope.position);
+    return $http.get('/?longitude='+$rootScope.position.longitude+'&latitude='+$rootScope.position.latitude).success(function(data){
       angular.copy(data,o.photos);
       $rootScope.loading = false;
     });
