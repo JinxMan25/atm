@@ -76,8 +76,8 @@ app.post('/create', function(req,res){
     } else {
       data = fields;
       var coords = [];
-      coords[0] = Number(fields.latitude);
-      coords[1] = Number(fields.longitude);
+      coords[0] = Number(fields.longitude);
+      coords[1] = Number(fields.latitude);
       data['coordinates'] = coords;
       delete data['longitude'];
       delete data['latitude'];

@@ -32,6 +32,7 @@ function($scope, photos, $timeout, $q, $rootScope){
       $scope.$apply(function(){
         $scope.position = position.coords;
         $rootScope.position = $scope.position;
+        console.log($rootScope.position);
       });
     });
   }
