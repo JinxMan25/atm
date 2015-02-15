@@ -19,12 +19,20 @@ function($scope, photos, $timeout, $q, $rootScope){
   });
 
   $scope.$watch('photos', function(){
-    if (!($scope.photos.length > 0) && (!$rootScope.loading)){
-      $scope.empty = false;
-    } else {
+    if (!($scope.photos.length > 0) && ($rootScope.loading == true)){
       $scope.empty = true;
+    } else {
+      $scope.empty = false;
     }
   })
+
+  $rootScope.$watch('loading', function(){
+    if ((($scope.photos.length == 0)) && ($rootScope.loading == false)){
+        $scope.empty = true;
+    } else {
+      $scope.empty = false;
+    }
+  });
 
 
   if (navigator.geolocation){
@@ -32,7 +40,6 @@ function($scope, photos, $timeout, $q, $rootScope){
       $scope.$apply(function(){
         $scope.position = position.coords;
         $rootScope.position = $scope.position;
-        console.log($rootScope.position);
       });
     });
   }
@@ -84,17 +91,19 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
   o.getAll = function(){
     if (!(o.photos.length > 0)){
       $rootScope.loading = true;
+      $rootScope.$apply();
     } 
-    console.log($rootScope.position);
-    return $http.get('/?longitude='+$rootScope.position.longitude+'&latitude='+$rootScope.position.latitude).success(function(data){
+    return $http.get('/?longitude='+o.coordinates.longitude+'&latitude='+o.coordinates.latitude).success(function(data){
       $timeout(function(){
       if (o.photos.length > 0){
-
+        $rootScope.empty = false;
+        $rootScope.$apply();
       } else {
         angular.copy(data,o.photos);
         $rootScope.loading = false;
+        $rootScope.$apply();
       }
-      },2000);
+      },650);
     });
   };
 
@@ -126,14 +135,15 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
   }
 
   o.getCoords = function(){
+    var deferred = $q.defer();
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(function(position){
-        $scope.$apply(function(){
-          $scope.position = position.coords;
-          $rootScope.position = $scope.position;
-        });
+        o.coordinates = position.coords; 
+        console.log(o.coordinates);
+        deferred.resolve(o.coordinates);
       });
     }
+      return deferred.promise;
   }
 
   return o;
@@ -157,6 +167,7 @@ atm.config([
           templateUrl: '/photo.html',
           controller: 'PhotosController',
           resolve: {
+            
             getPromise: ['$stateParams', 'photos', function($stateParams, photos){
               return photos.get($stateParams.uniq_token);
             }]
@@ -168,7 +179,9 @@ atm.config([
           controller: 'ctrl',
           resolve: { 
             getPromise: ['photos', function(photos){
-              return photos.getAll();
+              photos.getCoords().then(function(data){
+                return photos.getAll();
+              });
             }]
           }
         })
