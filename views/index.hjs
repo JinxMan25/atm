@@ -96,9 +96,16 @@
               <div class="thumbnail">
                 <img src="{{photo.img_url}}" style="">
                 <div class="caption">
-                  <h3><a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a></h3>
-                  <p>{{photo.description}}</p>
-                  <h3>{{photo.upvotes }}</h3>
+                  <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
+                  <p style="font-size:16px;"> {{ photo.description }} </p>
+                  <div style="display:inline-block;margin-right:10px;">
+                    <h4 style="color:green">{{photo.upvotes}}</h4>
+                    <a href="#" ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-up"></span></a>
+                  </div>
+                  <div style="display:inline-block;">
+                    <h4 style="color:red">{{photo.downvotes}}</h4>
+                    <a href="#" ng-click="incrementDownvotes(photo)"<span class="glyphicon glyphicon-thumbs-down"></span></a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -173,7 +180,7 @@
           <div class="row">
             <div class="form-group col-lg-1">
             <textarea class="form-control" rows="4" style="width:250px;" ng-model="description" placeholder="Description"></textarea></br>
-            <button class="btn" id="submit" style="width:100px;" type="submit">Post</button>
+            <button class="btn btn-warning" id="submit" style="width:100px;" type="submit">Post</button>
             </div>
           </div>
           <div class="validation" style="color:maroon">
