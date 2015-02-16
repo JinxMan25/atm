@@ -110,10 +110,10 @@ font-family: 'Open Sans', sans-serif;
 }*/
 
 .jumbotron {
-  -webkit-transition:height 0.5s ease-in-out;
-    -moz-transition:height 0.5s ease-in-out;
-    -o-transition:height 0.5s ease-in-out;
-    transition:height 0.5s ease-in-out;
+  -webkit-transition:height 5s ease-in-out;
+    -moz-transition:height 5s ease-in-out;
+    -o-transition:height 5s ease-in-out;
+    transition:height 5s ease-in-out;
 }
 
 [ui-view].ng-enter {
