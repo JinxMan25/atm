@@ -33,6 +33,11 @@ var PhotoSchema = new mongoose.Schema({
     this.upvotes += 1;
     this.save(cb);
   };
+
+  PhotoSchema.methods.downvote = function downvote(cb){
+    this.downvotes += 1;
+    this.save(cb);
+  };
 /*PhotoSchema.plugin(thumnailPlugin, {
   name: "photo",
   format: "png",

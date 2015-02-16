@@ -45,7 +45,6 @@ function($scope, photos, $timeout, $q, $rootScope){
   }
   
   $scope.getLocation = function(){
-    alert("HI");
   };
 
   $scope.photos = photos.photos;
@@ -71,6 +70,10 @@ function($scope, photos, $timeout, $q, $rootScope){
 
   $scope.incrementUpvotes = function(photo){
     photos.upvote(photo);
+  }
+
+  $scope.incrementDownvotes = function(photo){
+    photos.downvote(photo);
   }
 }]);
 
@@ -128,15 +131,24 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
         alert(data.message);
     });
   }
+
   o.get = function(uniq){
     return $http.get('/get/' + uniq).then(function(res){
       angular.copy(res.data,o.photo);
     });
   }
+
   o.upvote = function(photo){
     return $http.put('/get/' + photo.uniq_token + '/upvote')
       .success(function(data){
         photo.upvotes += 1;
+      });
+  }
+
+  o.downvote = function(photo){
+    return $http.put('/get/' + photo.uniq_token + '/downvote')
+      .success(function(data){
+        photo.downvotes += 1;
       });
   }
 

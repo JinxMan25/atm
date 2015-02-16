@@ -209,8 +209,8 @@
                   <a href="#" ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-up"></span></a>
                 </div>
                 <div style="display:inline-block;">
-                  <h4 style="color:red">{{photo.upvotes}}</h4>
-                  <a href="#" ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-down"></span></a>
+                  <h4 style="color:red">{{photo.downvotes}}</h4>
+                  <a href="#" ng-click="incrementDownvotes(photo)"<span class="glyphicon glyphicon-thumbs-down"></span></a>
                 </div>
               </div>
             </div>

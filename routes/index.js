@@ -116,6 +116,15 @@ router.put('/get/:uniq_token/upvote', function(req,res, next){
   });
 });
 
+router.put('/get/:uniq_token/downvote', function(req,res, next){
+  //grab first from array, otherwise method won't work
+  req.photo[0].downvote(function(err, photo){
+    if (err) { return next(err); }
+
+    res.json(photo);
+  });
+});
+
 router.post('/what', function(req, res, next){
   var data = {};
   var token = randomValueBase64(5);
