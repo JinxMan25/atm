@@ -95,17 +95,21 @@ app.post('/create', function(req,res){
       return next( new Error ("You forgot the image!"));
     } 
     console.log(this.openedFiles[0].type);
-    if (this.openedFiles[0].type != ('image/jpeg' || 'image/jpeg')){
+
+    var filetype = this.openedFiles[0].type;
+    console.log(filetype.match(/image/)[0]);
+
+    if (!filetype.match(/image/)){
       return next (new Error ("You have to choose an image"));
     }
     var date = Date.now();
     var tmp_loc = this.openedFiles[0].path;
     var file_name = this.openedFiles[0].name;
     var new_loc = './static/images/';
-    data['img_url'] = 'static/images/' + file_name + '-' + date;
+    data['img_url'] = 'static/images/' + date + '-' + file_name;
     data['uniq_token'] = token;
 
-    fs.copy(tmp_loc, new_loc + file_name + '-' + date, function(err){
+    fs.copy(tmp_loc, new_loc + date + '-' + file_name, function(err){
       if (err){
         console.log(err);
       } else {

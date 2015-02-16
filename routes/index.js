@@ -140,7 +140,7 @@ router.post('/what', function(req, res, next){
       return next( new Error ("You forgot the image!"));
     } 
     console.log(this.openedFiles[0].type);
-    if (this.openedFiles[0].type != ('image/jpeg' || 'image/jpeg')){
+    if (this.openedFiles[0].type.match(/image/)){
       return next (new Error ("You have to choose an image"));
     }
     var date = Date.now();
