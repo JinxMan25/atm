@@ -95,7 +95,7 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
     } 
     return $http.get('/?longitude='+o.coordinates.longitude+'&latitude='+o.coordinates.latitude).success(function(data){
       $timeout(function(){
-      if (o.photos.length == 0){
+      if (data.length == 0){
         $rootScope.loading = false;
         $rootScope.empty = true;
         $rootScope.$apply();

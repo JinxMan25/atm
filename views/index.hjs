@@ -167,7 +167,7 @@
       <script type="text/ng-template" id="/photos.html">
       <div class="row" ng-controller="ctrl">
           </br>
-      <div class="container something" ng-show="empty" style="width:530px;text-align:center;">
+      <div class="container" ng-show="empty" style="width:530px;text-align:center;">
         <div class="alert alert-info" role="alert">
           <strong>No photos found near you!</strong>
           Start by capturing!
