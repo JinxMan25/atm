@@ -7,6 +7,15 @@
   }
 }
 
+.options {
+  font-size:48px;
+  position:absolute;
+  top:0px;
+  right:0px;
+  z-index:1000;
+  display:none
+}
+
 .tick {
   font-size:18px;
   -webkit-animation: bump 2s infinite;
@@ -21,6 +30,7 @@
   margin-top:20px;
   transition: display 0.5s ease-in-out;
 }
+
 
 .deftone {
   font-size: 28px;
