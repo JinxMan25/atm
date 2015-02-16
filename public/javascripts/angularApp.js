@@ -1,12 +1,13 @@
 var atm = angular.module('atm', ['ngAnimate', 'ui.router']).value('$anchorScroll', angular.noop);
 
 atm.controller('ctrl',[
+'$http',
 '$scope',
 'photos',
 '$timeout',
 '$q',
 '$rootScope',
-function($scope, photos, $timeout, $q, $rootScope){
+function($http,$scope, photos, $timeout, $q, $rootScope){
 
   $scope.$watch('file',function(){
     if (!$scope.file.type.match(/image/)){
@@ -33,34 +34,34 @@ function($scope, photos, $timeout, $q, $rootScope){
       $scope.empty = false;
     }
   });
-
-
-  if (navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(function(position){
-      $scope.$apply(function(){
-        $scope.position = position.coords;
-        $rootScope.position = $scope.position;
-      });
-    });
-  }
   
   $scope.getLocation = function(){
+    return $http.get('http://maps.googleapis.com/maps/api/geocode/json?address=19446')
+      .success(function(data){
+        photos.coordinates.longitude = data.results[0].geometry.location.lng;
+        photos.coordinates.latitude = data.results[0].geometry.location.lat;
+        console.log(photos.coordinates);
+        photos.getAll();
+        $('#exampleModal').modal('hide');
+      });
   };
 
   $scope.photos = photos.photos;
 
   $scope.addPhoto = function(){
-  if (!$scope.position){
+    console.log(photos.coordinates);
+  if (Object.keys(photos.coordinates).length == 0){
+    console.log("in the modal");
     alert('Your position could not be calculated. If you can please fill out extra details about your location');
+    $("#exampleModal").modal('show');
+    return;
   }
-    var loc = [];
-
     photos.create({
       title: $scope.title,
       description: $scope.description,
       file: $scope.file,
-      longitude: $scope.position.longitude,
-      latitude: $scope.position.latitude
+      longitude: photos.coordinates.longitude,
+      latitude: photos.coordinates.latitude
     });
 
     $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
@@ -210,7 +211,13 @@ atm.config([
         .state('upload', {
           url: '/upload',
           templateUrl: '/upload.html',
-          controller: 'ctrl'
+          controller: 'ctrl',
+          promise: {
+            getPromise: ['photos', function(photos){
+              return photos.getCoords();
+            }]
+          }
+
         });
   $urlRouterProvider.otherwise('home');
 }]);

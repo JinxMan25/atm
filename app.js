@@ -75,13 +75,13 @@ app.post('/create', function(req,res){
       return next(err);
     } else {
       data = fields;
+      console.log(data);
       var coords = [];
       coords[0] = Number(fields.longitude);
       coords[1] = Number(fields.latitude);
       data['coordinates'] = coords;
       delete data['longitude'];
       delete data['latitude'];
-      console.log(data);
     }
   });
 
@@ -94,10 +94,8 @@ app.post('/create', function(req,res){
     if (this.openedFiles.length === 0){
       return next( new Error ("You forgot the image!"));
     } 
-    console.log(this.openedFiles[0].type);
 
     var filetype = this.openedFiles[0].type;
-    console.log(filetype.match(/image/)[0]);
 
     if (!filetype.match(/image/)){
       return next (new Error ("You have to choose an image"));

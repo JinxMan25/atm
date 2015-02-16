@@ -190,7 +190,7 @@
         <div class="alert alert-info" role="alert">
           <strong>No photos found near you!</strong>
           Start by capturing!
-        </div>
+      </div>
         <span class="glyphicon glyphicon-chevron-down tick"></span>
         </br>
         </br>
