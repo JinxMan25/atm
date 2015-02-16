@@ -44,6 +44,9 @@ function($scope, photos, $timeout, $q, $rootScope){
     });
   }
   
+  $scope.getLocation = function(){
+    alert("HI");
+  };
 
   $scope.photos = photos.photos;
 
@@ -142,9 +145,13 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(function(position){
         o.coordinates = position.coords; 
-        console.log(o.coordinates);
+      
         deferred.resolve(o.coordinates);
-      });
+      },
+      function(){
+        $('#exampleModal').modal('show');
+      }
+      );
     }
       return deferred.promise;
   }
