@@ -19,7 +19,7 @@ function($scope, photos, $timeout, $q, $rootScope){
   });
 
   $scope.$watch('photos', function(){
-    if (!($scope.photos.length > 0) && ($rootScope.loading == true)){
+    if (!($scope.photos.length > 0) && ($rootScope.loading == false)){
       $scope.empty = true;
     } else {
       $scope.empty = false;
