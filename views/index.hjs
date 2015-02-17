@@ -28,6 +28,9 @@
                   <label for="zipcode" class="">Zipcode</label>
                   <input ng-model="zipcode" type="text" class="form-control" id="zipcode">
                 <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif"/>
+                <div ng-repeat="result in results">
+                  {{ result.address}}
+                </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Get coordinates!</button>
               </form>
