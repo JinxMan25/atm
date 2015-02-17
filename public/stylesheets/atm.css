@@ -8,12 +8,22 @@
 }
 
 .options {
-  font-size:48px;
-  position:absolute;
-  top:0px;
-  right:0px;
+  display:block;
+  font-size:20px;
+  padding:2px;
+  padding-left:3px;
+  border-radius: 50px;
+  position:relative;
+  border:none;
+  margin-right:5px;
   z-index:1000;
-  display:none
+  float:right;
+  transition:all .25s ease-in-out;
+}
+
+.options:hover{
+  cursor: pointer;
+  color:grey;
 }
 
 .tick {

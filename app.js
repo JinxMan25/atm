@@ -64,7 +64,7 @@ function randomValueBase64 (len) {
 }
 
 
-app.post('/create', function(req,res){
+app.post('/create', function(req, res, next){
 
   var data = {};
   var token = randomValueBase64(5);

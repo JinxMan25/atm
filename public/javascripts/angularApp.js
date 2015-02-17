@@ -18,6 +18,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
       $("#submit").prop("disabled", false);
     }
   });
+  
 
   $scope.$watch('photos', function(){
     if (!($scope.photos.length > 0) && ($rootScope.loading == false)){

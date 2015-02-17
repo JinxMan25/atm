@@ -208,7 +208,17 @@
           <div class="col-md-4 col-xs-12 col-lg-3 centerbox nopadding">
             <div class="thumbnail nopadding" style="position:relative;" ng-repeat="photo in photos | orderBy: '-upvotes'">
               <img src="{{photo.img_url}}">
-              <span class="glyphicon glyphicon-chevron-down options"></span>
+              <div class="dropdown">
+                <button class="options">
+                <span class="glyphicon glyphicon-chevron-down dropdown-toggle" id="dropdownMenu"></span>
+                </button>
+                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                  </ul>
+              </div>
               <div class="caption">
                 <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
                 <p style="font-size:16px;"> {{ photo.description }} </p>
