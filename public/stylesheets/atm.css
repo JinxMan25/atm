@@ -8,17 +8,18 @@
 }
 
 .options {
+  color: grey;
   display:block;
-  font-size:20px;
+  font-size:16px;
   padding:2px;
   padding-left:3px;
-  border-radius: 50px;
   position:relative;
   border:none;
   margin-right:5px;
   z-index:1000;
   float:right;
   transition:all .10s ease-in-out;
+  background: none;
 }
 
 .menu1{
@@ -54,7 +55,6 @@
   margin-left:-62.5px;
   
 }
-
 
 .deftone {
   font-size: 28px;

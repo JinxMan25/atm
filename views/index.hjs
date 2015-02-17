@@ -105,11 +105,11 @@
                   <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
                   <p style="font-size:16px;"> {{ photo.description }} </p>
                   <div style="display:inline-block;margin-right:10px;">
-                    <h4 style="color:green">{{photo.upvotes}}</h4>
+                    <h4 style="color:89DE6A">{{photo.upvotes}}</h4>
                     <a href="#" ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-up"></span></a>
                   </div>
                   <div style="display:inline-block;">
-                    <h4 style="color:red">{{photo.downvotes}}</h4>
+                    <h4 style="color:F2888F">{{photo.downvotes}}</h4>
                     <a href="#" ng-click="incrementDownvotes(photo)"<span class="glyphicon glyphicon-thumbs-down"></span></a>
                   </div>
                 </div>
@@ -229,11 +229,11 @@
                 <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
                 <p style="font-size:16px;"> {{ photo.description }} </p>
                 <div style="display:inline-block;margin-right:10px;">
-                  <h4 style="color:green">{{photo.upvotes}}</h4>
+                  <h4 style="color:89DE6A">{{photo.upvotes}}</h4>
                   <a href="#" ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-up"></span></a>
                 </div>
                 <div style="display:inline-block;">
-                  <h4 style="color:red">{{photo.downvotes}}</h4>
+                  <h4 style="color:F2888F">{{photo.downvotes}}</h4>
                   <a href="#" ng-click="incrementDownvotes(photo)"<span class="glyphicon glyphicon-thumbs-down"></span></a>
                 </div>
               </div>
