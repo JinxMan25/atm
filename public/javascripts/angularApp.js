@@ -18,6 +18,12 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
       $("#submit").prop("disabled", false);
     }
   });
+
+  $scope.$watch('zipcode', function(){
+    if ($scope.zipcode.length > 3){
+      $scope.getLocation();
+    }
+  });
   
 
   $scope.$watch('photos', function(){
@@ -36,8 +42,8 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     }
   });
   
-  $scope.results = [];
   $scope.getLocation = function(){
+    $scope.results = [];
     $rootScope.loadingZipcode = true;
     if (!$scope.zipcode){
       alert('You need to enter a zipcode');
@@ -55,7 +61,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
             $scope.results.push(obj); 
             $rootScope.loadingZipcode = false;
           }
-        } else {
+        } else if (((data.results.length == 1)) && (!$scope.zipcode.match(/[a-z]/))) {
           photos.coordinates.longitude = data.results[0].geometry.location.lng;
           photos.coordinates.latitude = data.results[0].geometry.location.lat;
           console.log(photos.coordinates);
@@ -64,6 +70,13 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
           $('#exampleModal').modal('hide');
         }
       });
+  };
+
+  $scope.pickLocation = function(result){
+    photos.coordinates.longitude = result.longitude;
+    photos.coordinates.latitude = result.latitude;
+    $('#exampleModal').modal('hide');
+    photos.getAll();
   };
 
   $scope.photos = photos.photos;
