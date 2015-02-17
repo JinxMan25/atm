@@ -6,7 +6,6 @@
     <script src="javascripts/angular-animate.js"></script>
     <script src="javascripts/jquery-min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <script src="javascripts/bootstrap.min.js"></script>
     <script src="javascripts/angular-ui-router.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
@@ -28,6 +27,7 @@
                 <div class="form-group">
                   <label for="zipcode" class="">Zipcode</label>
                   <input ng-model="zipcode" type="text" class="form-control" id="zipcode">
+                <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Get coordinates!</button>
               </form>
@@ -208,9 +208,9 @@
           <div class="col-md-4 col-xs-12 col-lg-3 centerbox nopadding">
             <div class="thumbnail nopadding" style="position:relative;" ng-repeat="photo in photos | orderBy: '-upvotes'">
               <img src="{{photo.img_url}}">
-              <div class="dropdown">
-                <button class="options">
-                <span class="glyphicon glyphicon-chevron-down dropdown-toggle" id="dropdownMenu"></span>
+              <div class="dropdown options">
+                <button class="options dropdown-toggle" id="downdownMenu" data-toggle="dropdown" >
+                <span class="glyphicon glyphicon-chevron-down" id="dropdownMenu"></span>
                 </button>
                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
@@ -219,7 +219,7 @@
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
                   </ul>
               </div>
-              <div class="caption">
+              <div class="caption" style="background:rgba(245,245,245,0.8);">
                 <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
                 <p style="font-size:16px;"> {{ photo.description }} </p>
                 <div style="display:inline-block;margin-right:10px;">

@@ -18,12 +18,17 @@
   margin-right:5px;
   z-index:1000;
   float:right;
-  transition:all .25s ease-in-out;
+  transition:all .10s ease-in-out;
+}
+
+.menu1{
+  position:absolute;
+  float:right;
 }
 
 .options:hover{
   cursor: pointer;
-  color:grey;
+  color:white;
 }
 
 .tick {
@@ -39,6 +44,15 @@
   margin: 0px auto;
   margin-top:20px;
   transition: display 0.5s ease-in-out;
+}
+
+.indicator2 {
+  position:relative;
+  margin:0 auto;
+  width:125px;
+  left:50%;
+  margin-left:-62.5px;
+  
 }
 
 

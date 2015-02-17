@@ -19,6 +19,13 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     }
   });
   
+  $scope.$watch('zipcode', function(){
+    if ($scope.zipcode.length == 5){
+      $rootScope.loadingZipcode = true;
+    } else {
+      $rootScope.loadingZipcode = false;
+    }
+  });
 
   $scope.$watch('photos', function(){
     if (!($scope.photos.length > 0) && ($rootScope.loading == false)){
@@ -37,7 +44,11 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
   });
   
   $scope.getLocation = function(){
-    return $http.get('http://maps.googleapis.com/maps/api/geocode/json?address=19446')
+    if (!$scope.zipcode){
+      alert('You need to enter a zipcode');
+      return;
+    }
+    return $http.get('http://maps.googleapis.com/maps/api/geocode/json?address='+$scope.zipcode)
       .success(function(data){
         photos.coordinates.longitude = data.results[0].geometry.location.lng;
         photos.coordinates.latitude = data.results[0].geometry.location.lat;
@@ -65,7 +76,6 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
       latitude: photos.coordinates.latitude
     });
 
-    $scope.photos.push({title: $scope.title, description: $scope.description, upvotes: 0});
     $scope.title = '';
     $scope.description = '';
   };
