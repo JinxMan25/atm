@@ -194,7 +194,9 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
         deferred.resolve(o.coordinates);
       },
       function(){
-        $('#exampleModal').modal('show');
+        if (Object.keys(o.coordinates).length == 0){
+          $('#exampleModal').modal('show');
+        }
       }
       );
     }
