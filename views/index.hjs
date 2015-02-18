@@ -99,9 +99,18 @@
           <div class="row">
             <div class="col-md-4 col-xs-12 col-lg-4 centerbox nopadding">
               </br>
-              <div class="thumbnail">
-                <img src="{{photo.img_url}}" style="">
-                <div class="caption">
+              <div class="thumbnail nopadding">
+                <a href="#/get/{{ photo.uniq_token }}"><img src="{{ photo.img_url }}" style=""></a>
+                <div class="dropdown options">
+                  <button class="options dropdown-toggle" id="downdownMenu" data-toggle="dropdown" >
+                  <span class="glyphicon glyphicon-chevron-down" id="dropdownMenu"></span>
+                  </button>
+                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-exclamation-sign" style="color:FF2888"></span> Report</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-trash">Delete</a></li>
+                    </ul>
+                </div>
+                <div class="caption" style="background:rgba(245,245,245,0.8);">
                   <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
                   <p style="font-size:16px;"> {{ photo.description }} </p>
                   <div style="display:inline-block;margin-right:10px;">
@@ -213,14 +222,14 @@
       </div>
           <div class="col-md-4 col-xs-12 col-lg-3 centerbox nopadding">
             <div class="thumbnail nopadding" style="position:relative;" ng-repeat="photo in photos | orderBy: '-upvotes'">
-              <img src="{{photo.img_url}}">
+              <a href="#/get/{{ photo.uniq_token }}"><img src="{{photo.img_url}}"></a>
               <div class="dropdown options">
                 <button class="options dropdown-toggle" id="downdownMenu" data-toggle="dropdown" >
                 <span class="glyphicon glyphicon-chevron-down" id="dropdownMenu"></span>
                 </button>
                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Report</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-exclamation-sign" style="color:FF2888"></span> Report</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-trash">Delete</a></li>
                   </ul>
               </div>
               <div class="caption" style="background:rgba(245,245,245,0.8);">
