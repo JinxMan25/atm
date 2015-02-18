@@ -27,15 +27,15 @@
                 <div class="form-group">
                   <label for="zipcode" class="">Zipcode</label>
                   <input ng-model="zipcode" type="text" class="form-control" id="zipcode">
-                <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif"/>
-                </br>
-                <div class ="well well-sm" ng-repeat="result in results">
-                  <div ng-click="pickLocation(result)" style="cursor:pointer;">
-                  {{ result.address}}
+                  <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif"/>
+                  </br>
+                  <div class ="well well-sm" ng-repeat="result in results">
+                    <div ng-click="pickLocation(result)" style="cursor:pointer;">
+                    {{ result.address }}
+                    </div>
+                  </div>
                 </div>
-                </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Get coordinates!</button>
+                <button type="submit" class="btn btn-primary">Use Address</button>
               </form>
             </div>
           </div>
@@ -219,10 +219,8 @@
                 <span class="glyphicon glyphicon-chevron-down" id="dropdownMenu"></span>
                 </button>
                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Report</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
                   </ul>
               </div>
               <div class="caption" style="background:rgba(245,245,245,0.8);">

@@ -8,7 +8,7 @@
 }
 
 .options {
-  color: grey;
+  color: rgba(205,205,205,1);
   display:block;
   font-size:16px;
   padding:2px;
@@ -29,7 +29,7 @@
 
 .options:hover{
   cursor: pointer;
-  color:white;
+  color: rgba(150,150,150,1);
 }
 
 .tick {
