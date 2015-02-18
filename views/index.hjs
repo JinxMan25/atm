@@ -13,6 +13,7 @@
     <link href='http://fonts.googleapis.com/css?family=Euphoria+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Seaweed+Script' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
+    <script src="javascripts/typehead_bloodhound.js"></script>
   </head>
   <body ng-app="atm" ng-controller="ctrl">
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -25,18 +26,32 @@
             <div class="modal-body">
               <form ng-submit="getLocation()">
                 <div class="form-group">
-                  <label for="zipcode" class="">Zipcode</label>
-                  <input ng-model="zipcode" type="text" class="form-control" id="zipcode">
-                  <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif"/>
-                  </br>
-                  <div class ="well well-sm" ng-repeat="result in results">
-                    <div ng-click="pickLocation(result)" style="cursor:pointer;">
-                    {{ result.address }}
+                  <div style="text-align:center;position:relative;margin:0px auto;width:200px;left:50%;margin-left:-100px;">
+                    <div ng-hide="useAddress" style="margin:0px auto;width:100px;"
+                      <label for="zipcode" class=""><strong>Zipcode</strong></label>
+                      <input ng-model="zipcode" type="text" class="form-control" placeholder="eg. 24813" id="zipcode">
+                    </div>
+                    <div class="ng-hide" ng-show="useAddress" style="margin:0px auto;width:200px;"
+                      <label for="address" class=""><strong>Address</strong></label>
+                      <input ng-model="zipcode" type="text" class="form-control" placeholder="789 Welsh Rd." id="address">
+                    </div>
+                    <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif"/>
+                    <div class ="well well-sm" style="position:relative;width:400px;margin:0px auto;left:50%;margin-left:-200px;" ng-repeat="result in results">
+                      <div ng-click="pickLocation(result)" style="cursor:pointer;">
+                      {{ result.address }}
+                      </div>
                     </div>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Use Address</button>
               </form>
+                <div ng-hide="usingZipcode || useAddress">
+                  <p style="text-align:center;">OR</p>
+                  <button class="btn btn-primary" ng-click="useAddress=true" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use address</button>
+                </div>
+                <div ng-show="useAddress">
+                  <p style="text-align:center;">OR</p>
+                  <button class="btn btn-primary" ng-click="useAddress=false" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use zipcode</button>
+                </div>
             </div>
           </div>
         </div>

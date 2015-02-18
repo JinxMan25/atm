@@ -48,11 +48,10 @@
 }
 
 .indicator2 {
+
   position:relative;
   margin:0 auto;
   width:125px;
-  left:50%;
-  margin-left:-62.5px;
   
 }
 

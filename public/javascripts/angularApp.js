@@ -9,6 +9,7 @@ atm.controller('ctrl',[
 '$rootScope',
 function($http,$scope, photos, $timeout, $q, $rootScope){
 
+
   $scope.$watch('file',function(){
     if (!$scope.file.type.match(/image/)){
       $scope.isNotImage = true;
@@ -20,7 +21,18 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
   });
 
   $scope.$watch('zipcode', function(){
-    if ($scope.zipcode.length > 3){
+    if ($scope.zipcode.match(/[a-z]/)){
+      
+    }
+    if ($scope.zipcode.length > 0){
+      $scope.usingZipcode = true;
+    } else if ($scope.zipcode.length == 0) {
+      $scope.usingZipcode = false;
+    }
+    if (($scope.zipcode.length > 3) && ($scope.zipcode.match(/[a-z]/)) && (!$scope.usingZipcode)){
+      $scope.getLocation();
+    }
+    if(($scope.zipcode.length == 5) && (!$scope.zipcode.match(/[a-z]/)) && (!$scope.useAddress)){
       $scope.getLocation();
     }
   });
@@ -34,6 +46,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     }
   })
 
+
   $rootScope.$watch('loading', function(){
     if ((($scope.photos.length == 0)) && ($rootScope.loading == false)){
         $scope.empty = true;
@@ -45,10 +58,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
   $scope.getLocation = function(){
     $scope.results = [];
     $rootScope.loadingZipcode = true;
-    if (!$scope.zipcode){
-      alert('You need to enter a zipcode');
-      return;
-    }
+
     return $http.get('http://maps.googleapis.com/maps/api/geocode/json?address='+$scope.zipcode)
       .success(function(data){
         console.log(data.results);
