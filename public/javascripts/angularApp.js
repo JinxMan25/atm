@@ -22,7 +22,9 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
 
   $scope.$watch('zipcode', function(){
     if ($scope.zipcode.match(/[a-z]/)){
-      
+      $scope.notZipcode = true;
+    } else {
+      $scope.notZipcode = false;
     }
     if ($scope.zipcode.length > 0){
       $scope.usingZipcode = true;
