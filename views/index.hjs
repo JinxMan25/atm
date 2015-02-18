@@ -46,11 +46,11 @@
               </form>
                 <div ng-hide="usingZipcode || useAddress">
                   <p style="text-align:center;">OR</p>
-                  <button class="btn btn-primary" ng-click="useAddress=true" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use address</button>
+                  <button class="btn btn-primary" ng-click="changeScope();" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use address</button>
                 </div>
                 <div ng-show="useAddress">
                   <p style="text-align:center;">OR</p>
-                  <button class="btn btn-primary" ng-click="useAddress=false" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use zipcode</button>
+                  <button class="btn btn-primary" ng-click="changeScope();" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use zipcode</button>
                 </div>
                 <div ng-show="notZipcode" style="text-align:center" class="validation">
                   <div style="color:maroon">Not a zipcode</div>

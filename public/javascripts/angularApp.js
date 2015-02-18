@@ -20,8 +20,20 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     }
   });
 
+  $scope.changeScope = function(){
+    if ($scope.useAddress){
+      $scope.useAddress = false;
+      $scope.results = [];
+      $scope.zipcode = '';
+    } else {
+      $scope.useAddress = true;
+      $scope.results = [];
+      $scope.zipcode = '';
+    }
+  }
+
   $scope.$watch('zipcode', function(){
-    if ($scope.zipcode.match(/[a-z]/)){
+    if (!($scope.useAddress) && ($scope.zipcode.match(/[a-z]/))){
       $scope.notZipcode = true;
     } else {
       $scope.notZipcode = false;
@@ -31,7 +43,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     } else if ($scope.zipcode.length == 0) {
       $scope.usingZipcode = false;
     }
-    if (($scope.zipcode.length > 3) && ($scope.zipcode.match(/[a-z]/)) && (!$scope.usingZipcode)){
+    if (($scope.zipcode.length > 3) && ($scope.useAddress)){
       $scope.getLocation();
     }
     if(($scope.zipcode.length == 5) && (!$scope.zipcode.match(/[a-z]/)) && (!$scope.useAddress)){
