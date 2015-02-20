@@ -158,7 +158,7 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
     } else {
       return;
     }
-    return $http.get('/?longitude='+o.coordinates.longitude+'&latitude='+o.coordinates.latitude).success(function(data){
+    return $http.get('/atm/get/?longitude='+o.coordinates.longitude+'&latitude='+o.coordinates.latitude).success(function(data){
       $timeout(function(){
       if (data.length == 0){
         $rootScope.loading = false;

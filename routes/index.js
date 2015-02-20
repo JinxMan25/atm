@@ -9,7 +9,7 @@ var formidable = require('formidable');
 var levenshtein = require('levenshtein');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/atm/get', function(req, res, next) {
 
   var limit = req.query.limit || 10;
   var maxDistance = req.query.distance || 8;
@@ -62,7 +62,7 @@ router.get('/', function(req, res, next) {
   res.json(
 });*/
 
-router.get('/deleteall', function(req,res,next){
+/*router.get('/deleteall', function(req,res,next){
   Photo.find(function(err, photos){
     photos.forEach(function(photo){
       photo.remove();
@@ -75,15 +75,12 @@ router.get('/deleteall', function(req,res,next){
     });
     res.json("removed all");
   });
-});
+});*/
 
-router.get('/angulartest', function(req,res,next){
+router.get('/', function(req,res,next){
   res.render('index');
 });
 
-router.get('/test', function(req,res,next){
-  res.render('test');
-});
 
 router.param('uniq_token', function(req, res, next, uniq_token){
   var query = Photo.findByToken(uniq_token);
@@ -125,59 +122,6 @@ router.put('/get/:uniq_token/downvote', function(req,res, next){
   });
 });
 
-router.post('/what', function(req, res, next){
-  var data = {};
-  var token = randomValueBase64(5);
-  var form = new formidable.IncomingForm();
-
-  form.parse(req, function(err,fields, files){
-    if (err){
-      return next(err);
-    } else {
-      data = fields;
-    }
-  });
-
-  form.on("progress", function(bytesRecieved, bytesExpected){
-    io.sockets.on('connection', function(socket){
-      socket.emit('uploadProgress', ((bytesRecieved*100)/ bytesExpected));
-    });
-  });
-
-  form.on('end', function(fields, files){
-    if (this.openedFiles.length === 0){
-      return next( new Error ("You forgot the image!"));
-    } 
-    console.log(this.openedFiles[0].type);
-    if (this.openedFiles[0].type.match(/image/)){
-      return next (new Error ("You have to choose an image"));
-    }
-    var date = Date.now();
-    var tmp_loc = this.openedFiles[0].path;
-    var file_name = this.openedFiles[0].name;
-    var new_loc = './static/images/';
-    data['img_url'] = 'static/images/' + date + '-' + file_name;
-    data['uniq_token'] = token;
-
-    fs.copy(tmp_loc, new_loc + file_name + '-' + date, function(err){
-      if (err){
-        console.log(err);
-      } else {
-        console.log(file_name + ' uploaded to ' + new_loc);
-      }
-    });
-
-
-    var photo = new Photo(data)
-    photo.save(function(err,post){
-      if(err){
-        console.log("in the error");
-        console.log(err);
-      }
-      res.json(photo);
-    });
-  });
-});
 
 
 function randomValueBase64 (len) {
