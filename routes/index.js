@@ -12,9 +12,9 @@ var levenshtein = require('levenshtein');
 router.get('/atm/get', function(req, res, next) {
 
   var limit = req.query.limit || 10;
-  var maxDistance = req.query.distance || 8;
+  var maxDistance = req.query.distance || 3;
 
-  maxDistance /= 6371;
+  maxDistance =  maxDistance/6371;
 
 
   if (req.query.latitude){
