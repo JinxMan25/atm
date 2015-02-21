@@ -29,11 +29,11 @@
                   <div style="text-align:center;position:relative;margin:0px auto;width:200px;left:50%;margin-left:-100px;">
                     <div ng-hide="useAddress" style="margin:0px auto;width:100px;"
                       <label for="zipcode" class=""><strong>Zipcode</strong></label>
-                      <input ng-model="zipcode" type="text" class="form-control" placeholder="eg. 24813" id="zipcode">
+                      <input ng-model="address" type="text" class="form-control" placeholder="eg. 24813" id="zipcode">
                     </div>
                     <div class="ng-hide" ng-show="useAddress" style="margin:0px auto;width:200px;"
                       <label for="address" class=""><strong>Address</strong></label>
-                      <input ng-model="zipcode" type="text" class="form-control" placeholder="789 Welsh Rd." id="address">
+                      <input ng-model="address" type="text" class="form-control" placeholder="789 Welsh Rd." id="address">
                     </div>
                     <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif"/>
                     <div class ="well well-sm" style="position:relative;width:400px;margin:0px auto;left:50%;margin-left:-200px;" ng-repeat="result in results">
@@ -44,13 +44,13 @@
                   </div>
                 </div>
               </form>
-                <div ng-hide="usingZipcode || useAddress">
+                <div ng-hide="useAddress">
                   <p style="text-align:center;">OR</p>
-                  <button class="btn btn-primary" ng-click="changeScope();" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use address</button>
+                  <button class="btn btn-primary" ng-click="useAddress=true" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use address</button>
                 </div>
                 <div ng-show="useAddress">
                   <p style="text-align:center;">OR</p>
-                  <button class="btn btn-primary" ng-click="changeScope();" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use zipcode</button>
+                  <button class="btn btn-primary" ng-click="useAddress=false" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use zipcode</button>
                 </div>
                 <div ng-show="notZipcode" style="text-align:center" class="validation">
                   <div style="color:maroon">Not a zipcode</div>

@@ -24,29 +24,29 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     if ($scope.useAddress){
       $scope.useAddress = false;
       $scope.results = [];
-      $scope.zipcode = '';
+      $scope.address = '';
     } else {
       $scope.useAddress = true;
       $scope.results = [];
-      $scope.zipcode = '';
+      $scope.address = '';
     }
   }
 
-  $scope.$watch('zipcode', function(){
-    if (!($scope.useAddress) && ($scope.zipcode.match(/[a-z]/))){
+  $scope.$watch('address', function(){
+    if (!($scope.useAddress) && ($scope.address.match(/[a-z]/))){
       $scope.notZipcode = true;
     } else {
       $scope.notZipcode = false;
     }
-    if ($scope.zipcode.length > 0){
+    if ($scope.address.length > 0){
       $scope.usingZipcode = true;
-    } else if ($scope.zipcode.length == 0) {
+    } else if ($scope.address.length == 0) {
       $scope.usingZipcode = false;
     }
-    if (($scope.zipcode.length > 3) && ($scope.useAddress)){
+    if (($scope.address.length > 3) && ($scope.useAddress)){
       $scope.getLocation();
     }
-    if(($scope.zipcode.length == 5) && (!$scope.zipcode.match(/[a-z]/)) && (!$scope.useAddress)){
+    if(($scope.address.length == 5) && (!$scope.address.match(/[a-z]/))){
       $scope.getLocation();
     }
   });
@@ -73,7 +73,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     $scope.results = [];
     $rootScope.loadingZipcode = true;
 
-    return $http.get('http://maps.googleapis.com/maps/api/geocode/json?address='+$scope.zipcode)
+    return $http.get('http://maps.googleapis.com/maps/api/geocode/json?address='+$scope.address)
       .success(function(data){
         console.log(data.results);
         if (data.results.length > 1){
@@ -85,7 +85,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
             $scope.results.push(obj); 
             $rootScope.loadingZipcode = false;
           }
-        } else if (((data.results.length == 1)) && (!$scope.zipcode.match(/[a-z]/))) {
+        } else if (((data.results.length == 1)) && (!$scope.address.match(/[a-z]/)) && (!scope.useAddress)) {
           photos.coordinates.longitude = data.results[0].geometry.location.lng;
           photos.coordinates.latitude = data.results[0].geometry.location.lat;
           console.log(photos.coordinates);
