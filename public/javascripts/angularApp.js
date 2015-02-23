@@ -20,13 +20,16 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     }
   });
 
+
   $scope.changeScope = function(){
     if ($scope.useAddress){
       $scope.useAddress = false;
+      $("#zipcode").click();
       $scope.results = [];
       $scope.address = '';
     } else {
       $scope.useAddress = true;
+      $("#address").click();
       $scope.results = [];
       $scope.address = '';
     }

@@ -7,6 +7,14 @@
   }
 }
 
+.results{
+  transition: background 0.08s ease-in-out;
+}
+
+.results:hover{
+  background: #BDCAE6;
+}
+
 .options {
   color: rgba(205,205,205,1);
   display:block;
