@@ -8,7 +8,7 @@ atm.controller('ctrl',[
 '$q',
 '$rootScope',
 function($http,$scope, photos, $timeout, $q, $rootScope){
-
+  $scope.useAddress = false;
 
   $scope.$watch('file',function(){
     if (!$scope.file.type.match(/image/)){
