@@ -49,7 +49,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
     if (($scope.address.length > 3) && ($scope.useAddress)){
       $scope.getLocation();
     }
-    if(($scope.address.length == 5) && (!$scope.address.match(/[a-z]/))){
+    if(($scope.address.length == 5) && (!$scope.useAddress)){
       $scope.getLocation();
     }
   });
@@ -88,7 +88,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
             $scope.results.push(obj); 
             $rootScope.loadingZipcode = false;
           }
-        } else if (((data.results.length == 1)) && (!$scope.address.match(/[a-z]/)) && (!scope.useAddress)) {
+        } else if (((data.results.length == 1)) && ($scope.useAddress == false)) {
           photos.coordinates.longitude = data.results[0].geometry.location.lng;
           photos.coordinates.latitude = data.results[0].geometry.location.lat;
           console.log(photos.coordinates);
