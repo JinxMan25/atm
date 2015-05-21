@@ -8,9 +8,10 @@ var uploads = path.join(uploads_base, "u");
 */
 var PhotoSchema = new mongoose.Schema({
   title: String,
+  email: String,
   posted: { type: Date, default: Date.now },
   expire_in: { type: Date },
-  uniq_token: { type: String, unique: true, required: true, dropDups: true},
+  uniq_token: { type: String, unique: true, required: true, dropDups: true },
   address: { street: String, City: String, State: String, Country: String }, 
   coordinates: {type:[Number], index: '2d'},
   description: String,

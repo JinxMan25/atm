@@ -110,12 +110,13 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
 
   $scope.addPhoto = function(){
     console.log(photos.coordinates);
-  if (Object.keys(photos.coordinates).length == 0){
-    console.log("in the modal");
-    alert('Your position could not be calculated. If you can please fill out extra details about your location');
-    $("#exampleModal").modal('show');
-    return;
-  }
+    if (Object.keys(photos.coordinates).length == 0){
+      console.log("in the modal");
+      alert('Your position could not be calculated. If you can please fill out extra details about your location');
+      $("#exampleModal").modal('show');
+      return;
+    }
+
     photos.create({
       title: $scope.title,
       description: $scope.description,
@@ -130,6 +131,15 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
 
   $scope.incrementUpvotes = function(photo){
     photos.upvote(photo);
+  }
+
+  $scope.deletePhoto = function(photo){
+    $scope.photoID = photo.unique_id;
+    $('#exampleModal').modal('show');
+  }
+
+  $scope.confirmDelete = function(){
+    photos.delete({"unique_token": $scope.photoID, "email":$scope.email});
   }
 
   $scope.incrementDownvotes = function(photo){
@@ -202,6 +212,13 @@ atm.factory('photos',['$rootScope','$http','$timeout', '$q','$location','formDat
     return $http.put('/get/' + photo.uniq_token + '/upvote')
       .success(function(data){
         photo.upvotes += 1;
+      });
+  }
+
+  o.delete = function(photo){
+    return $http.delete('/get/' + photo.unique_token + '/delete?email=' + $scope.email)
+      .success(function(data){
+      
       });
   }
 

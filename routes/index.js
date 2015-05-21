@@ -92,12 +92,16 @@ router.param('uniq_token', function(req, res, next, uniq_token){
     }
     req.photo = photo;
     return next();
-    });
+  });
 });
 
 router.delete('/get/:uniq_token/delete', function(req,res){
-  Photo.find({uniq_token:req.params.uniq_token}).remove().exec();
-  res.json("removed");
+  Photo.findOne({uniq_token:req.params.uniq_token}, function(err, photo){
+    if (photo.email == req.body.email){
+      photo.remove().exec();
+      res.json("removed");
+    }
+  });
 });
 
 router.get('/get/:uniq_token/', function(req,res){
@@ -121,8 +125,6 @@ router.put('/get/:uniq_token/downvote', function(req,res, next){
     res.json(photo);
   });
 });
-
-
 
 function randomValueBase64 (len) {
     return crypto.randomBytes(Math.ceil(len * 3 / 4))

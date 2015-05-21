@@ -12,7 +12,7 @@ var crypto = require('crypto')
 var users = require('./routes/users');
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/what');
 require('./models/Photos');
 
 var Photo = mongoose.model('Photo');
