@@ -62,7 +62,7 @@ router.get('/atm/get', function(req, res, next) {
   res.json(
 });*/
 
-/*router.get('/deleteall', function(req,res,next){
+router.get('/deleteall', function(req,res,next){
   Photo.find(function(err, photos){
     photos.forEach(function(photo){
       photo.remove();
@@ -75,7 +75,7 @@ router.get('/atm/get', function(req, res, next) {
     });
     res.json("removed all");
   });
-});*/
+});
 
 router.get('/', function(req,res,next){
   res.render('index');

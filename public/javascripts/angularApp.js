@@ -135,11 +135,12 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
 
   $scope.deletePhoto = function(photo){
     $scope.photoID = photo.unique_id;
-    $('#exampleModal').modal('show');
+    $('#confirmDelete').modal('show');
   }
 
   $scope.confirmDelete = function(){
     photos.delete({"unique_token": $scope.photoID, "email":$scope.email});
+    $('#confirmDelete').modal('hide');
   }
 
   $scope.incrementDownvotes = function(photo){
