@@ -104,10 +104,6 @@ router.delete('/get/:uniq_token/delete', function(req,res){
   });
 });
 
-router.get('/get/:uniq_token/', function(req,res){
-  res.json(req.photo);
-});
-
 router.put('/get/:uniq_token/upvote', function(req,res, next){
   //grab first from array, otherwise method won't work
   req.photo[0].upvote(function(err, photo){
