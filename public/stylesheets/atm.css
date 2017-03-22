@@ -63,6 +63,38 @@
   
 }
 
+.videoContainer {
+  display: block;
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.videoText {
+   position: absolute;
+   text-align: center;
+   height: 300px;
+   width: 500px;
+   margin:auto;
+   left: 50%;
+    top: 50%;
+   margin-left: -250px;
+   margin-top: -150px;
+    font-size: 42px;
+   color: white;
+}
+
+.videoContainer video {
+  z-index: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.videoContainer h1 {
+  margin: 15px;
+  position: absolute;
+}
+
 .deftone {
   font-size: 28px;
   font-family:'Seaweed Script', cursive;
@@ -155,6 +187,18 @@ font-family: 'Open Sans', sans-serif;
     -moz-transition:height 5s ease-in-out;
     -o-transition:height 5s ease-in-out;
     transition:height 5s ease-in-out;
+}
+
+video#bgvid {
+  min-width:100%;
+  min-height:100%;
+  width:auto;
+  height:auto;
+  background: url("https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png") no-repeat top center; /* replace **image link** with your own file*/
+  background-size:cover;
+   -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
 [ui-view].ng-enter {
