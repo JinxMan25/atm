@@ -100,6 +100,10 @@
   display: block;
 }
 
+.videoText .btn {
+  width: 200px;
+}
+
 .videoContainer video {
   z-index: 0;
   max-width: 100%;
@@ -255,4 +259,56 @@ video#bgvid {
  
 .slide.ng-hide-add,.slide.ng-hide-remove.ng-hide-remove-active {
   opacity:1;
+}
+
+.map {
+  margin: 0px;
+}
+
+.map .optionsContainer{
+  width: 60%;
+  margin: 0px auto;
+  padding: 30px;
+  display:flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+  .videoText {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 500px) {
+  .videoText {
+    font-size: 18px;
+  }
+
+  .videoText .btn {
+    font-size: 12px;
+    width: 100px;
+  } 
+}
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png") no-repeat 90% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
 }

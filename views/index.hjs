@@ -3,19 +3,19 @@
   <head>
     <title>My Angular App!</title>
     <meta charset="UTF-8">
+    <script src="http://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
     <script src="javascripts/angular.min.js"></script>
-    <script src="javascripts/angularApp.js"></script>
     <script src="javascripts/angular-animate.js"></script>
     <script src="javascripts/jquery-min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="javascripts/angular-ui-router.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
+    <script src="javascripts/angularApp.js"></script>
     <script src="javascripts/bootstrap-min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Euphoria+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Seaweed+Script' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
-    <script src="javascripts/typehead_bloodhound.js"></script>
   </head>
   <body ng-app="atm" ng-controller="ctrl">
       <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
@@ -79,17 +79,44 @@
         </div>
       </div>
 
-    <div>
-    </div>
     <!-- Main jumbotron for a primary marketing message or call to action -->
       <img class="indicator ng-hide" ng-show="loading" src="images/loader.gif"/>
-        <div ui-view="jumbotron"></div>
-        <div ui-view></div>
-    <div class="container" style="text-align:center">
-      <div class="info" ui-view="info">
+      <div ui-view="jumbotron"></div>
+      <div class="map container nopadding" style="width:100%;">
+        <div style="padding: 20px;">
+          <h1>Search</h1>
+        </div>
+        <div class="optionsContainer">
+          <div class="select-style">
+            <select name="radius">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select>
+          </div>
+          <div class="select-style">
+            <select name="number">
+              <option>Testalksdjf</option>
+              <option>Test</option>
+              <option>Test</option>
+              <option>Test</option>
+            </select>
+          </div>
+        </div>
+        <div id="map"></div>
       </div>
-    </div>
+      <div ui-view></div>
+      <div class="container" style="text-align:center">
+        <div class="info" ui-view="info">
+        </div>
+      </div>
       <script type="text/ng-template" id="/info.html">
+        <div class="container nopadding">
+              <h2>Find exciting snapshots around you!</h2>
+              <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
+        </div>
+
         <div class="row">
           <div class="col-lg-4">
             <img class="img-circle" src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
@@ -142,36 +169,19 @@
         </div>
       </script>
 
-      <div id="map"></div>
       <script type="text/ng-template" id="/home.html">
         <div class="videoContainer">
           <h1 class="deftone"> At this moment </h1>
           <div class="videoText">
             Discover photos </br> nearby!
             <div class="btn-group" style="position: relative;" data-toggle="buttons">
-              <p><a style="width:200px;"class="btn button" href="#all" role="button">Search</a></p>
-              <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload »</a></p>
+              <p><a class="btn button" href="#all" role="button">Search</a></p>
+              <p><a class="btn btn-primary btn-lg" href="#upload" role="button">Upload »</a></p>
             </div>
           </div>
           <video id="bgvid" muted autoplay loop>
             <source src="video.mp4" type="video/mp4" />  
           </video>
-        </div>
-        <div class="container nopadding">
-          <div class="container nopadding" style="width:100%;">
-              <h2>Find exciting snapshots around you!</h2>
-              <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
-            <div class="span5 offset1">
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
-                  <p><a style="width:200px;display:block;"class="btn btn-success btn-lg" href="#all" role="button">Discover nearby!</a></p>
-                  <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload photo »</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </script>
       <script type="text/ng-template" id="/asdf.html">

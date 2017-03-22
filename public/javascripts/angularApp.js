@@ -21,6 +21,20 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
   });
 
 
+    var mapOptions = {
+        zoom: 4,
+        scrollwheel: false,
+        navigationControl: false,
+        mapTypeControl: false,
+        center: new google.maps.LatLng(40.0000, -98.0000),
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    }
+
+    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    $("#map").css('height', '400px');
+    $("#map").css('width', window.innerWidth);
+
+
   $scope.changeScope = function(){
     if ($scope.useAddress){
       $scope.useAddress = false;
@@ -310,6 +324,9 @@ atm.controller('PhotosController', ['$scope','$filter', '$stateParams','photos',
     $scope.photo = photos.photo[0];
   }
 
+}]);
+
+atm.controller('MapCtrl', ['$scope', function ($scope) {
 }]);
 
 atm.directive('slider', function ($timeout) {
