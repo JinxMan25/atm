@@ -63,6 +63,18 @@
   
 }
 
+.button {
+  outline:0;
+  border: 1px solid white;
+  color: white;
+}
+
+.button:hover {
+  color: rgba(240,240,240,0.8);
+  border: 1px solid rgba(240,240,240,0.8);
+  transition: all 0.4s ease-in-out;
+}
+
 .videoContainer {
   display: block;
   position: relative;
@@ -71,17 +83,21 @@
 }
 
 .videoText {
-   position: absolute;
-   text-align: center;
-   height: 300px;
-   width: 500px;
-   margin:auto;
-   left: 50%;
-    top: 50%;
-   margin-left: -250px;
-   margin-top: -150px;
-    font-size: 42px;
-   color: white;
+  z-index: 1000;
+  text-align: center;
+  display: block;
+  font-size: 42px;
+  font-weight: 200;
+  font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: rgba(245,245,245,0.9);
+  position: absolute;  
+  left: 50%;                        /* horizontal alignment */
+  top: 50%;                         /* vertical alignment */
+  transform: translate(-50%, -50%); 
+}
+
+.videoText >* {
+  display: block;
 }
 
 .videoContainer video {
