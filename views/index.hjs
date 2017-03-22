@@ -147,10 +147,10 @@
         <div class="videoContainer">
           <h1 class="deftone"> At this moment </h1>
           <div class="videoText">
-            Discover photos
+            Discover photos </br> nearby!
             <div class="btn-group" style="position: relative;" data-toggle="buttons">
-              <p><a style="width:200px;display:block;"class="btn btn-success btn-lg" href="#all" role="button">Discover nearby!</a></p>
-              <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload photo »</a></p>
+              <p><a style="width:200px;"class="btn button" href="#all" role="button">Search</a></p>
+              <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload »</a></p>
             </div>
           </div>
           <video id="bgvid" muted autoplay loop>
