@@ -7,6 +7,11 @@
   }
 }
 
+h1 {
+  font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 200;
+}
+
 .results{
   transition: background 0.08s ease-in-out;
 }
@@ -214,7 +219,7 @@ video#bgvid {
   min-height:100%;
   width:auto;
   height:auto;
-  background: url("https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png") no-repeat top center; /* replace **image link** with your own file*/
+  background: url("http://vignette4.wikia.nocookie.net/joke-battles/images/5/5a/Black.jpg/revision/latest?cb=20161223050425") no-repeat top center; /* replace **image link** with your own file*/
   background-size:cover;
    -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -263,6 +268,7 @@ video#bgvid {
 
 .map {
   margin: 0px;
+  background-color: rgba(245,245,245,1);
 }
 
 .map .optionsContainer{
