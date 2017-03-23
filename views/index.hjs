@@ -87,21 +87,27 @@
           <h1>Search</h1>
         </div>
         <div class="optionsContainer">
-          <div class="select-style">
-            <select name="radius">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-            </select>
+          <div>
+            <b>Radius</b>
+            <div class="select-style">
+              <select name="radius">
+                <option value="1">1 mile</option>
+                <option value="2">2 miles</option>
+                <option value="5">5 miles</option>
+                <option value="10">10 miles</option>
+              </select>
+            </div>
           </div>
-          <div class="select-style">
-            <select name="number">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
+          <div>
+            <b>Limit to</b>
+            <div class="select-style">
+              <select name="number">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </select>
+            </div>
           </div>
         </div>
         <div id="map"></div>
