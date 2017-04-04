@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>My Angular App!</title>
+    <title>At this moment</title>
     <meta charset="UTF-8">
     <script src="http://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
     <script src="javascripts/angular.min.js"></script>
