@@ -1,0 +1,53 @@
+- hosts: atm
+  become: sudo
+
+
+  vars:
+    - homeDir: /root
+    - appDir : atm
+    - repo: atm
+    - account: clanofnoobs
+    - privateKey: /Users/Sami/.ssh/id_rsa
+
+
+  tasks:
+  - name: Install nodejs
+    shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+    shell: sudo apt-get install -y nodejs
+
+  - name: Install Packages
+    apt: name={{ item }}
+    with_items:
+      - build-essential
+      - git
+      - mcrypt
+      - nginx
+
+  - name: Install pm2
+    npm: name=pm2 global=yes production=yes
+
+  - name: Create APP Directory
+    file: path={{homeDir}}/{{appDir}} state=directory
+
+  - name: Copy Private Key
+    copy: src={{privateKey}} dest={{homeDir}} mode=0600
+
+  - name: Git Clone Repo
+    git: repo=git@github.com:{{account}}/{{repo}}.git dest={{homeDir}}/{{appDir}} update=yes force=yes accept_hostkey=yes key_file={{homeDir}}/id_rsa
+    register: git_finished
+
+  - name: Running NPM install
+    npm: path={{homeDir}}/{{appDir}}/backened
+    register: npm_finished
+    when: git_finished.changed
+
+  - name: Stop APP
+    sudo_user: root
+    command: pm2 stop app chdir={{homeDir}}/{{appDir}}/backened
+    ignore_errors: yes
+
+  - name: Start APP
+    sudo_user: root
+    command: pm2 start ./bin/www --name atm chdir={{homeDir}}/{{appDir}}
+    ignore_errors: yes
+    when: npm_finished.changed

@@ -21,7 +21,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
   });
 
 
-    var mapOptions = {
+    /*var mapOptions = {
         zoom: 4,
         scrollwheel: false,
         navigationControl: false,
@@ -32,7 +32,7 @@ function($http,$scope, photos, $timeout, $q, $rootScope){
 
     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
     $("#map").css('height', '400px');
-    $("#map").css('width', window.innerWidth);
+    $("#map").css('width', window.innerWidth);*/
 
 
   $scope.changeScope = function(){

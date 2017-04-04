@@ -82,7 +82,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
       <img class="indicator ng-hide" ng-show="loading" src="images/loader.gif"/>
       <div ui-view="jumbotron"></div>
-      <div class="map container nopadding" style="width:100%;">
+      <!--<div class="map container nopadding" style="width:100%;">
         <div style="padding: 20px;">
           <h1>Search</h1>
         </div>
@@ -111,33 +111,33 @@
           </div>
         </div>
         <div id="map"></div>
-      </div>
+      </div>-->
       <div ui-view></div>
-      <div class="container" style="text-align:center">
         <div class="info" ui-view="info">
         </div>
-      </div>
       <script type="text/ng-template" id="/info.html">
-        <div class="container nopadding">
+        <div class="info-intro">
               <h2>Find exciting snapshots around you!</h2>
               <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
         </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <img class="img-circle" src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-            <h3>Your privacy</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          </div>
-          <div class="col-lg-4">
-            <img class="img-circle" src="images/maps.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-            <h3>Location based services</h3>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          </div>
-          <div class="col-lg-4">
-            <img class="img-circle" src="images/anonymous.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-            <h3>Anonymity</h3>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        </br>
+        <div class="row main-cards">
+          <div class="card-container-3">
+            <div class="card box-item">
+              <img class="img-circle" src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+              <h3>Your privacy</h3>
+              <p>No personal information is stored. Your photos are just geotagged</p>
+            </div>
+            <div class="card box-item">
+              <img class="img-circle" src="images/maps.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+              <h3>Location based services</h3>
+              <p>With only your permission, we gather your location</p>
+            </div>
+            <div class="card box-item">
+              <img class="img-circle" src="images/anonymous.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+              <h3>Anonymity</h3>
+              <p>Freely surf this website without worrying about your identity</p>
+            </div>
           </div>
         </div>
       </script>
@@ -285,5 +285,11 @@
           </div>
       </div>
       </script>
+      <footer>
+        <div>
+          <div>&copy; Copyright 2015 - 2017</div>
+          <div style="font-style:italic">All rights reserved</div>
+        </div>
+      </footer>
   </body>
 </html>
