@@ -1,3 +1,5 @@
+body {
+}
 @-webkit-keyframes bump{
   0%, 100% {
     top:0px;
@@ -67,12 +69,17 @@ h1,h2,h3 {
   margin: 20px;
 }
 footer {
-  height: 200px;
+  height: 100px;
+  padding: 50px;
   background-color: rgba(44, 51, 71, 1);
   display: block;
   position: relative;
   max-width: 100%;
   color: rgba(230,230,230,0.6);
+}
+
+.content {
+  min-height: calc(100vh - 100px);
 }
 
 footer > div {

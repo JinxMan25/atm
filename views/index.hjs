@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>My Angular App!</title>
     <meta charset="UTF-8">
     <script src="http://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
@@ -16,280 +17,300 @@
     <link href='http://fonts.googleapis.com/css?family=Euphoria+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Seaweed+Script' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
-  </head>
-  <body ng-app="atm" ng-controller="ctrl">
-      <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="exampleModalLabel">Enter address</h4>
-            </div>
-            <div class="modal-body">
-              <form ng-submit="confirmDelete()"
-                <label for="confirmEmail">Enter email for the uploaded image</label>
-                <input ng-model="email" type="text" id="confirmEmail">
-                <input type="submit" class="btn btn-primary">
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="exampleModalLabel">Enter address</h4>
-            </div>
-            <div class="modal-body">
-              <form ng-submit="getLocation()">
-                <div class="form-group">
-                  <div style="text-align:center;margin:0px auto;">
-                    <div ng-hide="useAddress" style="margin:0px auto;width:100px;"
-                      <label for="zipcode" class=""><strong>Zipcode</strong></label>
-                      <input ng-model="address" type="text" class="form-control" placeholder="eg. 24813" id="zipcode">
-                    </div>
-                    <div class="ng-hide" ng-show="useAddress" style="margin:0px auto;width:400px;"
-                      <label for="address" class=""><strong>Address</strong></label>
-                      <input ng-model="address" type="text" class="form-control" placeholder="789 Welsh Rd." id="address">
-                    </div>
-                    <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif"/>
-                    <div ng-click="pickLocation(result)" class ="well well-sm results" style="position:relative;width:400px;margin:0px auto;left:50%;margin-left:-200px;" ng-repeat="result in results">
-                      <div style="cursor:pointer;">
-                      {{ result.address }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-                <div ng-hide="useAddress">
-                  <p style="text-align:center;">OR</p>
-                  <button class="btn btn-primary" ng-click="changeScope();" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use address</button>
-                </div>
-                <div ng-show="useAddress">
-                  <p style="text-align:center;">OR</p>
-                  <button class="btn btn-primary" ng-click="changeScope();" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use zipcode</button>
-                </div>
-                <div ng-show="notZipcode" style="text-align:center" class="validation">
-                  <div style="color:maroon">Not a zipcode</div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
+</head>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-      <img class="indicator ng-hide" ng-show="loading" src="images/loader.gif"/>
+<body ng-app="atm" ng-controller="ctrl">
+    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Enter address</h4>
+                </div>
+                <div class="modal-body">
+                    <form ng-submit="confirmDelete()" <label for="confirmEmail">Enter email for the uploaded image</label>
+                        <input ng-model="email" type="text" id="confirmEmail">
+                        <input type="submit" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Enter address</h4>
+                </div>
+                <div class="modal-body">
+                    <form ng-submit="getLocation()">
+                        <div class="form-group">
+                            <div style="text-align:center;margin:0px auto;">
+                                <div ng-hide="useAddress" style="margin:0px auto;width:100px;" <label for="zipcode" class=""><strong>Zipcode</strong>
+                                    </label>
+                                    <input ng-model="address" type="text" class="form-control" placeholder="eg. 24813" id="zipcode">
+                                </div>
+                                <div class="ng-hide" ng-show="useAddress" style="margin:0px auto;width:400px;" <label for="address" class=""><strong>Address</strong>
+                                    </label>
+                                    <input ng-model="address" type="text" class="form-control" placeholder="789 Welsh Rd." id="address">
+                                </div>
+                                <img class="indicator2 ng-hide" ng-show="loadingZipcode" src="images/loader.gif" />
+                                <div ng-click="pickLocation(result)" class="well well-sm results" style="position:relative;width:400px;margin:0px auto;left:50%;margin-left:-200px;" ng-repeat="result in results">
+                                    <div style="cursor:pointer;">
+                                        {{ result.address }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div ng-hide="useAddress">
+                        <p style="text-align:center;">OR</p>
+                        <button class="btn btn-primary" ng-click="changeScope();" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use address</button>
+                    </div>
+                    <div ng-show="useAddress">
+                        <p style="text-align:center;">OR</p>
+                        <button class="btn btn-primary" ng-click="changeScope();" style="position:relative;margin:0px auto;left:50%;margin-left:-50px;">Use zipcode</button>
+                    </div>
+                    <div ng-show="notZipcode" style="text-align:center" class="validation">
+                        <div style="color:maroon">Not a zipcode</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <img class="indicator ng-hide" ng-show="loading" src="images/loader.gif" />
       <div ui-view="jumbotron"></div>
       <!--<div class="map container nopadding" style="width:100%;">
-        <div style="padding: 20px;">
-          <h1>Search</h1>
-        </div>
-        <div class="optionsContainer">
-          <div>
-            <b>Radius</b>
-            <div class="select-style">
-              <select name="radius">
-                <option value="1">1 mile</option>
-                <option value="2">2 miles</option>
-                <option value="5">5 miles</option>
-                <option value="10">10 miles</option>
-              </select>
-            </div>
+          <div style="padding: 20px;">
+            <h1>Search</h1>
           </div>
-          <div>
-            <b>Limit to</b>
-            <div class="select-style">
-              <select name="number">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-              </select>
+          <div class="optionsContainer">
+            <div>
+              <b>Radius</b>
+              <div class="select-style">
+                <select name="radius">
+                  <option value="1">1 mile</option>
+                  <option value="2">2 miles</option>
+                  <option value="5">5 miles</option>
+                  <option value="10">10 miles</option>
+                </select>
+              </div>
             </div>
-          </div>
-        </div>
-        <div id="map"></div>
-      </div>-->
-      <div ui-view></div>
-        <div class="info" ui-view="info">
-        </div>
-      <script type="text/ng-template" id="/info.html">
-        <div class="info-intro">
-              <h2>Find exciting snapshots around you!</h2>
-              <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
-        </div>
-        </br>
-        <div class="row main-cards">
-          <div class="card-container-3">
-            <div class="card box-item">
-              <img class="img-circle" src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-              <h3>Your privacy</h3>
-              <p>No personal information is stored. Your photos are just geotagged</p>
-            </div>
-            <div class="card box-item">
-              <img class="img-circle" src="images/maps.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-              <h3>Location based services</h3>
-              <p>With only your permission, we gather your location</p>
-            </div>
-            <div class="card box-item">
-              <img class="img-circle" src="images/anonymous.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-              <h3>Anonymity</h3>
-              <p>Freely surf this website without worrying about your identity</p>
-            </div>
-          </div>
-        </div>
-      </script>
-      <script type="text/ng-template" id="/photo.html">
-        <div class="" ng-controller="PhotosController">
-          <div class="row">
-            <div class="col-md-4 col-xs-12 col-lg-4 centerbox nopadding">
-              </br>
-              <div class="thumbnail nopadding">
-                <a href="#/get/{{ photo.uniq_token }}"><img src="{{ photo.img_url }}" style=""></a>
-                <div class="dropdown options">
-                  <button class="options dropdown-toggle" id="downdownMenu" data-toggle="dropdown" >
-                  <span class="glyphicon glyphicon-chevron-down" id="dropdownMenu"></span>
-                  </button>
-                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-exclamation-sign" style="color:FF2888"></span> Report</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-trash">Delete</a></li>
-                    </ul>
-                </div>
-                <div class="caption" style="background:rgba(245,245,245,0.8);">
-                  <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
-                  <p style="font-size:16px;"> {{ photo.description }} </p>
-                  <div style="display:inline-block;margin-right:10px;">
-                    <h4 style="color:89DE6A">{{photo.upvotes}}</h4>
-                    <a ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-up"></span></a>
-                  </div>
-                  <div style="display:inline-block;">
-                    <h4 style="color:F2888F">{{photo.downvotes}}</h4>
-                    <a ng-click="incrementDownvotes(photo)"<span class="glyphicon glyphicon-thumbs-down"></span></a>
-                  </div>
-                </div>
+            <div>
+              <b>Limit to</b>
+              <div class="select-style">
+                <select name="number">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                </select>
               </div>
             </div>
           </div>
-        </div>
+          <div id="map"></div>
+        </div>-->
+      <div ui-view></div>
+      <div class="info" ui-view="info">
+      </div>
+      <script type="text/ng-template" id="/info.html">
+          <div class="info-intro">
+              <h2>Find exciting snapshots around you!</h2>
+              <p>Discover your neighborhood, city, or wherever you are like never before. Help others find interesting places to visit!</p>
+          </div>
+          </br>
+          <div class="row main-cards">
+              <div class="card-container-3">
+                  <div class="card box-item">
+                      <img class="img-circle" src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                      <h3>Your privacy</h3>
+                      <p>No personal information is stored. Your photos are just geotagged</p>
+                  </div>
+                  <div class="card box-item">
+                      <img class="img-circle" src="images/maps.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                      <h3>Location based services</h3>
+                      <p>With only your permission, we gather your location</p>
+                  </div>
+                  <div class="card box-item">
+                      <img class="img-circle" src="images/anonymous.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                      <h3>Anonymity</h3>
+                      <p>Freely surf this website without worrying about your identity</p>
+                  </div>
+              </div>
+          </div>
+      </script>
+      <script type="text/ng-template" id="/photo.html">
+          <div class="" ng-controller="PhotosController">
+              <div class="row">
+                  <div class="col-md-4 col-xs-12 col-lg-4 centerbox nopadding">
+                      </br>
+                      <div class="thumbnail nopadding">
+                          <a href="#/get/{{ photo.uniq_token }}"><img src="{{ photo.img_url }}" style="">
+                          </a>
+                          <div class="dropdown options">
+                              <button class="options dropdown-toggle" id="downdownMenu" data-toggle="dropdown">
+                                  <span class="glyphicon glyphicon-chevron-down" id="dropdownMenu"></span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-exclamation-sign" style="color:FF2888"></span> Report</a>
+                                  </li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-trash">Delete</a>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="caption" style="background:rgba(245,245,245,0.8);">
+                              <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
+                              <p style="font-size:16px;"> {{ photo.description }} </p>
+                              <div style="display:inline-block;margin-right:10px;">
+                                  <h4 style="color:89DE6A">{{photo.upvotes}}</h4>
+                                  <a ng-click="incrementUpvotes(photo)" <span class="glyphicon glyphicon-thumbs-up">
+                                      </span>
+                                  </a>
+                              </div>
+                              <div style="display:inline-block;">
+                                  <h4 style="color:F2888F">{{photo.downvotes}}</h4>
+                                  <a ng-click="incrementDownvotes(photo)" <span class="glyphicon glyphicon-thumbs-down">
+                                      </span>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </script>
 
       <script type="text/ng-template" id="/home.html">
-        <div class="videoContainer">
-          <h1 class="deftone"> At this moment </h1>
-          <div class="videoText">
-            Discover photos </br> nearby!
-            <div class="btn-group" style="position: relative;" data-toggle="buttons">
-              <p><a class="btn button" href="#all" role="button">Search</a></p>
-              <p><a class="btn btn-primary btn-lg" href="#upload" role="button">Upload »</a></p>
-            </div>
+          <div class="videoContainer">
+              <h1 class="deftone"> At this moment </h1>
+              <div class="videoText">
+                  Discover photos </br> nearby!
+                  <div class="btn-group" style="position: relative;" data-toggle="buttons">
+                      <p><a class="btn button" href="#all" role="button">Search</a>
+                      </p>
+                      <p><a class="btn btn-primary btn-lg" href="#upload" role="button">Upload »</a>
+                      </p>
+                  </div>
+              </div>
+              <video id="bgvid" muted autoplay loop>
+                  <source src="video.mp4" type="video/mp4" />
+              </video>
           </div>
-          <video id="bgvid" muted autoplay loop>
-            <source src="video.mp4" type="video/mp4" />  
-          </video>
-        </div>
       </script>
       <script type="text/ng-template" id="/asdf.html">
-      <a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
+          <a href="#/get/{{photo.uniq_token}}">{{photo.title}}</a> - {{photo.upvotes}}
       </script>
-            <script type="text/javascript">
-              function PreviewImage(){
-        var oFReader = new FileReader();
-        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+      <script type="text/javascript">
+          function PreviewImage() {
+              var oFReader = new FileReader();
+              oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
 
-        oFReader.onload = function (oFREvent) {
-            document.getElementById("imagePreview").src = oFREvent.target.result;
-        };
+              oFReader.onload = function(oFREvent) {
+                  document.getElementById("imagePreview").src = oFREvent.target.result;
               };
-
-              </script>
+          };
+      </script>
       <script type="text/ng-template" id="/upload.html">
-      <div class="style2">
-        <form name="form" class="form-inline" ng-submit="addPhoto()">
-          <div class="row">
-            <h1 id="percent"></h1>
-            <div id="fileInput" class="form-group col-lg-1">
-            <input id="uploadImage" file-model="file" onchange="PreviewImage()" type="file"/>
-            </div>
-            </br>
-          </div>
-          <div class="row">
-            <div class="">
-              <img src="images/placeholder_large.jpg" class="thumbnail" id="imagePreview" style="width:250px;margin:0 auto;margin-bottom:20px;"/>
-            </div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
-              60%
-            </div>
-          </div>
-          <div class="row">
-            <div id="titleInput" class="form-group col-lg-1">
-            <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" ng-model="title" placeholder="Title"></input>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-lg-1">
-            <textarea class="form-control" rows="4" style="width:250px;" ng-model="description" placeholder="Description"></textarea></br>
-            <button class="btn btn-warning" id="submit" style="width:100px;" type="submit">Post</button>
-            </div>
-          </div>
-          <div class="validation" style="color:maroon">
-          </br>
-            <div ng-show="isNotImage" id="number">The file you chose is not an image. Please an image to upload.</div>
-          <div>
-        </form>
-      </div>
+          <div class="style2">
+              <form name="form" class="form-inline" ng-submit="addPhoto()">
+                  <div class="row">
+                      <h1 id="percent"></h1>
+                      <div id="fileInput" class="form-group col-lg-1">
+                          <input id="uploadImage" file-model="file" onchange="PreviewImage()" type="file" />
+                      </div>
+                      </br>
+                  </div>
+                  <div class="row">
+                      <div class="">
+                          <img src="images/placeholder_large.jpg" class="thumbnail" id="imagePreview" style="width:250px;margin:0 auto;margin-bottom:20px;" />
+                      </div>
+                  </div>
+                  <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+                          60%
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div id="titleInput" class="form-group col-lg-1">
+                          <input style="width:250px;height:35px;" class="form-control" type="text" ng-minlength="1" ng-maxlength="25" ng-required="true" ng-model="title" placeholder="Title"></input>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-lg-1">
+                          <textarea class="form-control" rows="4" style="width:250px;" ng-model="description" placeholder="Description"></textarea>
+                          </br>
+                          <button class="btn btn-warning" id="submit" style="width:100px;" type="submit">Post</button>
+                      </div>
+                  </div>
+                  <div class="validation" style="color:maroon">
+                      </br>
+                      <div ng-show="isNotImage" id="number">The file you chose is not an image. Please an image to upload.</div>
+                      <div>
+              </form>
+              </div>
       </script>
       <script type="text/ng-template" id="/photos.html">
-      <div class="row" ng-controller="ctrl">
-          </br>
-      <div class="container" ng-show="empty" style="width:530px;text-align:center;">
-        <div class="alert alert-info" role="alert">
-          <strong>No photos found near you!</strong>
-          Start by capturing!
-      </div>
-        <span class="glyphicon glyphicon-chevron-down tick"></span>
-        </br>
-        </br>
-        <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
-          <p><a style="width:200px;"class="btn btn-primary btn-lg" href="#upload" role="button">Upload photo »</a></p>
-        </div>
-      </div>
-          <div class="col-md-4 col-xs-12 col-lg-3 centerbox nopadding">
-            <div class="thumbnail nopadding" style="position:relative;" ng-repeat="photo in photos | orderBy: '-upvotes'">
-              <a href="#/get/{{ photo.uniq_token }}"><img src="{{photo.img_url}}"></a>
-              <div class="dropdown options">
-                <button class="options dropdown-toggle" id="downdownMenu" data-toggle="dropdown" >
-                <span class="glyphicon glyphicon-chevron-down" id="dropdownMenu"></span>
-                </button>
-                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-exclamation-sign" style="color:FF2888"></span> Report</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="deletePhoto(photo)"><span class="glyphicon glyphicon-trash">Delete</a></li>
-                  </ul>
+          <div class="row" ng-controller="ctrl">
+              </br>
+              <div class="container" ng-show="empty" style="width:530px;text-align:center;">
+                  <div class="alert alert-info" role="alert">
+                      <strong>No photos found near you!</strong> Start by capturing!
+                  </div>
+                  <span class="glyphicon glyphicon-chevron-down tick"></span>
+                  </br>
+                  </br>
+                  <div class="btn-group" style="width:200px;margin:0px auto;display:block;" data-toggle="buttons">
+                      <p><a style="width:200px;" class="btn btn-primary btn-lg" href="#upload" role="button">Upload photo »</a>
+                      </p>
+                  </div>
               </div>
-              <div class="caption" style="background:rgba(245,245,245,0.8);">
-                <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
-                <p style="font-size:16px;"> {{ photo.description }} </p>
-                <div style="display:inline-block;margin-right:10px;">
-                  <h4 style="color:89DE6A">{{photo.upvotes}}</h4>
-                  <a ng-click="incrementUpvotes(photo)"<span class="glyphicon glyphicon-thumbs-up"></span></a>
-                </div>
-                <div style="display:inline-block;">
-                  <h4 style="color:F2888F">{{photo.downvotes}}</h4>
-                  <a ng-click="incrementDownvotes(photo)"<span class="glyphicon glyphicon-thumbs-down"></span></a>
-                </div>
+              <div class="col-md-4 col-xs-12 col-lg-3 centerbox nopadding">
+                  <div class="thumbnail nopadding" style="position:relative;" ng-repeat="photo in photos | orderBy: '-upvotes'">
+                      <a href="#/get/{{ photo.uniq_token }}"><img src="{{photo.img_url}}">
+                      </a>
+                      <div class="dropdown options">
+                          <button class="options dropdown-toggle" id="downdownMenu" data-toggle="dropdown">
+                              <span class="glyphicon glyphicon-chevron-down" id="dropdownMenu"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-exclamation-sign" style="color:FF2888"></span> Report</a>
+                              </li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="deletePhoto(photo)"><span class="glyphicon glyphicon-trash">Delete</a>
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="caption" style="background:rgba(245,245,245,0.8);">
+                          <h4><a href="#/get/{{photo.uniq_token}}">{{ photo.title }}</a></h4>
+                          <p style="font-size:16px;"> {{ photo.description }} </p>
+                          <div style="display:inline-block;margin-right:10px;">
+                              <h4 style="color:89DE6A">{{photo.upvotes}}</h4>
+                              <a ng-click="incrementUpvotes(photo)" <span class="glyphicon glyphicon-thumbs-up">
+                                  </span>
+                              </a>
+                          </div>
+                          <div style="display:inline-block;">
+                              <h4 style="color:F2888F">{{photo.downvotes}}</h4>
+                              <a ng-click="incrementDownvotes(photo)" <span class="glyphicon glyphicon-thumbs-down">
+                                  </span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
-      </div>
       </script>
-      <footer>
+    </div>
+    <footer>
         <div>
-          <div>&copy; Copyright 2015 - 2017</div>
-          <div style="font-style:italic">All rights reserved</div>
+            <div>&copy; Copyright 2015 - 2017</div>
+            <div style="font-style:italic">All rights reserved</div>
         </div>
-      </footer>
-  </body>
+    </footer>
+</body>
 </html>
