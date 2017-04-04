@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
     <script src="javascripts/angularApp.js"></script>
     <script src="javascripts/bootstrap-min.js"></script>
+    <script src="javascripts/aos.js"></script>
+    <link href='stylesheets/aos.css' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Euphoria+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Seaweed+Script' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/atm.css">
@@ -127,17 +129,17 @@
           </br>
           <div class="row main-cards">
               <div class="card-container-3">
-                  <div class="card box-item">
-                      <img class="img-circle" src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                  <div data-aos="fade-right" data-aos-duration="800" data-aos-ease="ease-in-sine" class="card box-item">
+                      <img class="img-circle"  src="images/privacy.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
                       <h3>Your privacy</h3>
                       <p>No personal information is stored. Your photos are just geotagged</p>
                   </div>
-                  <div class="card box-item">
+                  <div data-aos="fade-right" data-aos-duration="800" data-aos-ease="ease-in-sine" data-aos-delay="200" class="card box-item">
                       <img class="img-circle" src="images/maps.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
                       <h3>Location based services</h3>
                       <p>With only your permission, we gather your location</p>
                   </div>
-                  <div class="card box-item">
+                  <div data-aos="fade-right" data-aos-duration="800" data-aos-ease="ease-in-sine" data-aos-delay="300" class="card box-item">
                       <img class="img-circle" src="images/anonymous.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
                       <h3>Anonymity</h3>
                       <p>Freely surf this website without worrying about your identity</p>
@@ -304,6 +306,9 @@
                   </div>
               </div>
           </div>
+      </script>
+      <script>
+        AOS.init();
       </script>
     </div>
     <footer>
